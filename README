@@ -1,0 +1,5 @@
+CipherFox displays the current SSL/TLS cipher and certificate chain in the
+Firefox Add-on bar.
+
+You can click CipherFox to show a popup menu with the certificate chain.
+Clicking on any certificate shows you its detailed properties.
