@@ -4,4 +4,5 @@ Firefox Add-on bar.
 You can click CipherFox to show a popup menu with the certificate chain.
 Clicking on any certificate shows you its detailed properties.
 
+https://github.com/gavinhungry/cipherfox
 https://addons.mozilla.org/en-US/firefox/addon/cipherfox/
