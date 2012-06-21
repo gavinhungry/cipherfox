@@ -28,7 +28,7 @@ var cipherFox = {
     var moreInfo = document.getElementById('identity-popup-more-info-button');
     if (moreInfo instanceof XULElement) {
       moreInfo.removeAttribute('onblur');
-      moreInfo.addEventListener('command', function(e) { this.hideIdentityPopup(); }, false);
+      moreInfo.addEventListener('command', function() { this.hideIdentityPopup(); }, false);
     }
 
     // keep the identity-box 'open'
@@ -142,20 +142,29 @@ var cipherFox = {
         }
 
         var label = this.formatLabel(cert);
-        var dbKey = cert.dbKey.replace(/[\n\r\t]/g, '');
+        var dbkey = cert.dbKey.replace(/[\n\r\t]/g, '');
 
         // selecting a cert brings up details
         certItem.setAttribute('label', label);
-        certItem.setAttribute('oncommand', 'cipherFox.viewCertByDBKey("'+dbKey+'")');
+        certItem.setAttribute('dbkey', dbkey);
 
         // add attributes for styling
         certItem.setAttribute('cert', true);
         if (!this.cfCerts.hasChildNodes()) {
           certItem.setAttribute('first', true);
         }
-        
+
+        certItem.addEventListener('command', function(e) {
+          cipherFox.viewCertByDBKey(e);
+        }, false);
+
+        var certItemB = certItem.cloneNode();
+        certItemB.addEventListener('command', function(e) {
+          cipherFox.viewCertByDBKey(e);
+        }, false);
+
         this.cfCerts.insertBefore(certItem, this.cfCerts.firstChild);
-        this.cfBCerts.insertBefore(certItem.cloneNode(), this.cfPSep);
+        this.cfBCerts.insertBefore(certItemB, this.cfPSep);
       }
     }
   },
@@ -234,8 +243,9 @@ var cipherFox = {
 
 
   // show dialog for cert in database
-  viewCertByDBKey: function(dbKey) {
-    var cert = this.certDb.findCertByDBKey(dbKey, null);
+  viewCertByDBKey: function(e) {
+    var dbkey = e.target.getAttribute('dbkey');  
+    var cert = this.certDb.findCertByDBKey(dbkey, null);
     this.certDlg.viewCert(window, cert);
   },
 
