@@ -1,7 +1,7 @@
-<?xml version="1.0" encoding="utf-8"?>
-<RDF xmlns="http://www.w3.org/1999/02/22-rdf-syntax-ns#" 
- xmlns:em="http://www.mozilla.org/2004/em-rdf#">
-  <Description about="urn:mozilla:install-manifest">
+<?xml version='1.0' encoding='utf-8'?>
+<RDF xmlns='http://www.w3.org/1999/02/22-rdf-syntax-ns#' 
+ xmlns:em='http://www.mozilla.org/2004/em-rdf#'>
+  <Description about='urn:mozilla:install-manifest'>
     <em:type>2</em:type>
     <em:id>cipherfox@mkfly</em:id>
     <em:version>3.5.0</em:version>
@@ -13,7 +13,7 @@
       </Description>
     </em:targetApplication>
     <em:name>CipherFox</em:name>
-    <em:description>Display the current SSL/TLS cipher and certificate chain in the Add-on bar.</em:description>
+    <em:description>Display the current SSL/TLS cipher and certificate chain</em:description>
     <em:creator>Gavin Lloyd</em:creator>
     <em:homepageURL>https://github.com/gavinhungry/cipherfox</em:homepageURL>
     <em:optionsURL>chrome://cipherfox/content/prefs.xul</em:optionsURL>

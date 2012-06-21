@@ -1,122 +1,123 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version='1.0' encoding='utf-8'?>
 <!-- This Source Code Form is subject to the terms of the Mozilla Public
    - License, v. 2.0. If a copy of the MPL was not distributed with this file,
    - You can obtain one at http://mozilla.org/MPL/2.0/.  -->
 
-<?xml-stylesheet type="text/css" href="chrome://global/skin/"?>
-<!DOCTYPE window SYSTEM "chrome://cipherfox/locale/prefs.dtd">
+<?xml-stylesheet type='text/css' href='chrome://global/skin/'?>
+<!DOCTYPE window SYSTEM 'chrome://cipherfox/locale/prefs.dtd'>
 
-<prefwindow id="cipherfox-prefs"
-            xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
-            title="&prefs.title;"
-            style="min-width: 50em;">
+<prefwindow id='cipherfox-prefs'
+            xmlns='http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul'
+            title='&prefs.title;'
+            style='min-width: 50em;'>
 
   <stringbundleset id='stringbundleset'>
     <stringbundle id='cipherfox-prefs-bundle' src='chrome://cipherfox/locale/prefs.properties'/>
   </stringbundleset>
 
-  <script type="application/x-javascript" src="prefs.js"/>
-  <script type="application/x-javascript">
-    window.addEventListener("load", function() { cipherFox_prefs.onLoad(); }, false);
+  <script type='application/x-javascript' src='prefs.js'/>
+  <script type='application/x-javascript'>
+    window.addEventListener('load', function() { cipherFox_prefs.onLoad(); }, false);
   </script>
 
-  <prefpane id="cipherfox-prefpane" flex="1"> 
+  <prefpane id='cipherfox-prefpane' flex='1'> 
 
     <preferences>
-      <preference id="pref_base_format"  name="extensions.cipherfox.base_format"  type="string"/>
-      <preference id="pref_cert_format"  name="extensions.cipherfox.cert_format"  type="string"/>
-      <preference id="pref_disable_rc4"  name="extensions.cipherfox.disable_rc4"  type="bool"/>
-      <preference id="pref_show_builtin" name="extensions.cipherfox.show_builtin" type="bool"/>
-      <preference id="pref_show_partial" name="extensions.cipherfox.show_partial" type="bool"/>
-      <preference id="pref_show_panel"   name="extensions.cipherfox.show_panel"   type="bool"/>
-      <preference id="pref_show_button"  name="extensions.cipherfox.show_button"  type="bool"/>
+      <preference id='pref_base_format'  name='extensions.cipherfox.base_format'  type='string'/>
+      <preference id='pref_cert_format'  name='extensions.cipherfox.cert_format'  type='string'/>
+      <preference id='pref_disable_rc4'  name='extensions.cipherfox.disable_rc4'  type='bool'/>
+      <preference id='pref_show_builtin' name='extensions.cipherfox.show_builtin' type='bool'/>
+      <preference id='pref_show_partial' name='extensions.cipherfox.show_partial' type='bool'/>
+      <preference id='pref_show_panel'   name='extensions.cipherfox.show_panel'   type='bool'/>
+      <preference id='pref_show_button'  name='extensions.cipherfox.show_button'  type='bool'/>
     </preferences>
 
     <groupbox>
-      <caption label="&general.label;"/>
+      <caption label='&general.label;'/>
       <box>
-        <checkbox label="&showPartial.label;" preference="pref_show_partial"/>
+        <checkbox label='&showPartial.label;' preference='pref_show_partial'/>
       </box>
       <box>
-        <checkbox label="&showBuiltin.label;" preference="pref_show_builtin"/>
+        <checkbox label='&showBuiltin.label;' preference='pref_show_builtin'/>
       </box>
       <box>
-        <checkbox label="&disableRC4.label;" preference="pref_disable_rc4" oncommand='return cipherFox_prefs.confirmRC4(this)'/>
-      </box>
-    </groupbox>
-
-    <groupbox>
-      <caption label="&display.label;"/>
-      <box>
-        <checkbox label="&showPanel.label;" preference="pref_show_panel"/>
-      </box>
-      <box>
-        <checkbox label="&showButton.label;" preference="pref_show_button"/>
+        <checkbox label='&disableRC4.label;' preference='pref_disable_rc4'
+                  oncommand='return cipherFox_prefs.confirmRC4(this)'/>
       </box>
     </groupbox>
 
     <groupbox>
-      <caption label="&formatting.label;"/>
+      <caption label='&display.label;'/>
+      <box>
+        <checkbox label='&showPanel.label;' preference='pref_show_panel'/>
+      </box>
+      <box>
+        <checkbox label='&showButton.label;' preference='pref_show_button'/>
+      </box>
+    </groupbox>
+
+    <groupbox>
+      <caption label='&formatting.label;'/>
       <grid>
         <columns>
           <column/>
-          <column flex="1"/>
+          <column flex='1'/>
           <column/>
         </columns>
         <rows>
-          <row align="center">
-            <label value="&cipher.label;:"/>
-            <textbox preference="pref_base_format"/>
-            <button label="&default.label;" oncommand="cipherFox_prefs.baseFormat.reset();"/>
+          <row align='center'>
+            <label value='&cipher.label;:'/>
+            <textbox preference='pref_base_format'/>
+            <button label='&default.label;' oncommand='cipherFox_prefs.baseFormat.reset();'/>
           </row>
-          <row align="center">
-            <label value="&cert.label;:"/>
-            <textbox preference="pref_cert_format"/>
-            <button label="&default.label;" oncommand="cipherFox_prefs.certFormat.reset();"/>
+          <row align='center'>
+            <label value='&cert.label;:'/>
+            <textbox preference='pref_cert_format'/>
+            <button label='&default.label;' oncommand='cipherFox_prefs.certFormat.reset();'/>
           </row>
         </rows>
       </grid>
     </groupbox>
 
     <groupbox>
-      <caption label="&variables.label;"/>
+      <caption label='&variables.label;'/>
       <grid>
         <columns>
-          <column flex="1"/>
-          <column flex="1"/>
+          <column flex='1'/>
+          <column flex='1'/>
         </columns>
         <rows>
           <row>
-            <label value="$CIPHERALG"/>
-            <label value="&cipherAlg.label;"/>
+            <label value='$CIPHERALG'/>
+            <label value='&cipherAlg.label;'/>
           </row>
           <row>
-            <label value="$CIPHERSIZE"/>
-            <label value="&cipherSize.label;"/>
+            <label value='$CIPHERSIZE'/>
+            <label value='&cipherSize.label;'/>
           </row>
           <row>
-            <label value="$CERTORG"/>
-            <label value="&certOrg.label;"/>
+            <label value='$CERTORG'/>
+            <label value='&certOrg.label;'/>
           </row>
           <row>
-            <label value="$CERTALG"/>
-            <label value="&certAlg.label;"/>
+            <label value='$CERTALG'/>
+            <label value='&certAlg.label;'/>
           </row>
           <row>
-            <label value="$CERTSIZE"/>
-            <label value="&certSize.label;"/>
+            <label value='$CERTSIZE'/>
+            <label value='&certSize.label;'/>
           </row>
           <row>
-            <label value="$CERTHASH"/>
-            <label value="&certHash.label;"/>
+            <label value='$CERTHASH'/>
+            <label value='&certHash.label;'/>
           </row>
           <row>
-            <label value="$CERTEXP"/>
-            <label value="&certExp.label;"/>
+            <label value='$CERTEXP'/>
+            <label value='&certExp.label;'/>
           </row>
           <row>
-            <label value="$CERTISSUER"/>
-            <label value="&certIss.label;"/>
+            <label value='$CERTISSUER'/>
+            <label value='&certIss.label;'/>
           </row>
         </rows>
       </grid>

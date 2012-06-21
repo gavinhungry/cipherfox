@@ -13,9 +13,9 @@ var cipherFox = {
     this.prefs = Cc['@mozilla.org/preferences-service;1'].getService(Ci.nsIPrefBranch2);
 
     // default RC4 settings
-    this.rc4 = ['ssl2.rc4_128', 'ssl2.rc4_40', 'ssl3.ecdh_ecdsa_rc4_128_sha', 'ssl3.ecdh_rsa_rc4_128_sha', 
-                'ssl3.ecdhe_ecdsa_rc4_128_sha', 'ssl3.ecdhe_rsa_rc4_128_sha', 'ssl3.rsa_1024_rc4_56_sha',
-                'ssl3.rsa_rc4_128_md5', 'ssl3.rsa_rc4_128_sha', 'ssl3.rsa_rc4_40_md5'];
+    this.rc4 = ['ecdh_ecdsa_rc4_128_sha', 'ecdh_rsa_rc4_128_sha', 'ecdhe_ecdsa_rc4_128_sha',
+                'ecdhe_rsa_rc4_128_sha', 'rsa_1024_rc4_56_sha', 'rsa_rc4_128_md5',
+                'rsa_rc4_128_sha', 'rsa_rc4_40_md5'];
 
     this.cfToggle = document.getElementById('cipherfox-toggle-rc4');
     this.cfPanel  = document.getElementById('cipherfox-panel');
@@ -28,7 +28,13 @@ var cipherFox = {
     var moreInfo = document.getElementById('identity-popup-more-info-button');
     if (moreInfo instanceof XULElement) {
       moreInfo.removeAttribute('onblur');
+      moreInfo.addEventListener('command', function(e) { this.hideIdentityPopup(); }, false);
     }
+
+    // keep the identity-box 'open'
+    this.cfBCerts.addEventListener('popuphidden', function(e) {
+      e.stopPropagation();
+    }, false);
 
     this.prefs.addObserver('extensions.cipherfox.', this, false);
     this.loadPrefs();
@@ -36,7 +42,7 @@ var cipherFox = {
     if (this.disable_rc4) {
       this.setRC4();
     }
-    
+
     // the other functions are needed here, but not used
     this.updateListener = {
       onStateChange:    function(a, b, c, d) {},
@@ -61,8 +67,9 @@ var cipherFox = {
       this.loadPrefs();
       this.updateCipher();
 
-      if (data == 'extensions.cipherfox.disable_rc4')
+      if (data == 'extensions.cipherfox.disable_rc4') {
         this.setRC4();
+      }
     }
   },
 
@@ -85,6 +92,8 @@ var cipherFox = {
 
 
   updateCipher: function() {
+    this.hideIdentityPopup();
+  
     var currentBrowser = gBrowser.selectedBrowser;
     var panelLabel = null;
     var hidden = true;
@@ -102,7 +111,7 @@ var cipherFox = {
     }
 
     this.cfPanel.label  = this.cfButton.label = panelLabel;
-    this.cfPanel.hidden = hidden || !this.show_panel;
+    this.cfPanel.hidden  = hidden || !this.show_panel;
     this.cfButton.hidden = hidden || !this.show_button;
   },
 
@@ -114,11 +123,11 @@ var cipherFox = {
     while(this.cfCerts.hasChildNodes()) {
       this.cfCerts.removeChild(this.cfCerts.firstChild);
     }
-    
+
     while(this.cfBCerts.hasChildNodes() && this.cfBCerts.firstChild != this.cfPSep) {
       this.cfBCerts.removeChild(this.cfBCerts.firstChild);
     }
-    
+
     var serverCert = status.serverCert;
     if (serverCert instanceof Ci.nsIX509Cert) {
       var certChain = serverCert.getChain().enumerate();
@@ -127,7 +136,6 @@ var cipherFox = {
         var cert = certChain.getNext().QueryInterface(Ci.nsIX509Cert2);
         var certItem = document.createElement('menuitem');
 
-        // Builtin
         if (cert.tokenName == 'Builtin Object Token' && cert.certType == Ci.nsIX509Cert.CA_CERT) {
           if (!this.show_builtin) continue; 
           certItem.setAttribute('builtin', true);
@@ -136,16 +144,16 @@ var cipherFox = {
         var label = this.formatLabel(cert);
         var dbKey = cert.dbKey.replace(/[\n\r\t]/g, '');
 
-        // selecting a cert brings up its details
+        // selecting a cert brings up details
         certItem.setAttribute('label', label);
         certItem.setAttribute('oncommand', 'cipherFox.viewCertByDBKey("'+dbKey+'")');
 
-        // add attributes for CSS styling
+        // add attributes for styling
         certItem.setAttribute('cert', true);
         if (!this.cfCerts.hasChildNodes()) {
           certItem.setAttribute('first', true);
         }
-
+        
         this.cfCerts.insertBefore(certItem, this.cfCerts.firstChild);
         this.cfBCerts.insertBefore(certItem.cloneNode(), this.cfPSep);
       }
@@ -180,21 +188,21 @@ var cipherFox = {
     if (!certAlg) {
       switch (certDmp.getDisplayData(12)) {
         case this.pipnss.GetStringFromName('CertDumpAnsiX9DsaSignature'):
-        case this.pipnss.GetStringFromName('CertDumpAnsiX9DsaSignatureWithSha1'): certAlg = 'DSA'; break;
+        case this.pipnss.GetStringFromName('CertDumpAnsiX9DsaSignatureWithSha1'): certAlg = 'DSA';
       }
     }
 
     var certSize;
     try {
-      if (certAlg == 'RSA')
+      if (certAlg == 'RSA') {
         certSize = certDmp.getDisplayData(12).split("\n")[0].replace(/\D/g, '');
-      else if (certAlg == 'DSA') {
-        var key = certDmp.getDisplayData(14);
-        key = key.replace(key.split(/\n/)[0],'').replace(/\n|(\s$)/g, '').split(/\s/);
-        if (key[0] == '02' && key[1] == '81') key.splice(0,3);
-        if (key[0] == '00') key.splice(0,1);
-        certSize = (8 * key.length);
-      }
+      } else if (certAlg == 'DSA') {
+          var key = certDmp.getDisplayData(14);
+          key = key.replace(key.split(/\n/)[0],'').replace(/\n|(\s$)/g, '').split(/\s/);
+          if (key[0] == '02' && key[1] == '81') key.splice(0,3);
+          if (key[0] == '00') key.splice(0,1);
+          certSize = (8 * key.length);
+        }
     } catch(e) {}
 
     // look for hash type
@@ -205,7 +213,7 @@ var cipherFox = {
       case this.pipnss.GetStringFromName('CertDumpSHA1WithRSA'):   certHash = 'SHA1';   break;
       case this.pipnss.GetStringFromName('CertDumpSHA256WithRSA'): certHash = 'SHA256'; break;
       case this.pipnss.GetStringFromName('CertDumpSHA384WithRSA'): certHash = 'SHA384'; break;
-      case this.pipnss.GetStringFromName('CertDumpSHA512WithRSA'): certHash = 'SHA512'; break;
+      case this.pipnss.GetStringFromName('CertDumpSHA512WithRSA'): certHash = 'SHA512';
     }
 
     var certExp = cert.validity.notAfterLocalDay;
@@ -240,17 +248,27 @@ var cipherFox = {
 
 
   setRC4: function() {
-    if (this.rc4Enabled) {
-      for (var i = 0; i < this.rc4.length; i++) {
+    for (var i = 0; i < this.rc4.length; i++) {
+      if (this.rc4Enabled) {
         try {
-          this.prefs.clearUserPref('security.' + this.rc4[i]);
+          this.prefs.clearUserPref('security.ssl3.' + this.rc4[i]);
         } catch(e) {}
       }
-    }
 
-    else {
-      for (var i = 0; i < this.rc4.length; i++)
-        this.prefs.setBoolPref('security.' + this.rc4[i], false);
+      else {
+        this.prefs.setBoolPref('security.ssl3.' + this.rc4[i], false);
+      }
     }
+  },
+
+
+  hideIdentityPopup: function() {
+    gIdentityHandler.hideIdentityPopup();
+  },
+
+
+  testDomain: function() {
+    gBrowser.addTab('https://www.ssllabs.com/ssldb/analyze.html?d='
+                   + gBrowser.contentDocument.domain);
   }
 };

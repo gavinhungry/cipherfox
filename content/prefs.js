@@ -5,16 +5,19 @@
 var cipherFox_prefs = {
 
   onLoad: function() {
-    this.prompt = Cc["@mozilla.org/embedcomp/prompt-service;1"].getService(Ci.nsIPromptService);
+  var Cc = Components.classes;
+  var Ci = Components.interfaces;
+
+    this.prompt = Cc['@mozilla.org/embedcomp/prompt-service;1'].getService(Ci.nsIPromptService);
     this.bundle = document.getElementById('cipherfox-prefs-bundle');
     this.baseFormat = document.getElementById('pref_base_format');
     this.certFormat = document.getElementById('pref_cert_format');
   },
   
-  // warn the user about the BEAST attack
   confirmRC4: function(checkbox) {
     if (checkbox.getAttribute('checked')) {
-      if (!this.prompt.confirm(window, this.bundle.getString('cipherfox'), this.bundle.getString('rc4beast'))) {
+      if (!this.prompt.confirm(window, this.bundle.getString('cipherfox'),
+                                       this.bundle.getString('rc4beast'))) {
         checkbox.setAttribute('checked', false);
       }
     }

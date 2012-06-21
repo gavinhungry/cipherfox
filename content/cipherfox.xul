@@ -1,59 +1,50 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version='1.0' encoding='utf-8'?>
 <!-- This Source Code Form is subject to the terms of the Mozilla Public
    - License, v. 2.0. If a copy of the MPL was not distributed with this file,
    - You can obtain one at http://mozilla.org/MPL/2.0/.  -->
 
-<?xml-stylesheet type="text/css" href="chrome://cipherfox/skin/overlay.css"?>
-<!DOCTYPE window SYSTEM "chrome://cipherfox/locale/cipherfox.dtd">
+<?xml-stylesheet type='text/css' href='chrome://cipherfox/skin/overlay.css'?>
+<!DOCTYPE window SYSTEM 'chrome://cipherfox/locale/cipherfox.dtd'>
 
-<overlay id="cipherfox-overlay"
-         xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+<overlay id='cipherfox-overlay'
+         xmlns='http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul'>
 
-  <script type="application/x-javascript" src="cipherfox.js"/>
-  <script type="application/x-javascript">
-    window.addEventListener("load",   function() { cipherFox.onLoad(); },   false);
-    window.addEventListener("unload", function() { cipherFox.onUnload(); }, false);
+  <script type='application/x-javascript' src='cipherfox.js'/>
+  <script type='application/x-javascript'>
+    window.addEventListener('load',   function() { cipherFox.onLoad();   }, false);
+    window.addEventListener('unload', function() { cipherFox.onUnload(); }, false);
   </script>
-  
-  
-  
-  
-  
-  <menupopup id="menu_ToolsPopup">
-    <menuitem id="cipherfox-toggle-rc4" type="checkbox" label="&enable.label;" insertafter="devToolsSeparator" hidden="true" oncommand="cipherFox.toggleRC4();"/>
+
+  <menupopup id='menu_ToolsPopup'>
+    <menuitem id='cipherfox-toggle-rc4' type='checkbox' label='&enable.label;'
+              insertafter='devToolsSeparator' hidden='true' oncommand='cipherFox.toggleRC4()'/>
   </menupopup>
-  
-  
-  
-  
-  
+
   <vbox id='identity-popup-button-container'>
-   <button type='menu' id='cipherfox-button' label='CipherFox' insertbefore="identity-popup-more-info-button" hidden="true">
-      <menupopup id="cipherfox-button-certs">
+   <button id='cipherfox-button' type='menu' label='&cipherfox.title;'
+           insertbefore='identity-popup-more-info-button' hidden='true'>
+      <menupopup id='cipherfox-button-certs'>
          <menuseparator id='cipherfox-prefs-seperator'/>
-         <menuitem label="&qualys.label;" accesskey="&qualys.accesskey;" oncommand="gBrowser.addTab('https://www.ssllabs.com/ssldb/analyze.html?d=' + gBrowser.contentDocument.domain);"/>
-         <menuitem label="&prefs.label;" accesskey="&prefs.accesskey;" oncommand="window.openDialog('chrome://cipherfox/content/prefs.xul');"/>
+         <menuitem label='&qualys.label;' accesskey='&qualys.accesskey;'
+                   oncommand='cipherFox.testDomain()'/>
+         <menuitem label='&prefs.label;' accesskey='&prefs.accesskey;'
+                   oncommand='window.openDialog("chrome://cipherfox/content/prefs.xul")'/>
       </menupopup>
     </button>
   </vbox>
 
+  <statusbar id='status-bar'>  
+    <statusbarpanel id='cipherfox-panel' label='&cipherfox.title;' insertbefore='security-button'
+                    hidden='true' popup='cipherfox-certs' context='cipherfox-context'/>
 
-
-
-
-
-  <statusbar id="status-bar">  
-    <statusbarpanel id="cipherfox-panel" insertbefore="security-button" hidden="true" popup="cipherfox-certs" context="cipherfox-context"/>
-
-    <menupopup id="cipherfox-certs" position="before_end" onpopupshowing="cipherFox.cfPanel.setAttribute('popupopen', 'true');" onpopuphiding="cipherFox.cfPanel.removeAttribute('popupopen');"/>
-    <menupopup id="cipherfox-context">
-         <menuitem label="&prefs.label;" accesskey="&prefs.accesskey;" oncommand="window.openDialog('chrome://cipherfox/content/prefs.xul');"/>
-         <menuseparator/>
-         <menuitem label="&qualys.label;" accesskey="&qualys.accesskey;" oncommand="gBrowser.addTab('https://www.ssllabs.com/ssldb/analyze.html?d=' + gBrowser.contentDocument.domain);"/>
+    <menupopup id='cipherfox-certs' position='before_end'
+               onpopupshowing='cipherFox.cfPanel.setAttribute("popupopen", true);'
+               onpopuphiding='cipherFox.cfPanel.removeAttribute("popupopen")'/>
+    <menupopup id='cipherfox-context'>
+         <menuitem label='&qualys.label;' accesskey='&qualys.accesskey;'
+                   oncommand='cipherFox.testDomain()'/>
+         <menuitem label='&prefs.label;' accesskey='&prefs.accesskey;'
+                   oncommand='window.openDialog("chrome://cipherfox/content/prefs.xul")'/>
     </menupopup>
   </statusbar>
-
-
-
-
 </overlay>

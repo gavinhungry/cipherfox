@@ -8,31 +8,49 @@
   padding: 0 !important;
   margin-top: -1px !important;
   margin-bottom: -2px !important;
-  -moz-padding-end: 3px !important;
-  -moz-margin-end: 4px !important;
-  background: url("chrome://cipherfox/skin/arrow-up.png") right center no-repeat !important;
+ -moz-padding-end: 3px !important;
+ -moz-margin-end: 4px !important;
+  background: url('chrome://cipherfox/skin/arrow-up.png') right center no-repeat !important;
 }
 
 #cipherfox-panel[popupopen] {
-  background-image: url("chrome://cipherfox/skin/arrow-up-dis.png") !important;
+  background-image: url('chrome://cipherfox/skin/arrow-up-dis.png') !important;
 }
-
 
 #cipherfox-button {
-  -moz-margin-end: 0 !important;
+  margin-top: 2px !important;
+  margin-bottom: 1px !important;
+ -moz-margin-end: 0 !important;
 }
 
-#cipherfox-button dropmarker {
-  -moz-appearance: none !important;
+#identity-popup-more-info-button {
+  margin-top: 2px !important;
+  margin-bottom: 1px !important;
+ -moz-margin-start: 5px !important;
+}
+
+#cipherfox-button .button-menu-dropmarker {
+ -moz-appearance: none !important;
+ -moz-margin-start: 3px !important;
   width: 5px !important;
   height: 3px !important;
-  -moz-margin-start: 3px !important;
-  background: url("chrome://cipherfox/skin/arrow-down.png") right center no-repeat !important;
+  background: url('chrome://cipherfox/skin/arrow-down.png') right center no-repeat !important;
 }
 
-#cipherfox-button[open] dropmarker {
-  background: url("chrome://cipherfox/skin/arrow-down-dis.png") right center no-repeat !important;
+#cipherfox-button[open] .button-menu-dropmarker {
+  background: url('chrome://cipherfox/skin/arrow-down-dis.png') right center no-repeat !important;
 }
 
-#cipherfox-certs menuitem[cert] { text-align: end !important; }
-#cipherfox-certs menuitem[first], #cipherfox-button-certs menuitem[first] { font-weight: bold !important; }
+
+#cipherfox-button .dropmarker-icon {
+  display: none !important;
+}
+
+#cipherfox-certs menuitem[cert] {
+  text-align: end !important;
+}
+
+#cipherfox-certs menuitem[first],
+#cipherfox-button-certs menuitem[first] {
+  font-weight: bold !important;
+}
