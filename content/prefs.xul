@@ -11,6 +11,10 @@
             title="&prefs.title;"
             style="min-width: 50em;">
 
+  <stringbundleset id='stringbundleset'>
+    <stringbundle id='cipherfox-prefs-bundle' src='chrome://cipherfox/locale/prefs.properties'/>
+  </stringbundleset>
+
   <script type="application/x-javascript" src="prefs.js"/>
   <script type="application/x-javascript">
     window.addEventListener("load", function() { cipherFox_prefs.onLoad(); }, false);
@@ -24,6 +28,8 @@
       <preference id="pref_disable_rc4"  name="extensions.cipherfox.disable_rc4"  type="bool"/>
       <preference id="pref_show_builtin" name="extensions.cipherfox.show_builtin" type="bool"/>
       <preference id="pref_show_partial" name="extensions.cipherfox.show_partial" type="bool"/>
+      <preference id="pref_show_panel"   name="extensions.cipherfox.show_panel"   type="bool"/>
+      <preference id="pref_show_button"  name="extensions.cipherfox.show_button"  type="bool"/>
     </preferences>
 
     <groupbox>
@@ -35,7 +41,17 @@
         <checkbox label="&showBuiltin.label;" preference="pref_show_builtin"/>
       </box>
       <box>
-        <checkbox label="&disableRC4.label;" preference="pref_disable_rc4"/>
+        <checkbox label="&disableRC4.label;" preference="pref_disable_rc4" oncommand='return cipherFox_prefs.confirmRC4(this)'/>
+      </box>
+    </groupbox>
+
+    <groupbox>
+      <caption label="&display.label;"/>
+      <box>
+        <checkbox label="&showPanel.label;" preference="pref_show_panel"/>
+      </box>
+      <box>
+        <checkbox label="&showButton.label;" preference="pref_show_button"/>
       </box>
     </groupbox>
 

@@ -14,27 +14,46 @@
     window.addEventListener("load",   function() { cipherFox.onLoad(); },   false);
     window.addEventListener("unload", function() { cipherFox.onUnload(); }, false);
   </script>
-
+  
+  
+  
+  
+  
   <menupopup id="menu_ToolsPopup">
-    <menuitem id="cipherfox-enable" type="checkbox" label="&enable.label;"
-              insertafter="devToolsSeparator" hidden="true" oncommand="cipherFox.toggleRC4();"/>
+    <menuitem id="cipherfox-toggle-rc4" type="checkbox" label="&enable.label;" insertafter="devToolsSeparator" hidden="true" oncommand="cipherFox.toggleRC4();"/>
   </menupopup>
+  
+  
+  
+  
+  
+  <vbox id='identity-popup-button-container'>
+   <button type='menu' id='cipherfox-button' label='CipherFox' insertbefore="identity-popup-more-info-button" hidden="true">
+      <menupopup id="cipherfox-button-certs">
+         <menuseparator id='cipherfox-prefs-seperator'/>
+         <menuitem label="&qualys.label;" accesskey="&qualys.accesskey;" oncommand="gBrowser.addTab('https://www.ssllabs.com/ssldb/analyze.html?d=' + gBrowser.contentDocument.domain);"/>
+         <menuitem label="&prefs.label;" accesskey="&prefs.accesskey;" oncommand="window.openDialog('chrome://cipherfox/content/prefs.xul');"/>
+      </menupopup>
+    </button>
+  </vbox>
 
-  <statusbar id="status-bar">
-    <statusbarpanel id="cipherfox-panel" insertbefore="security-button" hidden="true"
-                    popup="cipherfox-certs" context="cipherfox-context"/>
 
-    <menupopup id="cipherfox-certs" position="before_end"
-               onpopupshowing="cipherFox.cfPanel.setAttribute('popupopen', 'true');"
-               onpopuphiding="cipherFox.cfPanel.removeAttribute('popupopen');"/>
+
+
+
+
+  <statusbar id="status-bar">  
+    <statusbarpanel id="cipherfox-panel" insertbefore="security-button" hidden="true" popup="cipherfox-certs" context="cipherfox-context"/>
+
+    <menupopup id="cipherfox-certs" position="before_end" onpopupshowing="cipherFox.cfPanel.setAttribute('popupopen', 'true');" onpopuphiding="cipherFox.cfPanel.removeAttribute('popupopen');"/>
     <menupopup id="cipherfox-context">
-      <menuitem label="&prefs.label;" accesskey="&prefs.accesskey;"
-                oncommand="window.openDialog('chrome://cipherfox/content/prefs.xul');"/>
-      <menuseparator/>
-      <menuitem label="&qualys.label;" accesskey="&qualys.accesskey;"
-                oncommand="gBrowser.addTab('https://www.ssllabs.com/ssldb/analyze.html?d=' + 
-                           gBrowser.contentDocument.domain);"/>
+         <menuitem label="&prefs.label;" accesskey="&prefs.accesskey;" oncommand="window.openDialog('chrome://cipherfox/content/prefs.xul');"/>
+         <menuseparator/>
+         <menuitem label="&qualys.label;" accesskey="&qualys.accesskey;" oncommand="gBrowser.addTab('https://www.ssllabs.com/ssldb/analyze.html?d=' + gBrowser.contentDocument.domain);"/>
     </menupopup>
   </statusbar>
+
+
+
 
 </overlay>
