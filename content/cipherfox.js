@@ -28,7 +28,7 @@ var cipherFox = {
     var moreInfo = document.getElementById('identity-popup-more-info-button');
     if (moreInfo instanceof XULElement) {
       moreInfo.removeAttribute('onblur');
-      moreInfo.addEventListener('command', function() { this.hideIdentityPopup(); }, false);
+      moreInfo.addEventListener('command', function() { cipherFox.hideIdentityPopup(); }, false);
     }
 
     // keep the identity-box 'open'
