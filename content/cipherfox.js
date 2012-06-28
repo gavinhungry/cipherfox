@@ -158,7 +158,7 @@ var cipherFox = {
           cipherFox.viewCertByDBKey(e);
         }, false);
 
-        var certItemB = certItem.cloneNode();
+        var certItemB = certItem.cloneNode(false);
         certItemB.addEventListener('command', function(e) {
           cipherFox.viewCertByDBKey(e);
         }, false);
