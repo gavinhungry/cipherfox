@@ -119,6 +119,9 @@ var cipherFox = {
   // get all certs and update
   populateCertChain: function(status) {
 
+    this.cfCerts.hidePopup();
+    this.cfBCerts.hidePopup();
+
     // remove old certs
     while(this.cfCerts.hasChildNodes()) {
       this.cfCerts.removeChild(this.cfCerts.firstChild);
