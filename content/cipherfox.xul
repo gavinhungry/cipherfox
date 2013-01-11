@@ -9,15 +9,15 @@
 <overlay id='cipherfox-overlay'
          xmlns='http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul'>
 
-  <script type='application/x-javascript' src='cipherfox.js'/>
-  <script type='application/x-javascript'>
+  <script type='application/javascript' src='cipherfox.js'/>
+  <script type='application/javascript'>
     window.addEventListener('load',   function() { cipherFox.onLoad();   }, false);
     window.addEventListener('unload', function() { cipherFox.onUnload(); }, false);
   </script>
 
   <menupopup id='menu_ToolsPopup'>
     <menuitem id='cipherfox-toggle-rc4' type='checkbox' label='&enable.label;'
-              insertafter='devToolsSeparator' hidden='true' oncommand='cipherFox.toggleRC4()'/>
+              insertafter='devToolsSeparator' hidden='true'/>
   </menupopup>
 
   <vbox id='identity-popup-button-container'>
@@ -37,9 +37,7 @@
     <statusbarpanel id='cipherfox-panel' label='&cipherfox.title;' insertbefore='security-button'
                     hidden='true' popup='cipherfox-certs' context='cipherfox-context'/>
 
-    <menupopup id='cipherfox-certs' position='before_end'
-               onpopupshowing='cipherFox.cfPanel.setAttribute("popupopen", true);'
-               onpopuphiding='cipherFox.cfPanel.removeAttribute("popupopen")'/>
+    <menupopup id='cipherfox-certs' position='before_start'/>
     <menupopup id='cipherfox-context'>
          <menuitem label='&qualys.label;' accesskey='&qualys.accesskey;'
                    oncommand='cipherFox.testDomain()'/>

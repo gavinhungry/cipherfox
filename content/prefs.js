@@ -5,8 +5,8 @@
 var cipherFox_prefs = {
 
   onLoad: function() {
-  var Cc = Components.classes;
-  var Ci = Components.interfaces;
+    var Cc = Components.classes;
+    var Ci = Components.interfaces;
 
     this.prompt = Cc['@mozilla.org/embedcomp/prompt-service;1'].getService(Ci.nsIPromptService);
     this.bundle = document.getElementById('cipherfox-prefs-bundle');

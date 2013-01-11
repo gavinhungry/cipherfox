@@ -15,8 +15,8 @@
     <stringbundle id='cipherfox-prefs-bundle' src='chrome://cipherfox/locale/prefs.properties'/>
   </stringbundleset>
 
-  <script type='application/x-javascript' src='prefs.js'/>
-  <script type='application/x-javascript'>
+  <script type='application/javascript' src='prefs.js'/>
+  <script type='application/javascript'>
     window.addEventListener('load', function() { cipherFox_prefs.onLoad(); }, false);
   </script>
 
