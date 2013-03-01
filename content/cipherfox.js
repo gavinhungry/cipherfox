@@ -115,14 +115,10 @@ var cipherFox = (function() {
           certItem.setAttribute('first', true);
         }
 
-        certItem.addEventListener('command', function(e) {
-          viewCertByDBKey(e);
-        }, false);
+        certItem.addEventListener('command', viewCertByDBKey, false);
 
         var certItemB = certItem.cloneNode(false);
-        certItemB.addEventListener('command', function(e) {
-          viewCertByDBKey(e);
-        }, false);
+        certItemB.addEventListener('command', viewCertByDBKey, false);
 
         cfCerts.insertBefore(certItem, cfCerts.firstChild);
         cfBCerts.insertBefore(certItemB, cfPSep);
