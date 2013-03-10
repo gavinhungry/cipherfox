@@ -17,7 +17,7 @@
 
   <script type='application/javascript' src='prefs.js'/>
   <script type='application/javascript'>
-    window.addEventListener('load', function() { cipherFox_prefs.onLoad(); }, false);
+    window.addEventListener('load', function() { CipherFox_prefs.onLoad(); }, false);
   </script>
 
   <prefpane id='cipherfox-prefpane' flex='1'> 
@@ -42,7 +42,7 @@
       </box>
       <box>
         <checkbox label='&disableRC4.label;' preference='pref_disable_rc4'
-                  oncommand='return cipherFox_prefs.confirmRC4(this)'/>
+                  oncommand='return CipherFox_prefs.confirmRC4(this)'/>
       </box>
     </groupbox>
 
@@ -68,12 +68,12 @@
           <row align='center'>
             <label value='&cipher.label;:'/>
             <textbox preference='pref_base_format'/>
-            <button label='&default.label;' oncommand='cipherFox_prefs.baseFormat.reset();'/>
+            <button label='&default.label;' oncommand='CipherFox_prefs.baseFormat.reset();'/>
           </row>
           <row align='center'>
             <label value='&cert.label;:'/>
             <textbox preference='pref_cert_format'/>
-            <button label='&default.label;' oncommand='cipherFox_prefs.certFormat.reset();'/>
+            <button label='&default.label;' oncommand='CipherFox_prefs.certFormat.reset();'/>
           </row>
         </rows>
       </grid>

@@ -2,11 +2,11 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this file,
  * You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-var cipherFox = (function() {
+var CipherFox = (function() {
   'use strict';
 
   var certDb  = Cc['@mozilla.org/security/x509certdb;1'].getService(Ci.nsIX509CertDB);
-  var certDlg = Cc['@mozilla.org/nsCertificateDialogs;1'].getService(Ci.nsICertificateDialogs); 
+  var certDlg = Cc['@mozilla.org/nsCertificateDialogs;1'].getService(Ci.nsICertificateDialogs);
   var pipnss  = Cc['@mozilla.org/intl/stringbundle;1'].getService(Ci.nsIStringBundleService)
                 .createBundle('chrome://pipnss/locale/pipnss.properties');
 
@@ -22,15 +22,36 @@ var cipherFox = (function() {
   // XUL DOM elements
   var cfToggle, cfPanel, cfButton, cfCerts, cfBCerts, cfPSep;
 
-  // unused functions must be defined
-  var updateListener = {
-    onStateChange:    function() {},
-    onProgressChange: function() {},
-    onLocationChange: function() {},
-    onStatusChange:   function() {},
-    onSecurityChange: function(webProgress, request, state) { updateCipher(); }
+  var hideIdentityPopup = function() {
+    gIdentityHandler.hideIdentityPopup();
   };
 
+  // show dialog for cert in database
+  var viewCertByDBKey = function(e) {
+    hideIdentityPopup();
+
+    var dbkey = e.target.getAttribute('dbkey');
+    var cert = certDb.findCertByDBKey(dbkey, null);
+    certDlg.viewCert(window, cert);
+  };
+
+  // update RC4 settings to reflect current preference
+  var setRC4 = function() {
+    for (var i = 0, len = rc4.length; i < len; i++) {
+      if (rc4Enabled) {
+        try { prefService.clearUserPref('security.ssl3.' + rc4[i]); }
+        catch(e) {}
+      } else {
+        prefService.setBoolPref('security.ssl3.' + rc4[i], false);
+      }
+    }
+  };
+
+  var toggleRC4 = function() {
+    rc4Enabled = !rc4Enabled;
+    cfToggle.setAttribute('checked', rc4Enabled);
+    setRC4();
+  };
 
   // get existing preferences
   var loadPrefs = function() {
@@ -47,32 +68,6 @@ var cipherFox = (function() {
     cfToggle.setAttribute('hidden', rc4Enabled);
     cfToggle.setAttribute('checked', rc4Enabled);
   };
-
-
-  var updateCipher = function() {
-    gIdentityHandler.hideIdentityPopup();
-  
-    var currentBrowser = gBrowser.selectedBrowser;
-    var panelLabel = null;
-    var hidden = true;
-
-    var ui = currentBrowser.securityUI;
-    if (ui instanceof Ci.nsISecureBrowserUI) {
-      var status = ui.QueryInterface(Ci.nsISSLStatusProvider).SSLStatus;
-      var isPartial = (ui.state & Ci.nsIWebProgressListener.STATE_IS_BROKEN);
-
-      if (status instanceof Ci.nsISSLStatus) {
-        panelLabel = formatLabel(status);
-        hidden = !(panelLabel && (!isPartial || prefs.show_partial));
-        populateCertChain(status);
-      }
-    }
-
-    cfPanel.label = cfButton.label = panelLabel;
-    cfPanel.hidden  = hidden || !prefs.show_panel;
-    cfButton.hidden = hidden || !prefs.show_button;
-  };
-
 
   // get all certs and update
   var populateCertChain = function(status) {
@@ -98,7 +93,7 @@ var cipherFox = (function() {
         var certItem = document.createElement('menuitem');
 
         if (cert.tokenName === 'Builtin Object Token' && cert.certType === Ci.nsIX509Cert.CA_CERT) {
-          if (!prefs.show_builtin) { continue; } 
+          if (!prefs.show_builtin) { continue; }
           certItem.setAttribute('builtin', true);
         }
 
@@ -125,7 +120,6 @@ var cipherFox = (function() {
       }
     }
   };
-
 
   var formatLabel = function(obj) {
     var cert, label;
@@ -198,35 +192,38 @@ var cipherFox = (function() {
     return label;
   };
 
+  var updateCipher = function() {
+    hideIdentityPopup();
 
-  // show dialog for cert in database
-  var viewCertByDBKey = function(e) {
-    var dbkey = e.target.getAttribute('dbkey');  
-    var cert = certDb.findCertByDBKey(dbkey, null);
-    certDlg.viewCert(window, cert);
-  };
+    var currentBrowser = gBrowser.selectedBrowser;
+    var panelLabel = null;
+    var hidden = true;
 
+    var ui = currentBrowser.securityUI;
+    if (ui instanceof Ci.nsISecureBrowserUI) {
+      var status = ui.QueryInterface(Ci.nsISSLStatusProvider).SSLStatus;
+      var isPartial = (ui.state & Ci.nsIWebProgressListener.STATE_IS_BROKEN);
 
-  var toggleRC4 = function() {
-    rc4Enabled = !rc4Enabled;
-    cfToggle.setAttribute('checked', rc4Enabled);
-    setRC4();
-  };
-
-
-  // update RC4 settings to reflect current preference
-  var setRC4 = function() {
-    for (var i = 0; i < rc4.length; i++) {
-      if (rc4Enabled) {
-        try {
-          prefService.clearUserPref('security.ssl3.' + rc4[i]);
-        } catch(e) {}
-      } else {
-        prefService.setBoolPref('security.ssl3.' + rc4[i], false);
+      if (status instanceof Ci.nsISSLStatus) {
+        panelLabel = formatLabel(status);
+        hidden = !(panelLabel && (!isPartial || prefs.show_partial));
+        populateCertChain(status);
       }
     }
+
+    cfPanel.label = cfButton.label = panelLabel;
+    cfPanel.hidden  = hidden || !prefs.show_panel;
+    cfButton.hidden = hidden || !prefs.show_button;
   };
 
+  // unused functions must be defined
+  var updateListener = {
+    onStateChange:    function(){},
+    onProgressChange: function(){},
+    onLocationChange: function(){},
+    onStatusChange:   function(){},
+    onSecurityChange: function(webProgress, request, state) { updateCipher(); }
+  };
 
   // exposed methods
   return {
@@ -242,8 +239,16 @@ var cipherFox = (function() {
       var moreInfo = document.getElementById('identity-popup-more-info-button');
       if (moreInfo instanceof XULElement) {
         moreInfo.removeAttribute('onblur');
-        moreInfo.addEventListener('command', gIdentityHandler.hideIdentityPopup, false);
+        moreInfo.addEventListener('command', hideIdentityPopup, false);
       }
+
+      cfCerts.addEventListener('popupshowing', function() {
+        cfPanel.setAttribute('popupopen', true);
+      }, false);
+
+      cfCerts.addEventListener('popuphiding', function() {
+        cfPanel.removeAttribute('popupopen');
+      }, false);
 
       // quick RC4 toggle
       cfToggle.addEventListener('command', toggleRC4, false);
@@ -266,7 +271,7 @@ var cipherFox = (function() {
       prefService.removeObserver('extensions.cipherfox.', this);
       gBrowser.removeProgressListener(updateListener);
     },
-    
+
     // update state when prefs change
     observe: function(subject, topic, data) {
       if (topic === 'nsPref:changed') {
@@ -275,7 +280,7 @@ var cipherFox = (function() {
         if (data === 'extensions.cipherfox.disable_rc4') { setRC4(); }
       }
     },
-    
+
     // Qualys SSL Labs Server Test
     testDomain: function() {
       gBrowser.addTab('https://www.ssllabs.com/ssldb/analyze.html?d='

@@ -11,8 +11,8 @@
 
   <script type='application/javascript' src='cipherfox.js'/>
   <script type='application/javascript'>
-    window.addEventListener('load',   function() { cipherFox.onLoad();   }, false);
-    window.addEventListener('unload', function() { cipherFox.onUnload(); }, false);
+    window.addEventListener('load',   function() { CipherFox.onLoad();   }, false);
+    window.addEventListener('unload', function() { CipherFox.onUnload(); }, false);
   </script>
 
   <menupopup id='menu_ToolsPopup'>
@@ -26,21 +26,21 @@
       <menupopup id='cipherfox-button-certs'>
          <menuseparator id='cipherfox-prefs-seperator'/>
          <menuitem label='&qualys.label;' accesskey='&qualys.accesskey;'
-                   oncommand='cipherFox.testDomain()'/>
+                   oncommand='CipherFox.testDomain()'/>
          <menuitem label='&prefs.label;' accesskey='&prefs.accesskey;'
                    oncommand='window.openDialog("chrome://cipherfox/content/prefs.xul")'/>
       </menupopup>
     </button>
   </vbox>
 
-  <statusbar id='status-bar'>  
+  <statusbar id='status-bar'>
     <statusbarpanel id='cipherfox-panel' label='&cipherfox.title;' insertbefore='security-button'
                     hidden='true' popup='cipherfox-certs' context='cipherfox-context'/>
 
-    <menupopup id='cipherfox-certs' position='before_start'/>
+    <menupopup id='cipherfox-certs' position='before_end'/>
     <menupopup id='cipherfox-context'>
          <menuitem label='&qualys.label;' accesskey='&qualys.accesskey;'
-                   oncommand='cipherFox.testDomain()'/>
+                   oncommand='CipherFox.testDomain()'/>
          <menuitem label='&prefs.label;' accesskey='&prefs.accesskey;'
                    oncommand='window.openDialog("chrome://cipherfox/content/prefs.xul")'/>
     </menupopup>

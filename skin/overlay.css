@@ -8,9 +8,9 @@
   padding: 0;
   margin-top: -1px;
   margin-bottom: -2px;
- -moz-padding-start: 3px;
- -moz-margin-start: 4px;
-  background: url('chrome://cipherfox/skin/arrow-up.png') left center no-repeat;
+ -moz-padding-end: 3px;
+ -moz-margin-end: 4px;
+  background: url('chrome://cipherfox/skin/arrow-up.png') right center no-repeat;
 }
 
 #cipherfox-panel[popupopen] {
@@ -44,6 +44,10 @@
 
 #cipherfox-button .dropmarker-icon {
   display: none;
+}
+
+#cipherfox-certs {
+  text-align: end;
 }
 
 #cipherfox-certs menuitem[first],
