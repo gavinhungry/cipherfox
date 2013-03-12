@@ -16,28 +16,29 @@
   </script>
 
   <vbox id='identity-popup-button-container'>
-   <button id='cipherfox-button' type='menu' label='&cipherfox.title;'
-           insertbefore='identity-popup-more-info-button' hidden='true'>
+    <button id='cipherfox-button' type='menu' label='&cipherfox.title;'
+            insertbefore='identity-popup-more-info-button' hidden='true'>
       <menupopup id='cipherfox-button-certs'>
-         <menuseparator id='cipherfox-prefs-seperator'/>
-         <menuitem label='&qualys.label;' accesskey='&qualys.accesskey;'
-                   oncommand='CipherFox.testDomain()'/>
-         <menuitem label='&prefs.label;' accesskey='&prefs.accesskey;'
-                   oncommand='window.openDialog("chrome://cipherfox/content/prefs.xul")'/>
+        <menuseparator id='cipherfox-prefs-seperator'/>
+        <menuitem label='&qualys.label;' accesskey='&qualys.accesskey;'
+                  oncommand='CipherFox.testDomain()'/>
+        <menuitem label='&prefs.label;' accesskey='&prefs.accesskey;'
+                  oncommand='window.openDialog("chrome://cipherfox/content/prefs.xul")'/>
       </menupopup>
     </button>
   </vbox>
 
   <statusbar id='status-bar'>
-    <statusbarpanel id='cipherfox-panel' label='&cipherfox.title;' insertbefore='security-button'
-                    hidden='true' popup='cipherfox-certs' context='cipherfox-context'/>
+    <statusbarpanel id='cipherfox-panel' label='&cipherfox.title;'
+                    insertbefore='security-button' hidden='true'
+                    popup='cipherfox-certs' context='cipherfox-context'/>
 
     <menupopup id='cipherfox-certs' position='before_end'/>
     <menupopup id='cipherfox-context'>
-         <menuitem label='&qualys.label;' accesskey='&qualys.accesskey;'
-                   oncommand='CipherFox.testDomain()'/>
-         <menuitem label='&prefs.label;' accesskey='&prefs.accesskey;'
-                   oncommand='window.openDialog("chrome://cipherfox/content/prefs.xul")'/>
+      <menuitem label='&qualys.label;' accesskey='&qualys.accesskey;'
+                oncommand='CipherFox.testDomain()'/>
+      <menuitem label='&prefs.label;' accesskey='&prefs.accesskey;'
+                oncommand='window.openDialog("chrome://cipherfox/content/prefs.xul")'/>
     </menupopup>
   </statusbar>
 </overlay>
