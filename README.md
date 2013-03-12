@@ -14,6 +14,13 @@ Clicking on any certificate shows you its detailed properties.  Variables are
 available in the Preferences window to customize the output.
 
 
+RC4 Settings
+------------
+Versions of CipherFox prior to 3.7.0 allowed the user to toggle the RC4 ciphers.
+That option has since been removed, and you will now need to manage your RC4
+settings manually via `about:config`.
+
+
 Source Code
 -----------
 The source code for CipherFox is made available under the [Mozilla Public
