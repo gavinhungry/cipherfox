@@ -14,7 +14,7 @@ var CipherFox = (function() {
   var prefs = {};
 
   // XUL DOM elements
-  var cfToggle, cfPanel, cfButton, cfCerts, cfBCerts, cfPSep;
+  var cfPanel, cfButton, cfCerts, cfBCerts, cfPSep;
 
   var hideIdentityPopup = function() {
     gIdentityHandler.hideIdentityPopup();
