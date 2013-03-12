@@ -12,12 +12,6 @@ var CipherFox = (function() {
 
   var prefService = Cc['@mozilla.org/preferences-service;1'].getService(Ci.nsIPrefBranch2);
   var prefs = {};
-  var rc4Enabled;
-
-  // default RC4 settings
-  var rc4 = ['ecdh_ecdsa_rc4_128_sha', 'ecdh_rsa_rc4_128_sha', 'ecdhe_ecdsa_rc4_128_sha',
-             'ecdhe_rsa_rc4_128_sha', 'rsa_1024_rc4_56_sha', 'rsa_rc4_128_md5',
-             'rsa_rc4_128_sha', 'rsa_rc4_40_md5'];
 
   // XUL DOM elements
   var cfToggle, cfPanel, cfButton, cfCerts, cfBCerts, cfPSep;
@@ -35,38 +29,14 @@ var CipherFox = (function() {
     certDlg.viewCert(window, cert);
   };
 
-  // update RC4 settings to reflect current preference
-  var setRC4 = function() {
-    for (var i = 0, len = rc4.length; i < len; i++) {
-      if (rc4Enabled) {
-        try { prefService.clearUserPref('security.ssl3.' + rc4[i]); }
-        catch(e) {}
-      } else {
-        prefService.setBoolPref('security.ssl3.' + rc4[i], false);
-      }
-    }
-  };
-
-  var toggleRC4 = function() {
-    rc4Enabled = !rc4Enabled;
-    cfToggle.setAttribute('checked', rc4Enabled);
-    setRC4();
-  };
-
   // get existing preferences
   var loadPrefs = function() {
     prefs.base_format  = prefService.getCharPref('extensions.cipherfox.base_format');
     prefs.cert_format  = prefService.getCharPref('extensions.cipherfox.cert_format');
-    prefs.disable_rc4  = prefService.getBoolPref('extensions.cipherfox.disable_rc4');
     prefs.show_builtin = prefService.getBoolPref('extensions.cipherfox.show_builtin');
     prefs.show_partial = prefService.getBoolPref('extensions.cipherfox.show_partial');
     prefs.show_panel   = prefService.getBoolPref('extensions.cipherfox.show_panel');
     prefs.show_button  = prefService.getBoolPref('extensions.cipherfox.show_button');
-
-    // set RC4 status and menuitem
-    rc4Enabled = !prefs.disable_rc4;
-    cfToggle.setAttribute('hidden', rc4Enabled);
-    cfToggle.setAttribute('checked', rc4Enabled);
   };
 
   // get all certs and update
@@ -228,7 +198,6 @@ var CipherFox = (function() {
   // exposed methods
   return {
     onLoad: function() {
-      cfToggle = document.getElementById('cipherfox-toggle-rc4');
       cfPanel  = document.getElementById('cipherfox-panel');
       cfButton = document.getElementById('cipherfox-button');
       cfCerts  = document.getElementById('cipherfox-certs');
@@ -250,9 +219,6 @@ var CipherFox = (function() {
         cfPanel.removeAttribute('popupopen');
       }, false);
 
-      // quick RC4 toggle
-      cfToggle.addEventListener('command', toggleRC4, false);
-
       // keep the identity-box 'open'
       cfBCerts.addEventListener('popuphidden', function(e) {
         e.stopPropagation();
@@ -260,9 +226,6 @@ var CipherFox = (function() {
 
       prefService.addObserver('extensions.cipherfox.', this, false);
       loadPrefs();
-
-      // only modify RC4 prefs if the user has disabled RC4
-      if (prefs.disable_rc4) { setRC4(); }
 
       gBrowser.addProgressListener(updateListener, Ci.nsIWebProgress.NOTIFY_STATE_DOCUMENT);
     },
@@ -277,7 +240,6 @@ var CipherFox = (function() {
       if (topic === 'nsPref:changed') {
         loadPrefs();
         updateCipher();
-        if (data === 'extensions.cipherfox.disable_rc4') { setRC4(); }
       }
     },
 
