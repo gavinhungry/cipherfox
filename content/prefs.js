@@ -18,7 +18,7 @@ var CipherFox_prefs = (function() {
     confirmRC4: function(checkbox) {
       if (checkbox.getAttribute('checked')) {
         if (!this.prompt.confirm(window, this.bundle.getString('cipherfox'),
-                                         this.bundle.getString('rc4beast'))) {
+                                         this.bundle.getString('rc4attacks'))) {
           checkbox.setAttribute('checked', false);
         }
       }
