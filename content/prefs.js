@@ -12,5 +12,14 @@ var CipherFox_prefs = {
     this.bundle = document.getElementById('cipherfox-prefs-bundle');
     this.baseFormat = document.getElementById('pref_base_format');
     this.certFormat = document.getElementById('pref_cert_format');
+  },
+  
+  confirmRC4: function(checkbox) {
+    if (checkbox.getAttribute('checked')) {
+      if (!this.prompt.confirm(window, this.bundle.getString('cipherfox'),
+                                       this.bundle.getString('rc4beast'))) {
+        checkbox.setAttribute('checked', false);
+      }
+    }
   }
 };

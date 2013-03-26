@@ -1,4 +1,5 @@
 <!ENTITY cipherfox.title  "CipherFox">
+<!ENTITY enable.label     "Enable RC4">
 <!ENTITY certs.tooltip    "View the certificate chain">
 <!ENTITY prefs.label      "Preferences">
 <!ENTITY prefs.accesskey  "P">
