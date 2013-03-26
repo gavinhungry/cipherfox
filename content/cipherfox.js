@@ -14,10 +14,10 @@ var CipherFox = (function() {
   var prefs = {};
   var rc4Enabled;
 
-  // default RC4 settings
-  var rc4 = ['ecdh_ecdsa_rc4_128_sha', 'ecdh_rsa_rc4_128_sha', 'ecdhe_ecdsa_rc4_128_sha',
-             'ecdhe_rsa_rc4_128_sha', 'rsa_1024_rc4_56_sha', 'rsa_rc4_128_md5',
-             'rsa_rc4_128_sha', 'rsa_rc4_40_md5'];
+  // default SSL3 RC4 preferences
+  var rc4 = ['ecdh_ecdsa_rc4_128_sha', 'ecdh_rsa_rc4_128_sha',
+    'ecdhe_ecdsa_rc4_128_sha', 'ecdhe_rsa_rc4_128_sha', 'rsa_1024_rc4_56_sha',
+    'rsa_rc4_128_md5', 'rsa_rc4_128_sha', 'rsa_rc4_40_md5'];
 
   // XUL DOM elements
   var cfToggle, cfPanel, cfButton, cfCerts, cfBCerts, cfPSep;
@@ -35,14 +35,16 @@ var CipherFox = (function() {
     certDlg.viewCert(window, cert);
   };
 
-  // update RC4 settings to reflect current preference
+  // update RC4 preferences
   var setRC4 = function() {
     for (var i = 0, len = rc4.length; i < len; i++) {
+      var pref = 'security.ssl3.' + rc4[i];
+
       if (rc4Enabled) {
-        try { prefService.clearUserPref('security.ssl3.' + rc4[i]); }
+        try { prefService.clearUserPref(pref); }
         catch(e) {}
-      } else {
-        prefService.setBoolPref('security.ssl3.' + rc4[i], false);
+      } else if (getBoolPref(pref) !== undefined) {
+        prefService.setBoolPref(pref, false);
       }
     }
   };
