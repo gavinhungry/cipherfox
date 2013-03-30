@@ -20,7 +20,7 @@
     window.addEventListener('load', function() { CipherFox_prefs.onLoad(); }, false);
   </script>
 
-  <prefpane id='cipherfox-prefpane' flex='1'> 
+  <prefpane id='cipherfox-prefpane' flex='1'>
 
     <preferences>
       <preference id='pref_base_format'  name='extensions.cipherfox.base_format'  type='string'/>
