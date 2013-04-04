@@ -266,7 +266,7 @@ var CipherFox = (function() {
       // only modify RC4 prefs if the user has disabled RC4
       if (prefs.disable_rc4) { setRC4(); }
 
-      gBrowser.addProgressListener(updateListener, Ci.nsIWebProgress.NOTIFY_STATE_DOCUMENT);
+      gBrowser.addProgressListener(updateListener);
     },
 
     onUnload: function() {
