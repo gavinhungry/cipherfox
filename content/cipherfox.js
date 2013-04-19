@@ -94,7 +94,8 @@ var CipherFox = (function() {
         var cert = certChain.getNext().QueryInterface(Ci.nsIX509Cert2);
         var certItem = document.createElement('menuitem');
 
-        if (cert.tokenName === 'Builtin Object Token' && cert.certType === Ci.nsIX509Cert.CA_CERT) {
+        if (cert.tokenName === 'Builtin Object Token' &&
+            cert.certType === Ci.nsIX509Cert.CA_CERT) {
           if (!prefs.show_builtin) { continue; }
           certItem.setAttribute('builtin', true);
         }
@@ -144,26 +145,52 @@ var CipherFox = (function() {
 
     var certAlg;
     switch (certDmp.getDisplayData(11)) {
-      case pipnss.GetStringFromName('CertDumpRSAEncr'): certAlg = 'RSA'; break;
+      case pipnss.GetStringFromName('CertDumpRSAEncr'):
+        certAlg = 'RSA';
+        break;
     }
 
     if (!certAlg) {
       switch (certDmp.getDisplayData(12)) {
+        case pipnss.GetStringFromName('CertDumpECPublicKey'):
+          certAlg = 'ECC';
+          break;
         case pipnss.GetStringFromName('CertDumpAnsiX9DsaSignature'):
-        case pipnss.GetStringFromName('CertDumpAnsiX9DsaSignatureWithSha1'): certAlg = 'DSA';
+        case pipnss.GetStringFromName('CertDumpAnsiX9DsaSignatureWithSha1'):
+          certAlg = 'DSA';
+          break;
       }
     }
 
-    var certSize;
+    var certSize, key, template;
     try {
-      if (certAlg === 'RSA') {
-        certSize = certDmp.getDisplayData(12).split("\n")[0].replace(/\D/g, '');
-      } else if (certAlg === 'DSA') {
-        var key = certDmp.getDisplayData(14);
-        key = key.replace(key.split(/\n/)[0],'').replace(/\n|(\s$)/g, '').split(/\s/);
-        if (key[0] == '02' && key[1] == '81') { key.splice(0,3); }
-        if (key[0] == '00') { key.splice(0,1); }
-        certSize = (8 * key.length);
+      switch(certAlg) {
+        case 'RSA':
+          key = certDmp.getDisplayData(12).split('\n')[0];
+          template = pipnss.GetStringFromName('CertDumpRSATemplate');
+          break;
+
+        case 'ECC':
+          key = certDmp.getDisplayData(14).split('\n')[0];
+          template = pipnss.GetStringFromName('CertDumpECTemplate');
+          break;
+
+        case 'DSA':
+          key = certDmp.getDisplayData(14);
+          key = key.replace(key.split('\n')[0], '').replace(/\n|(\s$)/g, '').split(/\s/);
+          if (key[0] === '02' && key[1] === '81') { key.splice(0,3); }
+          if (key[0] === '00') { key.splice(0,1); }
+          certSize = (8 * key.length);
+          break;
+      }
+
+      if (!certSize && template) {
+        var discards = template.split('\n')[0].split('%S');
+        discards.forEach(function(str) {
+          key = key.replace(str, '');
+        });
+
+        certSize = key;
       }
     } catch(e) {}
 
@@ -183,13 +210,13 @@ var CipherFox = (function() {
 
     // replace variable names in format string with values
     label = label
-      .replace(/\$CERTORG/g,    certOrg ? certOrg : '?')
-      .replace(/\$CERTCN/g,     certCn  ? certCn  : '?')
-      .replace(/\$CERTALG/g,    certAlg ? certAlg : '?')
-      .replace(/\$CERTSIZE/g,   certSize? certSize: '?')
-      .replace(/\$CERTHASH/g,   certHash? certHash: '?')
-      .replace(/\$CERTEXP/g,    certExp ? certExp : '?')
-      .replace(/\$CERTISSUER/g, certIss ? certIss : '?');
+      .replace(/\$CERTORG/g,    certOrg  ? certOrg : '?')
+      .replace(/\$CERTCN/g,     certCn   ? certCn  : '?')
+      .replace(/\$CERTALG/g,    certAlg  ? certAlg : '?')
+      .replace(/\$CERTSIZE/g,   certSize ? certSize: '?')
+      .replace(/\$CERTHASH/g,   certHash ? certHash: '?')
+      .replace(/\$CERTEXP/g,    certExp  ? certExp : '?')
+      .replace(/\$CERTISSUER/g, certIss  ? certIss : '?');
 
     return label;
   };
