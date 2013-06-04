@@ -1,0 +1,21 @@
+<!ENTITY prefs.title       "CipherFox È¯°æ¼³Á¤">
+<!ENTITY general.label     "ÀÏ¹Ý È¯°æ¼³Á¤">
+<!ENTITY showPartial.label "SSL/TLSÀÌ ºÎºÐÀûÀÏ ¶§ CipherFox Ç¥½Ã">
+<!ENTITY showBuiltin.label "Ã¼ÀÎ¿¡ &quot;³»Àå °´Ã¼ Ç¥½Ä&quot; ÀÎÁõ±â°ü Ç¥½Ã">
+<!ENTITY disableRC4.label  "RC4 ¾ÏÈ£È­ ²ô±â(µµ±¸ ¸Þ´º¿¡ Åä±ÛÅ° Ãß°¡)">
+<!ENTITY display.label     "µð½ºÇÃ·¹ÀÌ È¯°æ¼³Á¤">
+<!ENTITY showPanel.label   "ºÎ°¡±â´É ¹Ù¿¡ CipherFox Ç¥½Ã">
+<!ENTITY showButton.label  "»çÀÌÆ® È®ÀÎ Ã¢¿¡ CipherFox Ç¥½Ã">
+<!ENTITY formatting.label  "Çü½Ä ¹®ÀÚ¿­">
+<!ENTITY cipher.label      "¾ÏÈ£">
+<!ENTITY cert.label        "ÀÎÁõ¼­">
+<!ENTITY default.label     "±âº»">
+<!ENTITY variables.label   "Çü½Ä ¹®ÀÚ¿­ º¯¼ö">
+<!ENTITY cipherAlg.label   "´ëÄª ¾ÏÈ£È­ ¾Ë°í¸®Áò">
+<!ENTITY cipherSize.label  "´ëÄª ¾ÏÈ£Å° ±æÀÌ">
+<!ENTITY certOrg.label     "ÀÎÁõ¼­ Á¶Á÷ ¶Ç´Â ÀÌ¸§">
+<!ENTITY certAlg.label     "ÀÎÁõ¼­ °ø°³Å° ¾Ë°í¸®Áò">
+<!ENTITY certSize.label    "ÀÎÁõ¼­ °ø°³Å° ±æÀÌ">
+<!ENTITY certHash.label    "ÀÎÁõ¼­ ¼­¸í ÇØ½Ã">
+<!ENTITY certExp.label     "ÀÎÁõ¼­ ¸¸·áÀÏ">
+<!ENTITY certIss.label     "ÀÎÁõ¼­ ¹ß±ÞÀÚ">

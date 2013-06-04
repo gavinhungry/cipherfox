@@ -1,0 +1,7 @@
+<!ENTITY cipherfox.title  "CipherFox">
+<!ENTITY enable.label     "Activar RC4">
+<!ENTITY certs.tooltip    "Ver la cadena del certificado">
+<!ENTITY prefs.label      "Preferencias">
+<!ENTITY prefs.accesskey  "P">
+<!ENTITY qualys.label     "Qualys SSL Labs Server Test">
+<!ENTITY qualys.accesskey "Q">

@@ -1,5 +1,11 @@
-content cipherfox               content/
-skin    cipherfox  classic/1.0  skin/
-locale  cipherfox  en-US        locale/en-US/
+content cipherfox content/
+skin cipherfox classic/1.0 skin/
+
+locale cipherfox de-DE locale/de-DE/
+locale cipherfox en-US locale/en-US/
+locale cipherfox es-ES locale/es-ES/
+locale cipherfox ko-KR locale/ko-KR/
+locale cipherfox zh-CN locale/zh-CN/
+locale cipherfox zh-TW locale/zh-TW/
 
 overlay	chrome://browser/content/browser.xul chrome://cipherfox/content/cipherfox.xul

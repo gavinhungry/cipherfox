@@ -1,0 +1,7 @@
+<!ENTITY cipherfox.title  "Cipherfox">
+<!ENTITY enable.label     "啟用RC4">
+<!ENTITY certs.tooltip    "查看憑證連結">
+<!ENTITY prefs.label      "首選項">
+<!ENTITY prefs.accesskey  "P">
+<!ENTITY qualys.label     "Qualys SSL Labs Server Test">
+<!ENTITY qualys.accesskey "Q">

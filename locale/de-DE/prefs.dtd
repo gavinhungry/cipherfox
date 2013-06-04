@@ -1,0 +1,21 @@
+<!ENTITY prefs.title       "CipherFox Einstellungen">
+<!ENTITY general.label     "Allgemeine Einstellungen">
+<!ENTITY showPartial.label "CipherFox anzeigen, auch wenn SSL/TLS partiell ist">
+<!ENTITY showBuiltin.label "Zertifikats Autoritäten vom &quot;Builtin Object Token&quot; in Kette anzeigen">
+<!ENTITY disableRC4.label  "RC4 cipher deaktivieren (fügt einen Schalter zum Tools Menü hinzu)">
+<!ENTITY display.label     "Einstellungen anzeigen">
+<!ENTITY showPanel.label   "CipherFox in Add-ons Leiste anzeigen">
+<!ENTITY showButton.label  "CipherFox im Site Identification Dialog anzeigen">
+<!ENTITY formatting.label  "Strings werden Formatiert">
+<!ENTITY cipher.label      "Cipher">
+<!ENTITY cert.label        "Zertifikat">
+<!ENTITY default.label     "Standard">
+<!ENTITY variables.label   "String-Variablen werden formatiert">
+<!ENTITY cipherAlg.label   "Symmetrischer Cipher Algorithmus">
+<!ENTITY cipherSize.label  "Symmetrische Cipher Länge">
+<!ENTITY certOrg.label     "Unternehmen oder Name des Zertifikats">
+<!ENTITY certAlg.label     "Öffentlicher Schlüssel Algorithmus des Zertifikats">
+<!ENTITY certSize.label    "Länge des öffentlichen Schlüssels des Zertifikats">
+<!ENTITY certHash.label    "Unterschriftshash des Zertifikats">
+<!ENTITY certExp.label     "Ablaufdatum des Zertifikats">
+<!ENTITY certIss.label     "Aussteller des Zertifikats">

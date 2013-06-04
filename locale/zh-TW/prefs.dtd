@@ -1,0 +1,22 @@
+<!ENTITY prefs.title       "CipherFox首選項">
+<!ENTITY general.label     "常規首選項">
+<!ENTITY showPartial.label "顯示CipherFox，即使當SSL/TLS為部分時">
+<!ENTITY showBuiltin.label "顯示&quot;內置物件標記&quot; 認證機構鏈">
+<!ENTITY disableRC4.label  "停用RC4密碼(添加‘切換’到工具功能表)">
+<!ENTITY display.label     "顯示首選項">
+<!ENTITY showPanel.label   "在載入項欄中顯示CipherFox">
+<!ENTITY showButton.label  "在網站標識對話中顯示CipherFox">
+<!ENTITY formatting.label  "正在格式化字串">
+<!ENTITY cipher.label      "密碼">
+<!ENTITY cert.label        "證書">
+<!ENTITY default.label     "默認">
+<!ENTITY variables.label   "正在格式化字串變數">
+<!ENTITY cipherAlg.label   "對稱密碼演算法">
+<!ENTITY cipherSize.label  "對稱密匙長度">
+<!ENTITY certOrg.label     "證書組織或名稱">
+<!ENTITY certAlg.label     "證書公開金鑰演算法">
+<!ENTITY certSize.label    "證書公開金鑰長度">
+<!ENTITY certHash.label    "證書簽名雜湊">
+<!ENTITY certExp.label     "證書到期日期">
+<!ENTITY certIss.label     "證書頒發商">
+
