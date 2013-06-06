@@ -1,0 +1,21 @@
+<!ENTITY prefs.title       "Préférences de CipherFox">
+<!ENTITY general.label     "Préférences Générales">
+<!ENTITY showPartial.label "Afficher CipherFox même lorsque le SSL/TLS est partiel">
+<!ENTITY showBuiltin.label "Afficher &quot;Builtin Object Token&quot; Autorités de Certification de chaîne">
+<!ENTITY disableRC4.label  "Désactiver le chiffrement RC4 (ajoute une touche Bascule au menu Outils)">
+<!ENTITY display.label     "Afficher les Préférences">
+<!ENTITY showPanel.label   "Afficher CipherFox dans la barre des modules complémentaires">
+<!ENTITY showButton.label  "Afficher CipherFox dans le dialogue d'identification du site">
+<!ENTITY formatting.label  "Formatage des Chaînes">
+<!ENTITY cipher.label      "Chiffrement">
+<!ENTITY cert.label        "Certificat">
+<!ENTITY default.label     "Par défaut">
+<!ENTITY variables.label   "Formatage des Variables de la Chaîne">
+<!ENTITY cipherAlg.label   "Algorithme de Chiffrement Symétrique">
+<!ENTITY cipherSize.label  "Longueur de la Clef du Chiffrement Symétrique">
+<!ENTITY certOrg.label     "Organisation de Certification ou Nom">
+<!ENTITY certAlg.label     "Algorithme à Clef Publique de Certification">
+<!ENTITY certSize.label    "Longueur de la Clef Publique de Certification">
+<!ENTITY certHash.label    "Hachage de la Signature du Certificat">
+<!ENTITY certExp.label     "Date d'Expiration du Certificat">
+<!ENTITY certIss.label     "Emetteur du Certificat">
