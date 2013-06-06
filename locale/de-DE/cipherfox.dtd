@@ -1,5 +1,5 @@
 <!ENTITY cipherfox.title  "CipherFox">
-<!ENTITY enable.label     "RC4 aktivieren">
+<!ENTITY enable.label     "RC4 Aktivieren">
 <!ENTITY certs.tooltip    "Zertifikatskette anzeigen">
 <!ENTITY prefs.label      "Einstellungen">
 <!ENTITY prefs.accesskey  "E">
