@@ -1,21 +1,21 @@
 <!ENTITY prefs.title       "Preferencias de CipherFox">
-<!ENTITY general.label     "Preferencias generales">
+<!ENTITY general.label     "Preferencias Generales">
 <!ENTITY showPartial.label "Mostrar CipherFox incluso cuando el SSL/TLS sea parcial">
 <!ENTITY showBuiltin.label "Mostrar &quot;Builtin Object Token&quot; Autoridades de certificado en cadena">
-<!ENTITY disableRC4.label  "Desactivar cipher RC4 (añade alternancia al menú de herramientas)">
-<!ENTITY display.label     "Mostrar preferencias">
-<!ENTITY showPanel.label   "Mostrar barra de complementos de CipherFox">
-<!ENTITY showButton.label  "Mostrar CipherFox en el diálogo de identificación del sitio">
+<!ENTITY disableRC4.label  "Desactivar código RC4 (añade alternancia al menú de Herramientas)">
+<!ENTITY display.label     "Mostrar Oreferencias">
+<!ENTITY showPanel.label   "Mostrar barra de Add-ons de CipherFox">
+<!ENTITY showButton.label  "Mostrar CipherFox en el Site Identification Dialog del sitio">
 <!ENTITY formatting.label  "Formateando Cadenas">
-<!ENTITY cipher.label      "Cipher">
+<!ENTITY cipher.label      "Código">
 <!ENTITY cert.label        "Certificado">
 <!ENTITY default.label     "Predeterminado">
 <!ENTITY variables.label   "Formateando Variables de Cadena">
-<!ENTITY cipherAlg.label   "Algoritmo de cipher simétrico">
-<!ENTITY cipherSize.label  "Longitud de clave de cipher simétrica">
-<!ENTITY certOrg.label     "Nombre u organización del certificado">
-<!ENTITY certAlg.label     "Algoritmo de la clave pública del certificado">
-<!ENTITY certSize.label    "Longitud de la clave pública del certificado">
-<!ENTITY certHash.label    "Algoritmo hash de la firma del certificao">
-<!ENTITY certExp.label     "Fecha de caducidad del certificado">
-<!ENTITY certIss.label     "Emisor del certificado">
+<!ENTITY cipherAlg.label   "Algoritmo de Código Simétrico">
+<!ENTITY cipherSize.label  "Longitud de Clave de Código Simétrica">
+<!ENTITY certOrg.label     "Nombre u Organización del Certificado">
+<!ENTITY certAlg.label     "Algoritmo de la Clave Pública del Certificado">
+<!ENTITY certSize.label    "Longitud de la Clave Pública del Certificado">
+<!ENTITY certHash.label    "Algoritmo Hash de la Firma del Certificao">
+<!ENTITY certExp.label     "Fecha de Caducidad del Certificado">
+<!ENTITY certIss.label     "Emisor del Certificado">

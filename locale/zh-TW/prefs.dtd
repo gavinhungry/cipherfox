@@ -19,4 +19,3 @@
 <!ENTITY certHash.label    "證書簽名雜湊">
 <!ENTITY certExp.label     "證書到期日期">
 <!ENTITY certIss.label     "證書頒發商">
-
