@@ -1,0 +1,21 @@
+<!ENTITY prefs.title       "Предпочтения CipherFox">
+<!ENTITY general.label     "Общие предпочтения">
+<!ENTITY showPartial.label "Показывать CipherFox даже при частичном SSL/TLS">
+<!ENTITY showBuiltin.label "Показывать органы сертификации &quot;Builtin Object Token&quot; в цепочке">
+<!ENTITY disableRC4.label  "Отключить шифр RC4 (добавляет переключатель к меню Инструменты)">
+<!ENTITY display.label     "Показывать предпочтения">
+<!ENTITY showPanel.label   "Показывать CipherFox в пенели расширений">
+<!ENTITY showButton.label  "Показывать CipherFox в диалоге идентификации сайта">
+<!ENTITY formatting.label  "Форматирование цепочек">
+<!ENTITY cipher.label      "Шифр">
+<!ENTITY cert.label        "Сертификат">
+<!ENTITY default.label     "По умолчанию">
+<!ENTITY variables.label   "Форматирование переменных цепочки">
+<!ENTITY cipherAlg.label   "Симметричный алгоритм шифра">
+<!ENTITY cipherSize.label  "Длина ключа симметричного шифра">
+<!ENTITY certOrg.label     "Организация или название сертификата">
+<!ENTITY certAlg.label     "Алгоритм публичного ключа сертификата">
+<!ENTITY certSize.label    "Длина публичного ключа сертификата">
+<!ENTITY certHash.label    "Хэш подписи сертификата">
+<!ENTITY certExp.label     "Дата окончания срока действия сертификата">
+<!ENTITY certIss.label     "Эмитент сертификата">
