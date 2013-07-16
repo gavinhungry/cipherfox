@@ -1,0 +1,7 @@
+<!ENTITY cipherfox.title  "CipherFox">
+<!ENTITY enable.label     "RC4 の有効化">
+<!ENTITY certs.tooltip    "証明書チェーンを表示します">
+<!ENTITY prefs.label      "設定">
+<!ENTITY prefs.accesskey  "P">
+<!ENTITY qualys.label     "Qualys SSL Labs Server Test">
+<!ENTITY qualys.accesskey "Q">

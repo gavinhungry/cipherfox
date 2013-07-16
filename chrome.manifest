@@ -5,6 +5,7 @@ locale cipherfox de-DE locale/de-DE/
 locale cipherfox en-US locale/en-US/
 locale cipherfox es-ES locale/es-ES/
 locale cipherfox fr-FR locale/fr-FR/
+locale cipherfox ja-JP locale/ja-JP/
 locale cipherfox ko-KR locale/ko-KR/
 locale cipherfox ru-RU locale/ru-RU/
 locale cipherfox zh-CN locale/zh-CN/

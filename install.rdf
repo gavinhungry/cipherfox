@@ -4,7 +4,7 @@
   <Description about='urn:mozilla:install-manifest'>
     <em:type>2</em:type>
     <em:id>cipherfox@mkfly</em:id>
-    <em:version>3.6.3</em:version>
+    <em:version>3.6.4</em:version>
     <em:targetApplication>
       <Description>
         <em:id>{ec8030f7-c20a-464f-9b0e-13a3a9e97384}</em:id>
@@ -15,6 +15,7 @@
     <em:name>CipherFox</em:name>
     <em:description>Display the current SSL/TLS cipher and certificate chain</em:description>
     <em:creator>Gavin Lloyd</em:creator>
+    <em:contributor>Kosuke Kaizuka</em:contributor>
     <em:homepageURL>https://github.com/gavinhungry/cipherfox</em:homepageURL>
     <em:optionsURL>chrome://cipherfox/content/prefs.xul</em:optionsURL>
   </Description>

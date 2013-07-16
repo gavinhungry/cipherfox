@@ -1,0 +1,21 @@
+<!ENTITY prefs.title       "CipherFox 設定">
+<!ENTITY general.label     "一般設定">
+<!ENTITY showPartial.label "通信の一部しか SSL/TLS によって暗号化されていない場合でも CipherFox を表示する">
+<!ENTITY showBuiltin.label "証明書チェーン中の &quot;Builtin Object Token&quot; 認証局証明書も表示する">
+<!ENTITY disableRC4.label  "RC4 を無効化する (ツールメニューに切り替えトグルを追加)">
+<!ENTITY display.label     "表示設定">
+<!ENTITY showPanel.label   "アドオンバーに CipherFox を表示する">
+<!ENTITY showButton.label  "サイト認証ダイアログに CipherFox を表示する">
+<!ENTITY formatting.label  "表示形式">
+<!ENTITY cipher.label      "暗号化">
+<!ENTITY cert.label        "証明書">
+<!ENTITY default.label     "既定に戻す">
+<!ENTITY variables.label   "表示形式のパラメータ">
+<!ENTITY cipherAlg.label   "共通鍵のアルゴリズム">
+<!ENTITY cipherSize.label  "共通鍵の鍵長">
+<!ENTITY certOrg.label     "発行対象の組織名あるいは一般名称">
+<!ENTITY certAlg.label     "公開鍵のアルゴリズム">
+<!ENTITY certSize.label    "公開鍵の鍵長">
+<!ENTITY certHash.label    "署名のアルゴリズム">
+<!ENTITY certExp.label     "有効期限">
+<!ENTITY certIss.label     "発行者">
