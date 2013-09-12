@@ -23,7 +23,7 @@ var CipherFox = (function() {
   var cfToggle, cfPanel, cfButton, cfCerts, cfBCerts, cfPSep;
 
   var hideIdentityPopup = function() {
-    gIdentityHandler.hideIdentityPopup();
+    gIdentityHandler.hideIdentityPopup && gIdentityHandler.hideIdentityPopup();
   };
 
   // show dialog for cert in database
