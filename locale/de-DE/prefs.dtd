@@ -1,20 +1,20 @@
 <!ENTITY prefs.title       "CipherFox Einstellungen">
 <!ENTITY general.label     "Allgemeine Einstellungen">
-<!ENTITY showPartial.label "CipherFox anzeigen, auch wenn SSL/TLS partiell ist">
-<!ENTITY showBuiltin.label "Zertifikats Autoritäten vom &quot;Builtin Object Token&quot; in kette anzeigen">
-<!ENTITY disableRC4.label  "RC4 code deaktivieren (fügt einen Schalter zum Tools Menü hinzu)">
-<!ENTITY display.label     "Einstellungen Anzeigen">
-<!ENTITY showPanel.label   "CipherFox in Add-ons leiste anzeigen">
-<!ENTITY showButton.label  "CipherFox im Site Identification Dialog anzeigen">
-<!ENTITY formatting.label  "Strings werden Formatiert">
-<!ENTITY cipher.label      "Code">
+<!ENTITY showPartial.label "CipherFox auch bei unvollständigem SSL/TLS anzeigen">
+<!ENTITY showBuiltin.label "Zertifikatsautoritäten der &quot;eingebauten Objekttoken&quot; der Reihe nach anzeigen">
+<!ENTITY disableRC4.label  "RC4-Verschlüsselung deaktivieren (fügt eine Schaltfläche im Werkzeugmenü hinzu)">
+<!ENTITY display.label     "Einstellungen anzeigen">
+<!ENTITY showPanel.label   "CipherFox in Add-on-Leiste anzeigen">
+<!ENTITY showButton.label  "CipherFox im Seitenidentifizierungsdialog anzeigen">
+<!ENTITY formatting.label  "Zeichenkette wird formatiert">
+<!ENTITY cipher.label      "Verschlüsselung">
 <!ENTITY cert.label        "Zertifikat">
 <!ENTITY default.label     "Standard">
-<!ENTITY variables.label   "String Variablen werden Formatiert">
-<!ENTITY cipherAlg.label   "Symmetrischer Code Algorithmus">
-<!ENTITY cipherSize.label  "Symmetrische Code Länge">
+<!ENTITY variables.label   "Zeichenkettenvariablen werden formatiert">
+<!ENTITY cipherAlg.label   "Symmetrischer Verschlüsselungsalgorithmus">
+<!ENTITY cipherSize.label  "Symmetrische Schlüssellänge">
 <!ENTITY certOrg.label     "Unternehmen oder Name des Zertifikats">
-<!ENTITY certAlg.label     "Öffentlicher Schlüssel Algorithmus des Zertifikats">
+<!ENTITY certAlg.label     "Algorithmus für den öffentlichen Schlüssel des Zertifikats">
 <!ENTITY certSize.label    "Länge des öffentlichen Schlüssels des Zertifikats">
 <!ENTITY certHash.label    "Unterschriftshash des Zertifikats">
 <!ENTITY certExp.label     "Ablaufdatum des Zertifikats">
