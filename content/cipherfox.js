@@ -14,6 +14,11 @@ var CipherFox = (function() {
   var prefs = {};
   var rc4Enabled;
 
+  // ciphers from ciphersuites
+  var ciphers = ['_AES_', '_RC4_', '_3DES_', '_DES_', '_CAMELLIA_', '_RC2_',
+    '_DES40_', '_FORTEZZA_', '_IDEA_', '_SEED_', '_GOST', '_NULL_'];
+  var ciphersRe = new RegExp(ciphers.join('|'));
+
   // default SSL3 RC4 preferences
   var rc4 = ['ecdh_ecdsa_rc4_128_sha', 'ecdh_rsa_rc4_128_sha',
     'ecdhe_ecdsa_rc4_128_sha', 'ecdhe_rsa_rc4_128_sha', 'rsa_1024_rc4_56_sha',
@@ -129,9 +134,29 @@ var CipherFox = (function() {
 
     if (obj instanceof Ci.nsISSLStatus) {
       cert = obj.serverCert;
-      label = prefs.base_format
-        .replace(/\$CIPHERALG/g,  obj.cipherName.split('-')[0])
-        .replace(/\$CIPHERSIZE/g, obj.secretKeyLength);
+      label = prefs.base_format;
+
+      var cipherName = obj.cipherName
+      var suiteMatch = ciphersRe.exec(cipherName);
+
+      var cipherSuite = '';
+      var protocol = '';
+
+      // in Firefox 25+, cipherName contains a full cipher suite
+      if (suiteMatch) {
+        cipherSuite = cipherName; // full cipher suote
+        protocol = cipherSuite.split('_')[0]; // protocol version (SSL or TLS)
+        cipherName = suiteMatch[0].replace(/_/g, ''); // short cipher name
+      } else {
+        cipherName = cipherName.split('-')[0];
+      }
+
+      label = label
+        .replace(/\$CIPHERALG/g, cipherName)
+        .replace(/\$CIPHERSIZE/g, obj.secretKeyLength)
+        .replace(/\$CIPHERSUITE/g, cipherSuite)
+        .replace(/\$PROTOCOL/g, protocol);
+
     } else if (obj instanceof Ci.nsIX509Cert) {
       cert = obj;
       label = prefs.cert_format;
