@@ -100,10 +100,6 @@
             <label value='Full Cipher Suite (Firefox 25+)'/>
           </row>
           <row>
-            <label value='$PROTOCOL'/>
-            <label value='SSL or TLS (Firefox 25+)'/>
-          </row>
-          <row>
             <label value='$CERTORG'/>
             <label value='&certOrg.label;'/>
           </row>

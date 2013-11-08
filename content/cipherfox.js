@@ -140,12 +140,10 @@ var CipherFox = (function() {
       var suiteMatch = ciphersRe.exec(cipherName);
 
       var cipherSuite = '';
-      var protocol = '';
 
       // in Firefox 25+, cipherName contains a full cipher suite
       if (suiteMatch) {
         cipherSuite = cipherName; // full cipher suote
-        protocol = cipherSuite.split('_')[0]; // protocol version (SSL or TLS)
         cipherName = suiteMatch[0].replace(/_/g, ''); // short cipher name
       } else {
         cipherName = cipherName.split('-')[0];
@@ -154,8 +152,7 @@ var CipherFox = (function() {
       label = label
         .replace(/\$CIPHERALG/g, cipherName)
         .replace(/\$CIPHERSIZE/g, obj.secretKeyLength)
-        .replace(/\$CIPHERSUITE/g, cipherSuite)
-        .replace(/\$PROTOCOL/g, protocol);
+        .replace(/\$CIPHERSUITE/g, cipherSuite);
 
     } else if (obj instanceof Ci.nsIX509Cert) {
       cert = obj;
