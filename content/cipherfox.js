@@ -143,7 +143,7 @@ var CipherFox = (function() {
 
       // in Firefox 25+, cipherName contains a full cipher suite
       if (suiteMatch) {
-        cipherSuite = cipherName; // full cipher suote
+        cipherSuite = cipherName; // full cipher suite
         cipherName = suiteMatch[0].replace(/_/g, ''); // short cipher name
       } else {
         cipherName = cipherName.split('-')[0];
