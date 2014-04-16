@@ -116,6 +116,10 @@
             <label value='&certHash.label;'/>
           </row>
           <row>
+            <label value='$CERTISSUED'/>
+            <label value='&certIssued.label;'/>
+          </row>
+          <row>
             <label value='$CERTEXP'/>
             <label value='&certExp.label;'/>
           </row>

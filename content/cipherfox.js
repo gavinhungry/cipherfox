@@ -227,6 +227,7 @@ var CipherFox = (function() {
       case pipnss.GetStringFromName('CertDumpSHA512WithRSA'): certHash = 'SHA512';
     }
 
+    var certFrom = cert.validity.notBeforeLocalDay;
     var certExp = cert.validity.notAfterLocalDay;
     var certIss = cert.issuerOrganization;
 
@@ -237,6 +238,7 @@ var CipherFox = (function() {
       .replace(/\$CERTALG/g,    certAlg  ? certAlg : '?')
       .replace(/\$CERTSIZE/g,   certSize ? certSize: '?')
       .replace(/\$CERTHASH/g,   certHash ? certHash: '?')
+      .replace(/\$CERTISSUED/g, certFrom ? certFrom: '?')
       .replace(/\$CERTEXP/g,    certExp  ? certExp : '?')
       .replace(/\$CERTISSUER/g, certIss  ? certIss : '?');
 

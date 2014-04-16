@@ -17,5 +17,6 @@
 <!ENTITY certAlg.label     "Certificate Public Key Algorithm">
 <!ENTITY certSize.label    "Certificate Public Key Length">
 <!ENTITY certHash.label    "Certificate Signing Hash">
+<!ENTITY certIssued.label  "Certificate Issuance Date">
 <!ENTITY certExp.label     "Certificate Expiration Date">
 <!ENTITY certIss.label     "Certificate Issuer">
