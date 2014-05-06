@@ -13,9 +13,11 @@
 <!ENTITY variables.label   "表示形式のパラメータ">
 <!ENTITY cipherAlg.label   "共通鍵のアルゴリズム">
 <!ENTITY cipherSize.label  "共通鍵の鍵長">
+<!ENTITY cipherSuite.label "Cipher Suite (Firefox 25 以上のみ)">
 <!ENTITY certOrg.label     "発行対象の組織名あるいは一般名称">
 <!ENTITY certAlg.label     "公開鍵のアルゴリズム">
 <!ENTITY certSize.label    "公開鍵の鍵長">
 <!ENTITY certHash.label    "署名のアルゴリズム">
+<!ENTITY certIssued.label  "発行日">
 <!ENTITY certExp.label     "有効期限">
 <!ENTITY certIss.label     "発行者">

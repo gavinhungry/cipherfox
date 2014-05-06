@@ -97,7 +97,7 @@
           </row>
           <row>
             <label value='$CIPHERSUITE'/>
-            <label value='Full Cipher Suite (Firefox 25+)'/>
+            <label value='&cipherSuite.label;'/>
           </row>
           <row>
             <label value='$CERTORG'/>
