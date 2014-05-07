@@ -13,9 +13,11 @@
 <!ENTITY variables.label   "Zeichenkettenvariablen werden formatiert">
 <!ENTITY cipherAlg.label   "Symmetrischer Verschlüsselungsalgorithmus">
 <!ENTITY cipherSize.label  "Symmetrische Schlüssellänge">
+<!ENTITY cipherSuite.label "Full Cipher Suite (Firefox 25+)">
 <!ENTITY certOrg.label     "Unternehmen oder Name des Zertifikats">
 <!ENTITY certAlg.label     "Algorithmus für den öffentlichen Schlüssel des Zertifikats">
 <!ENTITY certSize.label    "Länge des öffentlichen Schlüssels des Zertifikats">
 <!ENTITY certHash.label    "Unterschriftshash des Zertifikats">
+<!ENTITY certIssued.label  "Ausgabedatum des Zertifikats">
 <!ENTITY certExp.label     "Ablaufdatum des Zertifikats">
 <!ENTITY certIss.label     "Aussteller des Zertifikats">
