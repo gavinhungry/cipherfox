@@ -5,6 +5,8 @@
 var CipherFox_prefs = (function() {
   'use strict';
 
+  const Cc = Components.classes, Ci = Components.interfaces;
+
   // exposed methods
   return {
     onLoad: function() {

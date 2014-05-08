@@ -5,6 +5,8 @@
 var CipherFox = (function() {
   'use strict';
 
+  const Cc = Components.classes, Ci = Components.interfaces;
+
   var certDb  = Cc['@mozilla.org/security/x509certdb;1'].getService(Ci.nsIX509CertDB);
   var certDlg = Cc['@mozilla.org/nsCertificateDialogs;1'].getService(Ci.nsICertificateDialogs);
   var pipnss  = Cc['@mozilla.org/intl/stringbundle;1'].getService(Ci.nsIStringBundleService)
