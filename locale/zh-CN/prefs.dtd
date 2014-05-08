@@ -13,9 +13,11 @@
 <!ENTITY variables.label   "正在格式化字符串变量">
 <!ENTITY cipherAlg.label   "对称密码算法">
 <!ENTITY cipherSize.label  "对称密匙长度">
+<!ENTITY cipherSuite.label "Full Cipher Suite (Firefox 25+)">
 <!ENTITY certOrg.label     "证书组织或名称">
 <!ENTITY certAlg.label     "证书公钥算法">
 <!ENTITY certSize.label    "证书公钥长度">
 <!ENTITY certHash.label    "证书签名哈希">
+<!ENTITY certIssued.label  "Certificate Issuance Date">
 <!ENTITY certExp.label     "证书到期日期">
 <!ENTITY certIss.label     "证书颁发商">

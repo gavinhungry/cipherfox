@@ -13,9 +13,11 @@
 <!ENTITY variables.label   "Форматирование переменных цепочки">
 <!ENTITY cipherAlg.label   "Симметричный алгоритм шифра">
 <!ENTITY cipherSize.label  "Длина ключа симметричного шифра">
+<!ENTITY cipherSuite.label "Full Cipher Suite (Firefox 25+)">
 <!ENTITY certOrg.label     "Организация или название сертификата">
 <!ENTITY certAlg.label     "Алгоритм публичного ключа сертификата">
 <!ENTITY certSize.label    "Длина публичного ключа сертификата">
 <!ENTITY certHash.label    "Хэш подписи сертификата">
+<!ENTITY certIssued.label  "Certificate Issuance Date">
 <!ENTITY certExp.label     "Дата окончания срока действия сертификата">
 <!ENTITY certIss.label     "Эмитент сертификата">

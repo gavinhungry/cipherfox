@@ -13,9 +13,11 @@
 <!ENTITY variables.label   "Çü½Ä ¹®ÀÚ¿­ º¯¼ö">
 <!ENTITY cipherAlg.label   "´ëÄª ¾ÏÈ£È­ ¾Ë°í¸®Áò">
 <!ENTITY cipherSize.label  "´ëÄª ¾ÏÈ£Å° ±æÀÌ">
+<!ENTITY cipherSuite.label "Full Cipher Suite (Firefox 25+)">
 <!ENTITY certOrg.label     "ÀÎÁõ¼­ Á¶Á÷ ¶Ç´Â ÀÌ¸§">
 <!ENTITY certAlg.label     "ÀÎÁõ¼­ °ø°³Å° ¾Ë°í¸®Áò">
 <!ENTITY certSize.label    "ÀÎÁõ¼­ °ø°³Å° ±æÀÌ">
 <!ENTITY certHash.label    "ÀÎÁõ¼­ ¼­¸í ÇØ½Ã">
+<!ENTITY certIssued.label  "Certificate Issuance Date">
 <!ENTITY certExp.label     "ÀÎÁõ¼­ ¸¸·áÀÏ">
 <!ENTITY certIss.label     "ÀÎÁõ¼­ ¹ß±ÞÀÚ">

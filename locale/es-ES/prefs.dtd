@@ -13,9 +13,11 @@
 <!ENTITY variables.label   "Formateando Variables de Cadena">
 <!ENTITY cipherAlg.label   "Algoritmo de Código Simétrico">
 <!ENTITY cipherSize.label  "Longitud de Clave de Código Simétrica">
+<!ENTITY cipherSuite.label "Full Cipher Suite (Firefox 25+)">
 <!ENTITY certOrg.label     "Nombre u Organización del Certificado">
 <!ENTITY certAlg.label     "Algoritmo de la Clave Pública del Certificado">
 <!ENTITY certSize.label    "Longitud de la Clave Pública del Certificado">
 <!ENTITY certHash.label    "Algoritmo Hash de la Firma del Certificao">
+<!ENTITY certIssued.label  "Certificate Issuance Date">
 <!ENTITY certExp.label     "Fecha de Caducidad del Certificado">
 <!ENTITY certIss.label     "Emisor del Certificado">
