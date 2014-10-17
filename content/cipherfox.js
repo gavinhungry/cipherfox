@@ -98,12 +98,8 @@ var CipherFox = (function() {
       var certChain = serverCert.getChain().enumerate();
 
       while (certChain.hasMoreElements()) {
-        var cert = certChain.getNext();
-        if ("nsIX509Cert2" in Ci) {
-          cert = cert.QueryInterface(Ci.nsIX509Cert2);
-        } else {
-          cert = cert.QueryInterface(Ci.nsIX509Cert);
-        }
+        var next = certChain.getNext();
+        var cert = next.QueryInterface(Ci.nsIX509Cert || Ci.nsIX509Cert2);
 
         var certItem = document.createElement('menuitem');
 
