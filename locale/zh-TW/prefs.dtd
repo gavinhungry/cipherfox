@@ -14,6 +14,7 @@
 <!ENTITY cipherAlg.label   "對稱密碼演算法">
 <!ENTITY cipherSize.label  "對稱密匙長度">
 <!ENTITY cipherSuite.label "Full Cipher Suite (Firefox 25+)">
+<!ENTITY protocol.label    "Protocol Version (Firefox 36+)">
 <!ENTITY certOrg.label     "證書組織或名稱">
 <!ENTITY certAlg.label     "證書公開金鑰演算法">
 <!ENTITY certSize.label    "證書公開金鑰長度">

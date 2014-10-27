@@ -16,6 +16,8 @@ var CipherFox = (function() {
   var prefs = {};
   var rc4Enabled;
 
+  var unknown = '?'; // label to use for missing fields
+
   // ciphers from ciphersuites
   var ciphers = ['_AES_', '_RC4_', '_3DES_', '_DES_', '_CAMELLIA_', '_RC2_',
     '_DES40_', '_FORTEZZA_', '_IDEA_', '_SEED_', '_GOST', '_NULL_'];
@@ -133,6 +135,15 @@ var CipherFox = (function() {
     }
   };
 
+  var protocolString = function(v) {
+    if (!v) { return; }
+
+    if (v === Ci.nsISSLStatus.SSL_VERSION_3) { return 'SSL 3.0'; }
+    if (v === Ci.nsISSLStatus.TLS_VERSION_1) { return 'TLS 1.0'; }
+    if (v === Ci.nsISSLStatus.TLS_VERSION_1_1) { return 'TLS 1.1'; }
+    if (v === Ci.nsISSLStatus.TLS_VERSION_1_2) { return 'TLS 1.2'; }
+  };
+
   var formatLabel = function(obj) {
     var cert, label;
 
@@ -142,10 +153,11 @@ var CipherFox = (function() {
 
       var cipherName = obj.cipherName
       var suiteMatch = ciphersRe.exec(cipherName);
+      var protocol = protocolString(obj.protocolVersion); // Fx 36+
 
       var cipherSuite = '';
 
-      // in Firefox 25+, cipherName contains a full cipher suite
+      // in Fx 25+, cipherName contains a full cipher suite
       if (suiteMatch) {
         cipherSuite = cipherName; // full cipher suite
         cipherName = suiteMatch[0].replace(/_/g, ''); // short cipher name
@@ -156,7 +168,8 @@ var CipherFox = (function() {
       label = label
         .replace(/\$CIPHERALG/g, cipherName)
         .replace(/\$CIPHERSIZE/g, obj.secretKeyLength)
-        .replace(/\$CIPHERSUITE/g, cipherSuite);
+        .replace(/\$CIPHERSUITE/g, cipherSuite)
+        .replace(/\$PROTOCOL/g, protocol || unknown);
 
     } else if (obj instanceof Ci.nsIX509Cert) {
       cert = obj;
@@ -237,14 +250,14 @@ var CipherFox = (function() {
 
     // replace variable names in format string with values
     label = label
-      .replace(/\$CERTORG/g,    certOrg  ? certOrg : '?')
-      .replace(/\$CERTCN/g,     certCn   ? certCn  : '?')
-      .replace(/\$CERTALG/g,    certAlg  ? certAlg : '?')
-      .replace(/\$CERTSIZE/g,   certSize ? certSize: '?')
-      .replace(/\$CERTHASH/g,   certHash ? certHash: '?')
-      .replace(/\$CERTISSUED/g, certFrom ? certFrom: '?')
-      .replace(/\$CERTEXP/g,    certExp  ? certExp : '?')
-      .replace(/\$CERTISSUER/g, certIss  ? certIss : '?');
+      .replace(/\$CERTORG/g,    certOrg  || unknown)
+      .replace(/\$CERTCN/g,     certCn   || unknown)
+      .replace(/\$CERTALG/g,    certAlg  || unknown)
+      .replace(/\$CERTSIZE/g,   certSize || unknown)
+      .replace(/\$CERTHASH/g,   certHash || unknown)
+      .replace(/\$CERTISSUED/g, certFrom || unknown)
+      .replace(/\$CERTEXP/g,    certExp  || unknown)
+      .replace(/\$CERTISSUER/g, certIss  || unknown);
 
     return label;
   };

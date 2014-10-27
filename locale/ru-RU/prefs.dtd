@@ -14,6 +14,7 @@
 <!ENTITY cipherAlg.label   "Симметричный алгоритм шифра">
 <!ENTITY cipherSize.label  "Длина ключа симметричного шифра">
 <!ENTITY cipherSuite.label "Full Cipher Suite (Firefox 25+)">
+<!ENTITY protocol.label    "Protocol Version (Firefox 36+)">
 <!ENTITY certOrg.label     "Организация или название сертификата">
 <!ENTITY certAlg.label     "Алгоритм публичного ключа сертификата">
 <!ENTITY certSize.label    "Длина публичного ключа сертификата">

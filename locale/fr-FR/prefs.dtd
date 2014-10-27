@@ -14,6 +14,7 @@
 <!ENTITY cipherAlg.label   "Algorithme de Chiffrement Symétrique">
 <!ENTITY cipherSize.label  "Longueur de la Clef du Chiffrement Symétrique">
 <!ENTITY cipherSuite.label "Full Cipher Suite (Firefox 25+)">
+<!ENTITY protocol.label    "Protocol Version (Firefox 36+)">
 <!ENTITY certOrg.label     "Organisation de Certification ou Nom">
 <!ENTITY certAlg.label     "Algorithme à Clef Publique de Certification">
 <!ENTITY certSize.label    "Longueur de la Clef Publique de Certification">
