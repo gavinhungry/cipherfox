@@ -136,7 +136,7 @@ var CipherFox = (function() {
   };
 
   var protocolString = function(v) {
-    if (!v) { return; }
+    if (typeof v !== 'number' || isNaN(v)) { return; }
 
     if (v === Ci.nsISSLStatus.SSL_VERSION_3) { return 'SSL 3.0'; }
     if (v === Ci.nsISSLStatus.TLS_VERSION_1) { return 'TLS 1.0'; }
