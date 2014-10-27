@@ -1,7 +1,7 @@
 CipherFox
 =========
-CipherFox displays the current SSL/TLS cipher and certificate chain in the
-Add-on bar and Site Identification dialog.
+CipherFox displays the current SSL/TLS cipher, protocol and certificate chain in
+the Add-on bar and Site Identification dialog.
 
 The [Qualys SSL Labs Server Test](https://www.ssllabs.com/ssltest/) for the
 current domain is also accessible from the menu.
