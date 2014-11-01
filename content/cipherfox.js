@@ -11,6 +11,7 @@ var CipherFox = (function() {
   var certDlg = Cc['@mozilla.org/nsCertificateDialogs;1'].getService(Ci.nsICertificateDialogs);
   var pipnss  = Cc['@mozilla.org/intl/stringbundle;1'].getService(Ci.nsIStringBundleService)
                 .createBundle('chrome://pipnss/locale/pipnss.properties');
+  var clipboardHelper = Cc["@mozilla.org/widget/clipboardhelper;1"].getService(Ci.nsIClipboardHelper);
 
   var prefService = Cc['@mozilla.org/preferences-service;1'].getService(Ci.nsIPrefBranch2);
   var prefs = {};
@@ -348,6 +349,16 @@ var CipherFox = (function() {
         loadPrefs();
         updateCipher();
         if (data === 'extensions.cipherfox.disable_rc4') { setRC4(); }
+      }
+    },
+
+    copyCipher: function() {
+      var securityUI = gBrowser.selectedBrowser.securityUI;
+      if (securityUI instanceof Ci.nsISecureBrowserUI) {
+        var status = securityUI.QueryInterface(Ci.nsISSLStatusProvider).SSLStatus;
+        if (status instanceof Ci.nsISSLStatus) {
+          clipboardHelper.copyString(status.cipherName);
+        }
       }
     },
 

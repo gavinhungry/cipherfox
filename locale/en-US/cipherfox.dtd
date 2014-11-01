@@ -5,3 +5,5 @@
 <!ENTITY prefs.accesskey  "P">
 <!ENTITY qualys.label     "Qualys SSL Labs Server Test">
 <!ENTITY qualys.accesskey "Q">
+<!ENTITY copycipher.label "Copy cipher to clipboard">
+<!ENTITY copycipher.accesskey "C">
