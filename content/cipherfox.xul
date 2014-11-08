@@ -26,9 +26,10 @@
       <menupopup id='cipherfox-button-certs'>
         <menuseparator id='cipherfox-prefs-seperator'/>
         <menuitem label='&copy.label;' accesskey='&copy.accesskey;'
-                  oncommand='CipherFox.copyCipher()'/>
+                  oncommand='CipherFox.copyCipherSuite()'/>
         <menuitem label='&qualys.label;' accesskey='&qualys.accesskey;'
                   oncommand='CipherFox.testDomain()'/>
+        <menuseparator/>
         <menuitem label='&prefs.label;' accesskey='&prefs.accesskey;'
                   oncommand='window.openDialog("chrome://cipherfox/content/prefs.xul")'/>
       </menupopup>
@@ -43,9 +44,10 @@
     <menupopup id='cipherfox-certs' position='before_end'/>
     <menupopup id='cipherfox-context'>
       <menuitem label='&copy.label;' accesskey='&copy.accesskey;'
-                oncommand='CipherFox.copyCipher()'/>
+                oncommand='CipherFox.copyCipherSuite()'/>
       <menuitem label='&qualys.label;' accesskey='&qualys.accesskey;'
                 oncommand='CipherFox.testDomain()'/>
+      <menuseparator/>
       <menuitem label='&prefs.label;' accesskey='&prefs.accesskey;'
                 oncommand='window.openDialog("chrome://cipherfox/content/prefs.xul")'/>
     </menupopup>

@@ -352,7 +352,7 @@ var CipherFox = (function() {
       }
     },
 
-    copyCipher: function() {
+    copyCipherSuite: function() {
       var securityUI = gBrowser.selectedBrowser.securityUI;
       if (securityUI instanceof Ci.nsISecureBrowserUI) {
         var status = securityUI.QueryInterface(Ci.nsISSLStatusProvider).SSLStatus;
