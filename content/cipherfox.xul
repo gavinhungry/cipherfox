@@ -25,7 +25,7 @@
             insertbefore='identity-popup-more-info-button' hidden='true'>
       <menupopup id='cipherfox-button-certs'>
         <menuseparator id='cipherfox-prefs-seperator'/>
-        <menuitem label='&copycipher.label;' accesskey='&copycipher.accesskey;'
+        <menuitem label='&copy.label;' accesskey='&copy.accesskey;'
                   oncommand='CipherFox.copyCipher()'/>
         <menuitem label='&qualys.label;' accesskey='&qualys.accesskey;'
                   oncommand='CipherFox.testDomain()'/>
@@ -42,7 +42,7 @@
 
     <menupopup id='cipherfox-certs' position='before_end'/>
     <menupopup id='cipherfox-context'>
-      <menuitem label='&copycipher.label;' accesskey='&copycipher.accesskey;'
+      <menuitem label='&copy.label;' accesskey='&copy.accesskey;'
                 oncommand='CipherFox.copyCipher()'/>
       <menuitem label='&qualys.label;' accesskey='&qualys.accesskey;'
                 oncommand='CipherFox.testDomain()'/>
