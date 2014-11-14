@@ -236,13 +236,31 @@ var CipherFox = (function() {
 
     // look for hash type
     var certHash;
-    switch (certDmp.getDisplayData(certDmp.rowCount-2)) {
+    var displayData = certDmp.getDisplayData(certDmp.rowCount-2);
+    switch (displayData) {
       case pipnss.GetStringFromName('CertDumpMD2WithRSA'):    certHash = 'MD2';    break;
       case pipnss.GetStringFromName('CertDumpMD5WithRSA'):    certHash = 'MD5';    break;
       case pipnss.GetStringFromName('CertDumpSHA1WithRSA'):   certHash = 'SHA1';   break;
       case pipnss.GetStringFromName('CertDumpSHA256WithRSA'): certHash = 'SHA256'; break;
       case pipnss.GetStringFromName('CertDumpSHA384WithRSA'): certHash = 'SHA384'; break;
       case pipnss.GetStringFromName('CertDumpSHA512WithRSA'): certHash = 'SHA512';
+    }
+
+    // assume ECDSA OID
+    if (!certHash) {
+      // displayData: 'Object Identifier (1 2 840 10045 4 3 2)'
+      var oidMatches = displayData.match(/\((.*)\)/);
+      if (oidMatches && oidMatches.length > 1) {
+        var oid = oidMatches[1];
+
+        switch (oid) {
+          case '1 2 840 10045 4 1':   certHash = 'SHA1';   break;
+          case '1 2 840 10045 4 3 1': certHash = 'SHA224'; break;
+          case '1 2 840 10045 4 3 2': certHash = 'SHA256'; break;
+          case '1 2 840 10045 4 3 3': certHash = 'SHA384'; break;
+          case '1 2 840 10045 4 3 4': certHash = 'SHA512'; break;
+        }
+      }
     }
 
     var certFrom = cert.validity.notBeforeLocalDay;
