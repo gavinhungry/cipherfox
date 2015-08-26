@@ -156,7 +156,7 @@ var CipherFox = (function() {
       var suiteMatch = ciphersRe.exec(cipherName);
       var protocol = protocolString(obj.protocolVersion); // Fx 36+
 
-      var cipherSuite = '';
+      var cipherSuite = obj.cipherSuite;
 
       // in Fx 25+, cipherName contains a full cipher suite
       if (suiteMatch) {
@@ -167,9 +167,9 @@ var CipherFox = (function() {
       }
 
       label = label
-        .replace(/\$CIPHERALG/g, cipherName)
-        .replace(/\$CIPHERSIZE/g, obj.secretKeyLength)
-        .replace(/\$CIPHERSUITE/g, cipherSuite)
+        .replace(/\$CIPHERALG/g, cipherName || unknown)
+        .replace(/\$CIPHERSIZE/g, obj.secretKeyLength || unknown)
+        .replace(/\$CIPHERSUITE/g, cipherSuite || unknown)
         .replace(/\$PROTOCOL/g, protocol || unknown);
 
     } else if (obj instanceof Ci.nsIX509Cert) {
