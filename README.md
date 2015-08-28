@@ -6,6 +6,12 @@ the Add-on bar and Site Identification dialog.
 The [Qualys SSL Labs Server Test](https://www.ssllabs.com/ssltest/) for the
 current domain is also accessible from the menu.
 
+Applications
+------------
+CipherFox is supported in [Firefox](https://www.mozilla.org/firefox),
+[Pale Moon](https://www.palemoon.org/) and
+[SeaMonkey](http://www.seamonkey-project.org).
+
 Usage
 -----
 You can click CipherFox to show a popup menu with the certificate chain.
