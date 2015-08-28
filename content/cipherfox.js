@@ -165,7 +165,7 @@ var CipherFox = (function() {
       cert = obj.serverCert;
       label = prefs.base_format;
 
-      var cipherName = obj.cipherName
+      var cipherName = obj.cipherName;
       var suiteMatch = ciphersRe.exec(cipherName);
       var protocol = protocolString(obj.protocolVersion); // Fx 36+
 
