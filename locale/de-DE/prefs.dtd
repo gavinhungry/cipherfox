@@ -13,8 +13,8 @@
 <!ENTITY variables.label   "Zeichenkettenvariablen werden formatiert">
 <!ENTITY cipherAlg.label   "Symmetrischer Verschlüsselungsalgorithmus">
 <!ENTITY cipherSize.label  "Symmetrische Schlüssellänge">
-<!ENTITY cipherSuite.label "Full Cipher Suite (Firefox 25+)">
-<!ENTITY protocol.label    "Protocol Version (Firefox 36+)">
+<!ENTITY cipherSuite.label "Full Cipher Suite">
+<!ENTITY protocol.label    "Protocol Version">
 <!ENTITY certOrg.label     "Unternehmen oder Name des Zertifikats">
 <!ENTITY certAlg.label     "Algorithmus für den öffentlichen Schlüssel des Zertifikats">
 <!ENTITY certSize.label    "Länge des öffentlichen Schlüssels des Zertifikats">

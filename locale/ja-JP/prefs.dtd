@@ -13,8 +13,8 @@
 <!ENTITY variables.label   "表示形式のパラメータ">
 <!ENTITY cipherAlg.label   "共通鍵のアルゴリズム">
 <!ENTITY cipherSize.label  "共通鍵の鍵長">
-<!ENTITY cipherSuite.label "完全な Cipher Suite (Firefox 25 以降において有効)">
-<!ENTITY protocol.label    "プロトコルバージョン (Firefox 36 以降において有効)">
+<!ENTITY cipherSuite.label "完全な Cipher Suite">
+<!ENTITY protocol.label    "プロトコルバージョン">
 <!ENTITY certOrg.label     "発行対象の組織名あるいは一般名称">
 <!ENTITY certAlg.label     "公開鍵のアルゴリズム">
 <!ENTITY certSize.label    "公開鍵の鍵長">

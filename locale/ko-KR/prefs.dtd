@@ -13,8 +13,8 @@
 <!ENTITY variables.label   "Çü½Ä ¹®ÀÚ¿­ º¯¼ö">
 <!ENTITY cipherAlg.label   "´ëÄª ¾ÏÈ£È­ ¾Ë°í¸®Áò">
 <!ENTITY cipherSize.label  "´ëÄª ¾ÏÈ£Å° ±æÀÌ">
-<!ENTITY cipherSuite.label "Full Cipher Suite (Firefox 25+)">
-<!ENTITY protocol.label    "Protocol Version (Firefox 36+)">
+<!ENTITY cipherSuite.label "Full Cipher Suite">
+<!ENTITY protocol.label    "Protocol Version">
 <!ENTITY certOrg.label     "ÀÎÁõ¼­ Á¶Á÷ ¶Ç´Â ÀÌ¸§">
 <!ENTITY certAlg.label     "ÀÎÁõ¼­ °ø°³Å° ¾Ë°í¸®Áò">
 <!ENTITY certSize.label    "ÀÎÁõ¼­ °ø°³Å° ±æÀÌ">
