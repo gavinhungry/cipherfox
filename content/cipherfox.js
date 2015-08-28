@@ -396,7 +396,7 @@ var CipherFox = (function() {
       if (securityUI instanceof Ci.nsISecureBrowserUI) {
         var status = securityUI.QueryInterface(Ci.nsISSLStatusProvider).SSLStatus;
         if (status instanceof Ci.nsISSLStatus) {
-          clipboardHelper.copyString(status.cipherName);
+          clipboardHelper.copyString(status.cipherSuite || status.cipherName);
         }
       }
     },
