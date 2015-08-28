@@ -33,7 +33,9 @@ var CipherFox = (function() {
   var cfToggle, cfPanel, cfButton, cfCerts, cfBCerts, cfPSep;
 
   var hideIdentityPopup = function() {
-    gIdentityHandler.hideIdentityPopup && gIdentityHandler.hideIdentityPopup();
+    try {
+      gIdentityHandler.hideIdentityPopup();
+    } catch(e) {}
   };
 
   // show dialog for cert in database
@@ -53,8 +55,14 @@ var CipherFox = (function() {
       if (rc4Enabled) {
         try { prefService.clearUserPref(pref); }
         catch(e) {}
-      } else if (getBoolPref(pref) !== undefined) {
-        prefService.setBoolPref(pref, false);
+      } else {
+        var value;
+        try { value = prefService.getBoolPref(pref); }
+        catch(e) {}
+
+        if (value !== undefined) {
+          prefService.setBoolPref(pref, false);
+        }
       }
     }
   };
@@ -83,17 +91,20 @@ var CipherFox = (function() {
 
   // get all certs and update
   var populateCertChain = function(status) {
-
     cfCerts.hidePopup();
-    cfBCerts.hidePopup();
+    if (cfBCerts instanceof XULElement) {
+      cfBCerts.hidePopup();
+    }
 
     // remove old certs
     while(cfCerts.hasChildNodes()) {
       cfCerts.removeChild(cfCerts.firstChild);
     }
 
-    while(cfBCerts.hasChildNodes() && cfBCerts.firstChild !== cfPSep) {
-      cfBCerts.removeChild(cfBCerts.firstChild);
+    if (cfBCerts instanceof XULElement) {
+      while(cfBCerts.hasChildNodes() && cfBCerts.firstChild !== cfPSep) {
+        cfBCerts.removeChild(cfBCerts.firstChild);
+      }
     }
 
     var serverCert = status.serverCert;
@@ -131,7 +142,9 @@ var CipherFox = (function() {
         certItemB.addEventListener('command', viewCertByDBKey, false);
 
         cfCerts.insertBefore(certItem, cfCerts.firstChild);
-        cfBCerts.insertBefore(certItemB, cfPSep);
+        if (cfBCerts instanceof XULElement) {
+          cfBCerts.insertBefore(certItemB, cfPSep);
+        }
       }
     }
   };
@@ -300,9 +313,13 @@ var CipherFox = (function() {
       }
     }
 
-    cfPanel.label = cfButton.label = panelLabel;
+    cfPanel.label = panelLabel;
     cfPanel.hidden  = hidden || !prefs.show_panel;
-    cfButton.hidden = hidden || !prefs.show_button;
+
+    if (cfButton instanceof XULElement) {
+      cfButton.label = panelLabel;
+      cfButton.hidden = hidden || !prefs.show_button;
+    }
   };
 
   // unused functions must be defined
@@ -331,21 +348,25 @@ var CipherFox = (function() {
         moreInfo.addEventListener('command', hideIdentityPopup, false);
       }
 
-      cfCerts.addEventListener('popupshowing', function() {
-        cfPanel.setAttribute('popupopen', true);
-      }, false);
+      if (cfCerts instanceof XULElement) {
+        cfCerts.addEventListener('popupshowing', function() {
+          cfPanel.setAttribute('popupopen', true);
+        }, false);
 
-      cfCerts.addEventListener('popuphiding', function() {
-        cfPanel.removeAttribute('popupopen');
-      }, false);
+        cfCerts.addEventListener('popuphiding', function() {
+          cfPanel.removeAttribute('popupopen');
+        }, false);
+      }
 
       // quick RC4 toggle
       cfToggle.addEventListener('command', toggleRC4, false);
 
       // keep the identity-box 'open'
-      cfBCerts.addEventListener('popuphidden', function(e) {
-        e.stopPropagation();
-      }, false);
+      if (cfBCerts instanceof XULElement) {
+        cfBCerts.addEventListener('popuphidden', function(e) {
+          e.stopPropagation();
+        }, false);
+      }
 
       prefService.addObserver('extensions.cipherfox.', this, false);
       loadPrefs();

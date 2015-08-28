@@ -1,0 +1,15 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!-- This Source Code Form is subject to the terms of the Mozilla Public
+   - License, v. 2.0. If a copy of the MPL was not distributed with this file,
+   - You can obtain one at http://mozilla.org/MPL/2.0/.  -->
+
+<!DOCTYPE window SYSTEM 'chrome://cipherfox/locale/cipherfox.dtd'>
+
+<overlay id='cipherfox-overlay'
+         xmlns='http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul'>
+
+  <menupopup id='menu_ToolsPopup'>
+    <menuitem id='cipherfox-toggle-rc4' type='checkbox' label='&enable.label;'
+              insertafter='devToolsSeparator' hidden='true'/>
+  </menupopup>
+</overlay>

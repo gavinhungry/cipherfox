@@ -9,16 +9,11 @@
 <overlay id='cipherfox-overlay'
          xmlns='http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul'>
 
-  <script type='application/javascript' src='cipherfox.js'/>
+  <script type='application/javascript' src='chrome://cipherfox/content/cipherfox.js'/>
   <script type='application/javascript'>
     window.addEventListener('load',   function() { CipherFox.onLoad();   }, false);
     window.addEventListener('unload', function() { CipherFox.onUnload(); }, false);
   </script>
-
-  <menupopup id='menu_ToolsPopup'>
-    <menuitem id='cipherfox-toggle-rc4' type='checkbox' label='&enable.label;'
-              insertafter='devToolsSeparator' hidden='true'/>
-  </menupopup>
 
   <vbox id='identity-popup-button-container'>
     <button id='cipherfox-button' type='menu' label='&cipherfox.title;'
