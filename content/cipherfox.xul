@@ -15,6 +15,21 @@
     window.addEventListener('unload', function() { CipherFox.onUnload(); }, false);
   </script>
 
+  <vbox id='identity-popup-securityView'>
+    <button id='cipherfox-button' type='menu' label='&cipherfox.title;' hidden='true' crop='end'>
+      <menupopup id='cipherfox-button-certs'>
+        <menuseparator id='cipherfox-prefs-seperator'/>
+        <menuitem label='&copy.label;' accesskey='&copy.accesskey;'
+                  oncommand='CipherFox.copyCipherSuite()'/>
+        <menuitem label='&qualys.label;' accesskey='&qualys.accesskey;'
+                  oncommand='CipherFox.testDomain()'/>
+        <menuseparator/>
+        <menuitem label='&prefs.label;' accesskey='&prefs.accesskey;'
+                  oncommand='window.openDialog("chrome://cipherfox/content/prefs.xul")'/>
+      </menupopup>
+    </button>
+  </vbox>
+
   <vbox id='identity-popup-button-container'>
     <button id='cipherfox-button' type='menu' label='&cipherfox.title;'
             insertbefore='identity-popup-more-info-button' hidden='true'>

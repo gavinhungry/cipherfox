@@ -52,3 +52,21 @@
 #cipherfox-button-certs menuitem[first] {
   font-weight: bold;
 }
+
+#identity-popup-securityView #cipherfox-button {
+  margin-inline-start: 0;
+  margin-inline-end: 1em;
+}
+
+#identity-popup-securityView #cipherfox-button .button-box {
+  display: flex;
+}
+
+#identity-popup-securityView #cipherfox-button .button-box > .box-inherit {
+  flex: 1;
+  text-align: center;
+}
+
+#identity-popup-securityView #cipherfox-button .button-menu-dropmarker {
+  height: auto;
+}
