@@ -1,0 +1,9 @@
+<!ENTITY cipherfox.title  "CipherFox">
+<!ENTITY enable.label     "RC4 engedélyezése">
+<!ENTITY certs.tooltip    "Tanusítvány lánc megjelenítése">
+<!ENTITY prefs.label      "Beállítások">
+<!ENTITY prefs.accesskey  "P">
+<!ENTITY qualys.label     "Qualys SSL Labs szerver teszt">
+<!ENTITY qualys.accesskey "Q">
+<!ENTITY copy.label       "Rejtjelezési csomag másolása">
+<!ENTITY copy.accesskey   "C">
