@@ -5,17 +5,21 @@
 var CipherFox = (function() {
   'use strict';
 
-  const Cc = Components.classes, Ci = Components.interfaces;
+  var Cc = Components.classes;
+  var Ci = Components.interfaces;
+  var Cu = Components.utils;
 
-  // Components.utils.import('resource://gre/modules/devtools/Console.jsm');
+  Cu.import('resource://gre/modules/NetUtil.jsm');
 
-  var certDb  = Cc['@mozilla.org/security/x509certdb;1'].getService(Ci.nsIX509CertDB);
+  var certDb = Cc['@mozilla.org/security/x509certdb;1'].getService(Ci.nsIX509CertDB);
   var certDlg = Cc['@mozilla.org/nsCertificateDialogs;1'].getService(Ci.nsICertificateDialogs);
-  var pipnss  = Cc['@mozilla.org/intl/stringbundle;1'].getService(Ci.nsIStringBundleService)
-                .createBundle('chrome://pipnss/locale/pipnss.properties');
   var clipboardHelper = Cc["@mozilla.org/widget/clipboardhelper;1"].getService(Ci.nsIClipboardHelper);
-
+  var dirService = Cc['@mozilla.org/file/directory_service;1'].getService(Ci.nsIProperties);
   var prefService = Cc['@mozilla.org/preferences-service;1'].getService(Ci.nsIPrefBranch2);
+  var stringBundleService = Cc['@mozilla.org/intl/stringbundle;1'].getService(Ci.nsIStringBundleService);
+
+  var pipnss;
+
   var prefs = {};
   var rc4Enabled;
 
@@ -33,6 +37,55 @@ var CipherFox = (function() {
 
   // XUL DOM elements
   var cfToggle, cfPanel, cfButton, cfCerts, cfBCerts, cfPSep;
+
+  var getOmniUri = function(path) {
+    var omniPath = dirService.get('GreD', Ci.nsIFile);
+    omniPath.appendRelativePath('omni.ja');
+
+    return 'jar:file://' + omniPath.path.replace(/\\/g, '/') + '!' + Array.prototype.join.call(arguments, '');
+  };
+
+  var getFileContents = function(uri, callback) {
+    try {
+      NetUtil.asyncFetch(uri, function(stream, result) {
+        if (!Components.isSuccessCode(result)) {
+          callback(null);
+        }
+
+        var contents = NetUtil.readInputStreamToString(stream, stream.available());
+        callback(contents);
+      });
+    } catch(err) {
+      callback(null);
+    }
+  };
+
+  var getPipnssStringBundle = function(callback) {
+    getFileContents(getOmniUri('/chrome/chrome.manifest'), function(manifest) {
+      var pipnssUri = '';
+      var pipnss;
+
+      if (manifest) {
+        var pipnssLine = manifest.split('\n').find(function(str) {
+          return str.indexOf('locale pipnss ') === 0;
+        });
+
+        if (pipnssLine) {
+          var pipnssPath = pipnssLine.split(' ')[3];
+          pipnssUri = getOmniUri('/chrome/', pipnssPath, 'pipnss.properties');
+        }
+      }
+
+      try {
+        pipnss = stringBundleService.createBundle(pipnssUri);
+        pipnss.getSimpleEnumeration();
+      } catch(err) {
+        pipnss = stringBundleService.createBundle('chrome://pipnss/locale/pipnss.properties');
+      }
+
+      callback(pipnss);
+    });
+  };
 
   var setElementBoolean = function(el, attr, bool) {
     if (!(el instanceof XULElement)) {
@@ -415,7 +468,10 @@ var CipherFox = (function() {
       // only modify RC4 prefs if the user has disabled RC4
       if (prefs.disable_rc4) { setRC4(); }
 
-      gBrowser.addProgressListener(updateListener);
+      getPipnssStringBundle(function(bundle) {
+        pipnss = bundle;
+        gBrowser.addProgressListener(updateListener);
+      });
     },
 
     onUnload: function() {

@@ -5,13 +5,14 @@
 var CipherFox_prefs = (function() {
   'use strict';
 
-  const Cc = Components.classes, Ci = Components.interfaces;
+  var Cc = Components.classes;
+  var Ci = Components.interfaces;
 
   // exposed methods
   return {
     onLoad: function() {
       this.prompt = Cc['@mozilla.org/embedcomp/prompt-service;1']
-                    .getService(Ci.nsIPromptService);
+        .getService(Ci.nsIPromptService);
       this.bundle = document.getElementById('cipherfox-prefs-bundle');
       this.baseFormat = document.getElementById('pref_base_format');
       this.certFormat = document.getElementById('pref_cert_format');
@@ -20,8 +21,7 @@ var CipherFox_prefs = (function() {
 
     confirmRC4: function(checkbox) {
       if (checkbox.getAttribute('checked')) {
-        if (!this.prompt.confirm(window, this.bundle.getString('cipherfox'),
-                                         this.bundle.getString('rc4attacks'))) {
+        if (!this.prompt.confirm(window, this.bundle.getString('cipherfox'), this.bundle.getString('rc4attacks'))) {
           checkbox.setAttribute('checked', false);
         }
       }
