@@ -9,6 +9,7 @@
 <!ENTITY formatting.label  "Formatting Strings">
 <!ENTITY cipher.label      "Cipher">
 <!ENTITY cert.label        "Certificate">
+<!ENTITY header.label      "Menu Header">
 <!ENTITY default.label     "Default">
 <!ENTITY variables.label   "Formatting String Variables">
 <!ENTITY cipherAlg.label   "Symmetric Cipher Algorithm">

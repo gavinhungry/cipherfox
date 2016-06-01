@@ -9,12 +9,13 @@
 <!ENTITY formatting.label  "Zeichenkette wird formatiert">
 <!ENTITY cipher.label      "Verschlüsselung">
 <!ENTITY cert.label        "Zertifikat">
+<!ENTITY header.label      "Menü-Kopf">
 <!ENTITY default.label     "Standard">
 <!ENTITY variables.label   "Zeichenkettenvariablen werden formatiert">
 <!ENTITY cipherAlg.label   "Symmetrischer Verschlüsselungsalgorithmus">
 <!ENTITY cipherSize.label  "Symmetrische Schlüssellänge">
-<!ENTITY cipherSuite.label "Full Cipher Suite">
-<!ENTITY protocol.label    "Protocol Version">
+<!ENTITY cipherSuite.label "Voll Chiffre Suite">
+<!ENTITY protocol.label    "Protokolls Version">
 <!ENTITY certOrg.label     "Unternehmen oder Name des Zertifikats">
 <!ENTITY certAlg.label     "Algorithmus für den öffentlichen Schlüssel des Zertifikats">
 <!ENTITY certSize.label    "Länge des öffentlichen Schlüssels des Zertifikats">
