@@ -276,8 +276,8 @@ var CipherFox = (function() {
       }
     }
 
-    var certFrom = cert.validity.notBeforeLocalDay;
-    var certExp = cert.validity.notAfterLocalDay;
+    var certFrom = new Date(cert.validity.notBefore / 1000).toLocaleDateString();
+    var certExp = new Date(cert.validity.notAfter / 1000).toLocaleDateString();
     var certIss = cert.issuerOrganization;
 
     // replace variable names in format string with values
