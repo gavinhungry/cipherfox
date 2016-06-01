@@ -49,7 +49,7 @@ var CipherFox = (function() {
   var hideIdentityPopup = function() {
     try {
       gIdentityHandler.hideIdentityPopup();
-    } catch(e) {}
+    } catch(err) {}
   };
 
   // show dialog for cert in database
@@ -68,11 +68,11 @@ var CipherFox = (function() {
 
       if (rc4Enabled) {
         try { prefService.clearUserPref(pref); }
-        catch(e) {}
+        catch(err) {}
       } else {
         var value;
         try { value = prefService.getBoolPref(pref); }
-        catch(e) {}
+        catch(err) {}
 
         if (value !== undefined) {
           prefService.setBoolPref(pref, false);
@@ -260,7 +260,7 @@ var CipherFox = (function() {
 
         certSize = key;
       }
-    } catch(e) {}
+    } catch(err) {}
 
     // look for hash type
     var certHash;
