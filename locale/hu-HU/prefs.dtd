@@ -9,7 +9,7 @@
 <!ENTITY formatting.label  "Formázási sablon">
 <!ENTITY cipher.label      "Rejtjelezés">
 <!ENTITY cert.label        "Tanusítvány">
-<!ENTITY header.label      "Menu Header">
+<!ENTITY header.label      "Menüpontot">
 <!ENTITY default.label     "Alapértelmezett">
 <!ENTITY variables.label   "Formázási sablon változói">
 <!ENTITY cipherAlg.label   "Szimmetrikus rejtjelezés algoritmusa">

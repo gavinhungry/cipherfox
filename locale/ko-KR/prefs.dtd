@@ -9,17 +9,17 @@
 <!ENTITY formatting.label  "Çü½Ä ¹®ÀÚ¿­">
 <!ENTITY cipher.label      "¾ÏÈ£">
 <!ENTITY cert.label        "ÀÎÁõ¼­">
-<!ENTITY header.label      "Menu Header">
+<!ENTITY header.label      "메뉴 제목">
 <!ENTITY default.label     "±âº»">
 <!ENTITY variables.label   "Çü½Ä ¹®ÀÚ¿­ º¯¼ö">
 <!ENTITY cipherAlg.label   "´ëÄª ¾ÏÈ£È­ ¾Ë°í¸®Áò">
 <!ENTITY cipherSize.label  "´ëÄª ¾ÏÈ£Å° ±æÀÌ">
-<!ENTITY cipherSuite.label "Full Cipher Suite">
-<!ENTITY protocol.label    "Protocol Version">
+<!ENTITY cipherSuite.label "전체 암호 스위트 룸">
+<!ENTITY protocol.label    "프로토콜 버전">
 <!ENTITY certOrg.label     "ÀÎÁõ¼­ Á¶Á÷ ¶Ç´Â ÀÌ¸§">
 <!ENTITY certAlg.label     "ÀÎÁõ¼­ °ø°³Å° ¾Ë°í¸®Áò">
 <!ENTITY certSize.label    "ÀÎÁõ¼­ °ø°³Å° ±æÀÌ">
 <!ENTITY certHash.label    "ÀÎÁõ¼­ ¼­¸í ÇØ½Ã">
-<!ENTITY certIssued.label  "Certificate Issuance Date">
+<!ENTITY certIssued.label  "인증서 발급 날짜">
 <!ENTITY certExp.label     "ÀÎÁõ¼­ ¸¸·áÀÏ">
 <!ENTITY certIss.label     "ÀÎÁõ¼­ ¹ß±ÞÀÚ">

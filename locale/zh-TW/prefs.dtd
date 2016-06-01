@@ -9,17 +9,17 @@
 <!ENTITY formatting.label  "正在格式化字串">
 <!ENTITY cipher.label      "密碼">
 <!ENTITY cert.label        "證書">
-<!ENTITY header.label      "Menu Header">
+<!ENTITY header.label      "菜單頭">
 <!ENTITY default.label     "默認">
 <!ENTITY variables.label   "正在格式化字串變數">
 <!ENTITY cipherAlg.label   "對稱密碼演算法">
 <!ENTITY cipherSize.label  "對稱密匙長度">
-<!ENTITY cipherSuite.label "Full Cipher Suite">
-<!ENTITY protocol.label    "Protocol Version">
+<!ENTITY cipherSuite.label "全加密套件">
+<!ENTITY protocol.label    "協議版本">
 <!ENTITY certOrg.label     "證書組織或名稱">
 <!ENTITY certAlg.label     "證書公開金鑰演算法">
 <!ENTITY certSize.label    "證書公開金鑰長度">
 <!ENTITY certHash.label    "證書簽名雜湊">
-<!ENTITY certIssued.label  "Certificate Issuance Date">
+<!ENTITY certIssued.label  "證書頒發日期">
 <!ENTITY certExp.label     "證書到期日期">
 <!ENTITY certIss.label     "證書頒發商">

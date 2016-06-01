@@ -9,12 +9,12 @@
 <!ENTITY formatting.label  "表示形式">
 <!ENTITY cipher.label      "暗号化">
 <!ENTITY cert.label        "証明書">
-<!ENTITY header.label      "Menu Header">
+<!ENTITY header.label      "メニュー見出し">
 <!ENTITY default.label     "既定に戻す">
 <!ENTITY variables.label   "表示形式のパラメータ">
 <!ENTITY cipherAlg.label   "共通鍵のアルゴリズム">
 <!ENTITY cipherSize.label  "共通鍵の鍵長">
-<!ENTITY cipherSuite.label "完全な Cipher Suite">
+<!ENTITY cipherSuite.label "完全な暗号スイート">
 <!ENTITY protocol.label    "プロトコルバージョン">
 <!ENTITY certOrg.label     "発行対象の組織名あるいは一般名称">
 <!ENTITY certAlg.label     "公開鍵のアルゴリズム">

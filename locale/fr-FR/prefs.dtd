@@ -9,17 +9,17 @@
 <!ENTITY formatting.label  "Formatage des Chaînes">
 <!ENTITY cipher.label      "Chiffrement">
 <!ENTITY cert.label        "Certificat">
-<!ENTITY header.label      "Menu Header">
+<!ENTITY header.label      "En-tête de Menu">
 <!ENTITY default.label     "Par défaut">
 <!ENTITY variables.label   "Formatage des Variables de la Chaîne">
 <!ENTITY cipherAlg.label   "Algorithme de Chiffrement Symétrique">
 <!ENTITY cipherSize.label  "Longueur de la Clef du Chiffrement Symétrique">
-<!ENTITY cipherSuite.label "Full Cipher Suite">
-<!ENTITY protocol.label    "Protocol Version">
+<!ENTITY cipherSuite.label "Suite Complète Chiffrement">
+<!ENTITY protocol.label    "Protocole Version">
 <!ENTITY certOrg.label     "Organisation de Certification ou Nom">
 <!ENTITY certAlg.label     "Algorithme à Clef Publique de Certification">
 <!ENTITY certSize.label    "Longueur de la Clef Publique de Certification">
 <!ENTITY certHash.label    "Hachage de la Signature du Certificat">
-<!ENTITY certIssued.label  "Certificate Issuance Date">
+<!ENTITY certIssued.label  "Date d'Emission du Certificat">
 <!ENTITY certExp.label     "Date d'Expiration du Certificat">
 <!ENTITY certIss.label     "Emetteur du Certificat">
