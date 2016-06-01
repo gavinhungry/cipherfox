@@ -34,6 +34,18 @@ var CipherFox = (function() {
   // XUL DOM elements
   var cfToggle, cfPanel, cfButton, cfCerts, cfBCerts, cfPSep;
 
+  var setElementBoolean = function(el, attr, bool) {
+    if (!(el instanceof XULElement)) {
+      return;
+    }
+
+    if (!bool) {
+      el.removeAttribute(attr);
+    } else {
+      el.setAttribute(attr, true);
+    }
+  };
+
   var hideIdentityPopup = function() {
     try {
       gIdentityHandler.hideIdentityPopup();
@@ -71,7 +83,7 @@ var CipherFox = (function() {
 
   var toggleRC4 = function() {
     rc4Enabled = !rc4Enabled;
-    cfToggle.setAttribute('checked', rc4Enabled);
+    setElementBoolean(cfToggle, 'checked', rc4Enabled);
     setRC4();
   };
 
@@ -88,8 +100,8 @@ var CipherFox = (function() {
 
     // set RC4 status and menuitem
     rc4Enabled = !prefs.disable_rc4;
-    cfToggle.setAttribute('hidden', rc4Enabled);
-    cfToggle.setAttribute('checked', rc4Enabled);
+    setElementBoolean(cfToggle, 'hidden', rc4Enabled);
+    setElementBoolean(cfToggle, 'checked', rc4Enabled);
   };
 
   // get all certs and update
@@ -338,11 +350,11 @@ var CipherFox = (function() {
     }
 
     cfPanel.label = panelLabel;
-    cfPanel.hidden  = hidden || !prefs.show_panel;
+    setElementBoolean(cfPanel, 'hidden', hidden || !prefs.show_panel);
 
     if (cfButton instanceof XULElement) {
-      cfButton.label = panelLabel;
-      cfButton.hidden = hidden || !prefs.show_button;
+      cfButton.setAttribute('label', panelLabel);
+      setElementBoolean(cfButton, 'hidden', hidden || !prefs.show_button);
     }
   };
 
@@ -358,9 +370,14 @@ var CipherFox = (function() {
   // exposed methods
   return {
     onLoad: function() {
+      cfButton = document.getElementById('cipherfox-button');
+      var footer = document.getElementById('identity-popup-securityView-footer');
+      if (footer) {
+        footer.appendChild(cfButton);
+      }
+
       cfToggle = document.getElementById('cipherfox-toggle-rc4');
       cfPanel  = document.getElementById('cipherfox-panel');
-      cfButton = document.getElementById('cipherfox-button');
       cfCerts  = document.getElementById('cipherfox-certs');
       cfBCerts = document.getElementById('cipherfox-button-certs');
       cfPSep   = document.getElementById('cipherfox-prefs-seperator');

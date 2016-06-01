@@ -65,15 +65,12 @@
 
 #identity-popup-securityView #cipherfox-button .button-box {
   display: flex;
+  align-items: center;
 }
 
 #identity-popup-securityView #cipherfox-button .button-box > .box-inherit {
   flex: 1;
   text-align: center;
-}
-
-#identity-popup-securityView #cipherfox-button .button-menu-dropmarker {
-  height: auto;
 }
 
 #status-bar #cipherfox-panel {
