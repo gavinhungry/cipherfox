@@ -15,6 +15,7 @@ var CipherFox_prefs = (function() {
       this.bundle = document.getElementById('cipherfox-prefs-bundle');
       this.baseFormat = document.getElementById('pref_base_format');
       this.certFormat = document.getElementById('pref_cert_format');
+      this.headerFormat = document.getElementById('pref_header_format');
     },
 
     confirmRC4: function(checkbox) {

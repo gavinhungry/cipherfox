@@ -9,6 +9,7 @@
 <!ENTITY formatting.label  "正在格式化字符串">
 <!ENTITY cipher.label      "密码">
 <!ENTITY cert.label        "证书">
+<!ENTITY header.label      "Menu Header">
 <!ENTITY default.label     "默认">
 <!ENTITY variables.label   "正在格式化字符串变量">
 <!ENTITY cipherAlg.label   "对称密码算法">

@@ -7,6 +7,8 @@ var CipherFox = (function() {
 
   const Cc = Components.classes, Ci = Components.interfaces;
 
+  // Components.utils.import('resource://gre/modules/devtools/Console.jsm');
+
   var certDb  = Cc['@mozilla.org/security/x509certdb;1'].getService(Ci.nsIX509CertDB);
   var certDlg = Cc['@mozilla.org/nsCertificateDialogs;1'].getService(Ci.nsICertificateDialogs);
   var pipnss  = Cc['@mozilla.org/intl/stringbundle;1'].getService(Ci.nsIStringBundleService)
@@ -75,13 +77,14 @@ var CipherFox = (function() {
 
   // get existing preferences
   var loadPrefs = function() {
-    prefs.base_format  = prefService.getCharPref('extensions.cipherfox.base_format');
-    prefs.cert_format  = prefService.getCharPref('extensions.cipherfox.cert_format');
-    prefs.disable_rc4  = prefService.getBoolPref('extensions.cipherfox.disable_rc4');
-    prefs.show_builtin = prefService.getBoolPref('extensions.cipherfox.show_builtin');
-    prefs.show_partial = prefService.getBoolPref('extensions.cipherfox.show_partial');
-    prefs.show_panel   = prefService.getBoolPref('extensions.cipherfox.show_panel');
-    prefs.show_button  = prefService.getBoolPref('extensions.cipherfox.show_button');
+    prefs.base_format   = prefService.getCharPref('extensions.cipherfox.base_format');
+    prefs.cert_format   = prefService.getCharPref('extensions.cipherfox.cert_format');
+    prefs.header_format = prefService.getCharPref('extensions.cipherfox.header_format');
+    prefs.disable_rc4   = prefService.getBoolPref('extensions.cipherfox.disable_rc4');
+    prefs.show_builtin  = prefService.getBoolPref('extensions.cipherfox.show_builtin');
+    prefs.show_partial  = prefService.getBoolPref('extensions.cipherfox.show_partial');
+    prefs.show_panel    = prefService.getBoolPref('extensions.cipherfox.show_panel');
+    prefs.show_button   = prefService.getBoolPref('extensions.cipherfox.show_button');
 
     // set RC4 status and menuitem
     rc4Enabled = !prefs.disable_rc4;
@@ -158,12 +161,12 @@ var CipherFox = (function() {
     if (v === Ci.nsISSLStatus.TLS_VERSION_1_2) { return 'TLS 1.2'; }
   };
 
-  var formatLabel = function(obj) {
+  var formatLabel = function(obj, format) {
     var cert, label;
 
     if (obj instanceof Ci.nsISSLStatus) {
       cert = obj.serverCert;
-      label = prefs.base_format;
+      label = typeof format === 'string' ? format : prefs.base_format;
 
       var cipherName = obj.cipherName;
       var suiteMatch = ciphersRe.exec(cipherName);
@@ -187,7 +190,7 @@ var CipherFox = (function() {
 
     } else if (obj instanceof Ci.nsIX509Cert) {
       cert = obj;
-      label = prefs.cert_format;
+      label = typeof format === 'string' ? format : prefs.cert_format;
     } else { return null; }
 
     var certDmp = Cc['@mozilla.org/security/nsASN1Tree;1'].createInstance(Ci.nsIASN1Tree);
@@ -299,6 +302,7 @@ var CipherFox = (function() {
 
     var currentBrowser = gBrowser.selectedBrowser;
     var panelLabel = null;
+    var headerLabel = null;
     var hidden = true;
 
     var ui = currentBrowser.securityUI;
@@ -308,8 +312,28 @@ var CipherFox = (function() {
 
       if (status instanceof Ci.nsISSLStatus) {
         panelLabel = formatLabel(status);
+        headerLabel = formatLabel(status, prefs.header_format);
         hidden = !(panelLabel && (!isPartial || prefs.show_partial));
         populateCertChain(status);
+      }
+    }
+
+    if (headerLabel) {
+      var headerItem = document.createElement('menuitem');
+      headerItem.setAttribute('disabled', true);
+      headerItem.setAttribute('label', headerLabel);
+
+      var headerItemB = headerItem.cloneNode(false);
+
+      var sepItem = document.createElement('menuseparator');
+      var sepItemB = sepItem.cloneNode(false);
+
+      cfCerts.appendChild(sepItem);
+      cfCerts.appendChild(headerItem);
+
+      if (cfBCerts instanceof XULElement) {
+        cfBCerts.insertBefore(headerItemB, cfBCerts.firstChild);
+        cfBCerts.insertBefore(sepItemB, headerItemB.nextSibling);
       }
     }
 
@@ -403,8 +427,8 @@ var CipherFox = (function() {
 
     // Qualys SSL Labs Server Test
     testDomain: function() {
-      gBrowser.addTab('https://www.ssllabs.com/ssldb/analyze.html?d='
-                      + gBrowser.contentDocument.domain);
+      gBrowser.addTab('https://www.ssllabs.com/ssldb/analyze.html?d=' +
+        gBrowser.contentDocument.domain);
     }
   };
 })();

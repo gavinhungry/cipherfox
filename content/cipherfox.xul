@@ -15,7 +15,7 @@
     window.addEventListener('unload', function() { CipherFox.onUnload(); }, false);
   </script>
 
-  <vbox id='identity-popup-securityView'>
+  <vbox id='identity-popup-securityView-footer'>
     <button id='cipherfox-button' type='menu' label='&cipherfox.title;' hidden='true' crop='end'>
       <menupopup id='cipherfox-button-certs'>
         <menuseparator id='cipherfox-prefs-seperator'/>

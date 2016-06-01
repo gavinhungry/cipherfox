@@ -9,6 +9,7 @@
 <!ENTITY formatting.label  "Formateando Cadenas">
 <!ENTITY cipher.label      "Código">
 <!ENTITY cert.label        "Certificado">
+<!ENTITY header.label      "Menu Header">
 <!ENTITY default.label     "Predeterminado">
 <!ENTITY variables.label   "Formateando Variables de Cadena">
 <!ENTITY cipherAlg.label   "Algoritmo de Código Simétrico">

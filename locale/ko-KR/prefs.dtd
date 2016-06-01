@@ -9,6 +9,7 @@
 <!ENTITY formatting.label  "Çü½Ä ¹®ÀÚ¿­">
 <!ENTITY cipher.label      "¾ÏÈ£">
 <!ENTITY cert.label        "ÀÎÁõ¼­">
+<!ENTITY header.label      "Menu Header">
 <!ENTITY default.label     "±âº»">
 <!ENTITY variables.label   "Çü½Ä ¹®ÀÚ¿­ º¯¼ö">
 <!ENTITY cipherAlg.label   "´ëÄª ¾ÏÈ£È­ ¾Ë°í¸®Áò">

@@ -9,6 +9,7 @@
 <!ENTITY formatting.label  "Formatage des Chaînes">
 <!ENTITY cipher.label      "Chiffrement">
 <!ENTITY cert.label        "Certificat">
+<!ENTITY header.label      "Menu Header">
 <!ENTITY default.label     "Par défaut">
 <!ENTITY variables.label   "Formatage des Variables de la Chaîne">
 <!ENTITY cipherAlg.label   "Algorithme de Chiffrement Symétrique">

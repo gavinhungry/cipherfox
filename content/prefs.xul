@@ -23,13 +23,14 @@
   <prefpane id='cipherfox-prefpane' flex='1'>
 
     <preferences>
-      <preference id='pref_base_format'  name='extensions.cipherfox.base_format'  type='string'/>
-      <preference id='pref_cert_format'  name='extensions.cipherfox.cert_format'  type='string'/>
-      <preference id='pref_disable_rc4'  name='extensions.cipherfox.disable_rc4'  type='bool'/>
-      <preference id='pref_show_builtin' name='extensions.cipherfox.show_builtin' type='bool'/>
-      <preference id='pref_show_partial' name='extensions.cipherfox.show_partial' type='bool'/>
-      <preference id='pref_show_panel'   name='extensions.cipherfox.show_panel'   type='bool'/>
-      <preference id='pref_show_button'  name='extensions.cipherfox.show_button'  type='bool'/>
+      <preference id='pref_base_format'   name='extensions.cipherfox.base_format'   type='string'/>
+      <preference id='pref_cert_format'   name='extensions.cipherfox.cert_format'   type='string'/>
+      <preference id='pref_header_format' name='extensions.cipherfox.header_format' type='string'/>
+      <preference id='pref_disable_rc4'   name='extensions.cipherfox.disable_rc4'   type='bool'/>
+      <preference id='pref_show_builtin'  name='extensions.cipherfox.show_builtin'  type='bool'/>
+      <preference id='pref_show_partial'  name='extensions.cipherfox.show_partial'  type='bool'/>
+      <preference id='pref_show_panel'    name='extensions.cipherfox.show_panel'    type='bool'/>
+      <preference id='pref_show_button'   name='extensions.cipherfox.show_button'   type='bool'/>
     </preferences>
 
     <groupbox>
@@ -74,6 +75,11 @@
             <label value='&cert.label;:'/>
             <textbox preference='pref_cert_format'/>
             <button label='&default.label;' oncommand='CipherFox_prefs.certFormat.reset();'/>
+          </row>
+          <row align='center'>
+            <label value='&header.label;:'/>
+            <textbox preference='pref_header_format'/>
+            <button label='&default.label;' oncommand='CipherFox_prefs.headerFormat.reset();'/>
           </row>
         </rows>
       </grid>

@@ -9,6 +9,7 @@
 <!ENTITY formatting.label  "Zeichenkette wird formatiert">
 <!ENTITY cipher.label      "Verschlüsselung">
 <!ENTITY cert.label        "Zertifikat">
+<!ENTITY header.label      "Menu Header">
 <!ENTITY default.label     "Standard">
 <!ENTITY variables.label   "Zeichenkettenvariablen werden formatiert">
 <!ENTITY cipherAlg.label   "Symmetrischer Verschlüsselungsalgorithmus">

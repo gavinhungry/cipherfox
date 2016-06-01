@@ -9,6 +9,7 @@
 <!ENTITY formatting.label  "Форматирование цепочек">
 <!ENTITY cipher.label      "Шифр">
 <!ENTITY cert.label        "Сертификат">
+<!ENTITY header.label      "Menu Header">
 <!ENTITY default.label     "По умолчанию">
 <!ENTITY variables.label   "Форматирование переменных цепочки">
 <!ENTITY cipherAlg.label   "Симметричный алгоритм шифра">
