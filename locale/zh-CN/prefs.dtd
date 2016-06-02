@@ -2,7 +2,6 @@
 <!ENTITY general.label     "常规首选项">
 <!ENTITY showPartial.label "显示CipherFox，即使当SSL/TLS为部分时">
 <!ENTITY showBuiltin.label "显示&quot;内置对象标记&quot; 认证机构链">
-<!ENTITY disableRC4.label  "禁用RC4密码(添加‘切换’到工具菜单)">
 <!ENTITY display.label     "显示首选项">
 <!ENTITY showPanel.label   "在加载项栏中显示CipherFox">
 <!ENTITY showButton.label  "在站点标识对话中显示CipherFox">

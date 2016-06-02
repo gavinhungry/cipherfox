@@ -2,7 +2,6 @@
 <!ENTITY general.label     "Общие предпочтения">
 <!ENTITY showPartial.label "Показывать CipherFox даже при частичном SSL/TLS">
 <!ENTITY showBuiltin.label "Показывать органы сертификации &quot;Builtin Object Token&quot; в цепочке">
-<!ENTITY disableRC4.label  "Отключить шифр RC4 (добавляет переключатель к меню Инструменты)">
 <!ENTITY display.label     "Показывать предпочтения">
 <!ENTITY showPanel.label   "Показывать CipherFox в пенели расширений">
 <!ENTITY showButton.label  "Показывать CipherFox в диалоге идентификации сайта">

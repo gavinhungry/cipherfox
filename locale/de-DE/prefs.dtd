@@ -2,7 +2,6 @@
 <!ENTITY general.label     "Allgemeine Einstellungen">
 <!ENTITY showPartial.label "CipherFox auch bei unvollständig verschlüsselten Seiten anzeigen">
 <!ENTITY showBuiltin.label "Zertifikatsautoritäten der &quot;eingebauten Objekttoken&quot; der Reihe nach anzeigen">
-<!ENTITY disableRC4.label  "RC4-Verschlüsselung deaktivieren (fügt eine Schaltfläche im Werkzeugmenü hinzu)">
 <!ENTITY display.label     "Platzierung">
 <!ENTITY showPanel.label   "CipherFox in Add-on-Leiste anzeigen">
 <!ENTITY showButton.label  "CipherFox im Seitenidentifizierungsdialog anzeigen">

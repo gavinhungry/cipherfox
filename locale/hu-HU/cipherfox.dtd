@@ -1,5 +1,4 @@
 <!ENTITY cipherfox.title  "CipherFox">
-<!ENTITY enable.label     "RC4 engedélyezése">
 <!ENTITY certs.tooltip    "Tanusítvány lánc megjelenítése">
 <!ENTITY prefs.label      "Beállítások">
 <!ENTITY prefs.accesskey  "e">

@@ -1,5 +1,4 @@
 <!ENTITY cipherfox.title  "CipherFox">
-<!ENTITY enable.label     "Включить RC4">
 <!ENTITY certs.tooltip    "Показывать цепочку сертификата">
 <!ENTITY prefs.label      "Предпочтения">
 <!ENTITY prefs.accesskey  "P">

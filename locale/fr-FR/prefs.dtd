@@ -2,7 +2,6 @@
 <!ENTITY general.label     "Préférences Générales">
 <!ENTITY showPartial.label "Afficher CipherFox même lorsque le SSL/TLS est partiel">
 <!ENTITY showBuiltin.label "Afficher &quot;Builtin Object Token&quot; Autorités de Certification de chaîne">
-<!ENTITY disableRC4.label  "Désactiver le chiffrement RC4 (ajoute une touche Bascule au menu Outils)">
 <!ENTITY display.label     "Afficher les Préférences">
 <!ENTITY showPanel.label   "Afficher CipherFox dans la barre des modules complémentaires">
 <!ENTITY showButton.label  "Afficher CipherFox dans le dialogue d'identification du site">

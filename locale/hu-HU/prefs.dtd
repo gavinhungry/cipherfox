@@ -2,7 +2,6 @@
 <!ENTITY general.label     "Általános beállítások">
 <!ENTITY showPartial.label "CipherFox megjelenítése részleges SSL/TLS esetén is">
 <!ENTITY showBuiltin.label "Beépített &quot;Builtin Object Token&quot; tanusítványok megjelenítése a láncban.">
-<!ENTITY disableRC4.label  "RC4 rejtjelezés letiltása (átkapcsolható a menüben)">
 <!ENTITY display.label     "Megjelenítési beállítások">
 <!ENTITY showPanel.label   "CipherFox megjelenítése a kiegészítősávban">
 <!ENTITY showButton.label  "CipherFox megjelenítése a weboldal azonosító adatai között.">

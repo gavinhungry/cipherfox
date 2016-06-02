@@ -26,7 +26,6 @@
       <preference id='pref_base_format'   name='extensions.cipherfox.base_format'   type='string'/>
       <preference id='pref_cert_format'   name='extensions.cipherfox.cert_format'   type='string'/>
       <preference id='pref_header_format' name='extensions.cipherfox.header_format' type='string'/>
-      <preference id='pref_disable_rc4'   name='extensions.cipherfox.disable_rc4'   type='bool'/>
       <preference id='pref_show_builtin'  name='extensions.cipherfox.show_builtin'  type='bool'/>
       <preference id='pref_show_partial'  name='extensions.cipherfox.show_partial'  type='bool'/>
       <preference id='pref_show_panel'    name='extensions.cipherfox.show_panel'    type='bool'/>
@@ -40,10 +39,6 @@
       </box>
       <box>
         <checkbox label='&showBuiltin.label;' preference='pref_show_builtin'/>
-      </box>
-      <box>
-        <checkbox label='&disableRC4.label;' preference='pref_disable_rc4'
-                  oncommand='return CipherFox_prefs.confirmRC4(this)'/>
       </box>
     </groupbox>
 

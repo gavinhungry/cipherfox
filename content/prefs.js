@@ -17,14 +17,6 @@ var CipherFox_prefs = (function() {
       this.baseFormat = document.getElementById('pref_base_format');
       this.certFormat = document.getElementById('pref_cert_format');
       this.headerFormat = document.getElementById('pref_header_format');
-    },
-
-    confirmRC4: function(checkbox) {
-      if (checkbox.getAttribute('checked')) {
-        if (!this.prompt.confirm(window, this.bundle.getString('cipherfox'), this.bundle.getString('rc4attacks'))) {
-          checkbox.setAttribute('checked', false);
-        }
-      }
     }
   };
 })();

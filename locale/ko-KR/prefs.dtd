@@ -2,7 +2,6 @@
 <!ENTITY general.label     "ÀÏ¹Ý È¯°æ¼³Á¤">
 <!ENTITY showPartial.label "SSL/TLSÀÌ ºÎºÐÀûÀÏ ¶§ CipherFox Ç¥½Ã">
 <!ENTITY showBuiltin.label "Ã¼ÀÎ¿¡ &quot;³»Àå °´Ã¼ Ç¥½Ä&quot; ÀÎÁõ±â°ü Ç¥½Ã">
-<!ENTITY disableRC4.label  "RC4 ¾ÏÈ£È­ ²ô±â(µµ±¸ ¸Þ´º¿¡ Åä±ÛÅ° Ãß°¡)">
 <!ENTITY display.label     "µð½ºÇÃ·¹ÀÌ È¯°æ¼³Á¤">
 <!ENTITY showPanel.label   "ºÎ°¡±â´É ¹Ù¿¡ CipherFox Ç¥½Ã">
 <!ENTITY showButton.label  "»çÀÌÆ® È®ÀÎ Ã¢¿¡ CipherFox Ç¥½Ã">
