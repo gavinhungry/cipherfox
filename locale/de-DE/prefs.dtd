@@ -1,21 +1,21 @@
 <!ENTITY prefs.title       "CipherFox Einstellungen">
 <!ENTITY general.label     "Allgemeine Einstellungen">
-<!ENTITY showPartial.label "CipherFox auch bei unvollständigem SSL/TLS anzeigen">
+<!ENTITY showPartial.label "CipherFox auch bei unvollständig verschlüsselten Seiten anzeigen">
 <!ENTITY showBuiltin.label "Zertifikatsautoritäten der &quot;eingebauten Objekttoken&quot; der Reihe nach anzeigen">
 <!ENTITY disableRC4.label  "RC4-Verschlüsselung deaktivieren (fügt eine Schaltfläche im Werkzeugmenü hinzu)">
-<!ENTITY display.label     "Einstellungen anzeigen">
+<!ENTITY display.label     "Platzierung">
 <!ENTITY showPanel.label   "CipherFox in Add-on-Leiste anzeigen">
 <!ENTITY showButton.label  "CipherFox im Seitenidentifizierungsdialog anzeigen">
-<!ENTITY formatting.label  "Zeichenkette wird formatiert">
+<!ENTITY formatting.label  "Anzeigeformatierung">
 <!ENTITY cipher.label      "Verschlüsselung">
 <!ENTITY cert.label        "Zertifikat">
-<!ENTITY header.label      "Menü-Kopf">
+<!ENTITY header.label      "Menü-Überschrift">
 <!ENTITY default.label     "Standard">
-<!ENTITY variables.label   "Zeichenkettenvariablen werden formatiert">
+<!ENTITY variables.label   "Variablen zur Anzeigeformatierung">
 <!ENTITY cipherAlg.label   "Symmetrischer Verschlüsselungsalgorithmus">
 <!ENTITY cipherSize.label  "Symmetrische Schlüssellänge">
-<!ENTITY cipherSuite.label "Voll Chiffre Suite">
-<!ENTITY protocol.label    "Protokolls Version">
+<!ENTITY cipherSuite.label "Name der Chiffrensammlung">
+<!ENTITY protocol.label    "Protokollversion">
 <!ENTITY certOrg.label     "Unternehmen oder Name des Zertifikats">
 <!ENTITY certAlg.label     "Algorithmus für den öffentlichen Schlüssel des Zertifikats">
 <!ENTITY certSize.label    "Länge des öffentlichen Schlüssels des Zertifikats">
