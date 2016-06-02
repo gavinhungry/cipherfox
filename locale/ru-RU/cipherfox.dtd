@@ -3,7 +3,7 @@
 <!ENTITY certs.tooltip    "Показывать цепочку сертификата">
 <!ENTITY prefs.label      "Предпочтения">
 <!ENTITY prefs.accesskey  "P">
-<!ENTITY qualys.label     "Qualys SSL Labs Server Test">
+<!ENTITY qualys.label     "Qualys SSL Labs Тестовый сервер">
 <!ENTITY qualys.accesskey "Q">
-<!ENTITY copy.label       "Copy Cipher Suite to Clipboard">
+<!ENTITY copy.label       "Шифр Люкс Копировать в буфер обмена">
 <!ENTITY copy.accesskey   "C">

@@ -3,7 +3,7 @@
 <!ENTITY certs.tooltip    "查看憑證連結">
 <!ENTITY prefs.label      "首選項">
 <!ENTITY prefs.accesskey  "P">
-<!ENTITY qualys.label     "Qualys SSL Labs Server Test">
+<!ENTITY qualys.label     "Qualys SSL Labs 服務器測試">
 <!ENTITY qualys.accesskey "Q">
-<!ENTITY copy.label       "Copy Cipher Suite to Clipboard">
+<!ENTITY copy.label       "密碼套件複製到剪貼板">
 <!ENTITY copy.accesskey   "C">

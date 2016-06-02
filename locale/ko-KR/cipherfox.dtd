@@ -3,7 +3,7 @@
 <!ENTITY certs.tooltip    "ÀÎÁõ¼­ Ã¼ÀÎ º¸±â">
 <!ENTITY prefs.label      "È¯°æ¼³Á¤">
 <!ENTITY prefs.accesskey  "P">
-<!ENTITY qualys.label     "Qualys SSL Labs Server Test">
+<!ENTITY qualys.label     "Qualys SSL Labs 서버 테스트">
 <!ENTITY qualys.accesskey "Q">
-<!ENTITY copy.label       "Copy Cipher Suite to Clipboard">
+<!ENTITY copy.label       "암호 스위트는 클립 보드에 복사">
 <!ENTITY copy.accesskey   "C">

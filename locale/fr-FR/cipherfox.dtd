@@ -3,7 +3,7 @@
 <!ENTITY certs.tooltip    "Afficher la chaîne de certificats">
 <!ENTITY prefs.label      "Préférences">
 <!ENTITY prefs.accesskey  "P">
-<!ENTITY qualys.label     "Qualys SSL Labs Server Test">
+<!ENTITY qualys.label     "Qualys SSL Labs Test du Serveur">
 <!ENTITY qualys.accesskey "Q">
-<!ENTITY copy.label       "Copy Cipher Suite to Clipboard">
+<!ENTITY copy.label       "Copie Cipher Suite">
 <!ENTITY copy.accesskey   "C">

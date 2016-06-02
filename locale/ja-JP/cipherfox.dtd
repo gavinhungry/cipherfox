@@ -3,7 +3,7 @@
 <!ENTITY certs.tooltip    "証明書チェーンを表示します">
 <!ENTITY prefs.label      "設定">
 <!ENTITY prefs.accesskey  "P">
-<!ENTITY qualys.label     "Qualys SSL Labs Server Test">
+<!ENTITY qualys.label     "Qualys SSL Labs サーバーのテスト">
 <!ENTITY qualys.accesskey "Q">
 <!ENTITY copy.label       "Cipher Suite をクリップボードにコピー">
 <!ENTITY copy.accesskey   "C">
