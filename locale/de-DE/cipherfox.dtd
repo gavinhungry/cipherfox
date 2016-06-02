@@ -4,5 +4,5 @@
 <!ENTITY prefs.accesskey  "E">
 <!ENTITY qualys.label     "SSL Server Test von Qualys SSL Labs">
 <!ENTITY qualys.accesskey "S">
-<!ENTITY copy.label       "Kopieren Cipher Suite">
+<!ENTITY copy.label       "Chiffrensammlung in die Zwischenablage kopieren">
 <!ENTITY copy.accesskey   "K">
