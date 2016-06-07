@@ -4,5 +4,5 @@
 <!ENTITY prefs.accesskey  "e">
 <!ENTITY qualys.label     "Qualys SSL Labs szerver teszt">
 <!ENTITY qualys.accesskey "Q">
-<!ENTITY copy.label       "Rejtjelezési csomag másolása">
+<!ENTITY copy.label       "Rejtjelezési eszközkészlet másolása">
 <!ENTITY copy.accesskey   "m">
