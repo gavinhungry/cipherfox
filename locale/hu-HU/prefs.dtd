@@ -1,24 +1,24 @@
 <!ENTITY prefs.title       "CipherFox beállítások">
 <!ENTITY general.label     "Általános beállítások">
-<!ENTITY showPartial.label "CipherFox megjelenítése részleges SSL/TLS esetén is">
-<!ENTITY showBuiltin.label "Beépített &quot;Builtin Object Token&quot; tanusítványok megjelenítése a láncban.">
+<!ENTITY showPartial.label "CipherFox megjelenítése részleges SSL/TLS esetén is.">
+<!ENTITY showBuiltin.label "A &quot;Builtin Object Token&quot; tanusítványok megjelenítése a láncban.">
 <!ENTITY display.label     "Megjelenítési beállítások">
-<!ENTITY showPanel.label   "CipherFox megjelenítése a kiegészítősávban">
+<!ENTITY showPanel.label   "CipherFox megjelenítése a kiegészítősávban.">
 <!ENTITY showButton.label  "CipherFox megjelenítése a weboldal azonosító adatai között.">
-<!ENTITY formatting.label  "Formázási sablon">
+<!ENTITY formatting.label  "Formázási sablonok">
 <!ENTITY cipher.label      "Rejtjelezés">
 <!ENTITY cert.label        "Tanusítvány">
-<!ENTITY header.label      "Menüpontot">
+<!ENTITY header.label      "Menü fejléc">
 <!ENTITY default.label     "Alapértelmezett">
-<!ENTITY variables.label   "Formázási sablon változói">
+<!ENTITY variables.label   "Használható sablon mezők">
 <!ENTITY cipherAlg.label   "Szimmetrikus rejtjelezés algoritmusa">
 <!ENTITY cipherSize.label  "Szimmetrikus rejtjelezés kulcshossza">
-<!ENTITY cipherSuite.label "Rejtjelezési csomag">
+<!ENTITY cipherSuite.label "Rejtjelezési eszközkézlet">
 <!ENTITY protocol.label    "Protokol verzió">
 <!ENTITY certOrg.label     "Tanusítvány szervezet vagy név mezője">
-<!ENTITY certAlg.label     "Tanusítvány nyilvános kulcs algoritmusa">
-<!ENTITY certSize.label    "Tanusítvány nyilvános kulcs hossza">
+<!ENTITY certAlg.label     "Tanusítvány nyilvános kulcs algoritmus">
+<!ENTITY certSize.label    "Tanusítvány nyilvános kulcs hossz">
 <!ENTITY certHash.label    "Tanusítvány ujjlenyomata">
-<!ENTITY certIssued.label  "Tanusítvány kiállításának dátuma">
-<!ENTITY certExp.label     "Tanusítvány lejáratának dátuma">
-<!ENTITY certIss.label     "Tanusítvány kiállítója">
+<!ENTITY certIssued.label  "Tanusítvány kiállítási dátum">
+<!ENTITY certExp.label     "Tanusítvány lejárati dátum">
+<!ENTITY certIss.label     "Tanusítvány kiállító">
