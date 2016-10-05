@@ -179,12 +179,15 @@ var CipherFox = (function() {
   };
 
   var protocolString = function(v) {
-    if (typeof v !== 'number' || isNaN(v)) { return; }
+    if (typeof v !== 'number' || isNaN(v)) {
+      return null;
+    }
 
     if (v === Ci.nsISSLStatus.SSL_VERSION_3) { return 'SSL 3.0'; }
     if (v === Ci.nsISSLStatus.TLS_VERSION_1) { return 'TLS 1.0'; }
     if (v === Ci.nsISSLStatus.TLS_VERSION_1_1) { return 'TLS 1.1'; }
     if (v === Ci.nsISSLStatus.TLS_VERSION_1_2) { return 'TLS 1.2'; }
+    if (v === Ci.nsISSLStatus.TLS_VERSION_1_3) { return 'TLS 1.3'; }
   };
 
   var formatLabel = function(obj, format) {
