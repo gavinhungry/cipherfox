@@ -24,8 +24,11 @@ var CipherFox = (function() {
   var unknown = '?'; // label to use for missing fields
 
   // ciphers from ciphersuites
-  var ciphers = ['_AES_', '_RC4_', '_3DES_', '_DES_', '_CAMELLIA_', '_RC2_',
-    '_DES40_', '_FORTEZZA_', '_IDEA_', '_SEED_', '_GOST', '_NULL_'];
+  var ciphers = [
+    '_AES_', '_RC4_', '_3DES_', '_DES_', '_CAMELLIA_', '_RC2_', '_DES40_',
+    '_FORTEZZA_', '_IDEA_', '_SEED_', '_GOST', '_NULL_', '_CHACHA20_'
+  ];
+
   var ciphersRe = new RegExp(ciphers.join('|'));
 
   // XUL DOM elements
@@ -283,12 +286,24 @@ var CipherFox = (function() {
     var certHash;
     var displayData = certDmp.getDisplayData(certDmp.rowCount-2);
     switch (displayData) {
-      case pipnss.GetStringFromName('CertDumpMD2WithRSA'):    certHash = 'MD2';    break;
-      case pipnss.GetStringFromName('CertDumpMD5WithRSA'):    certHash = 'MD5';    break;
-      case pipnss.GetStringFromName('CertDumpSHA1WithRSA'):   certHash = 'SHA1';   break;
-      case pipnss.GetStringFromName('CertDumpSHA256WithRSA'): certHash = 'SHA256'; break;
-      case pipnss.GetStringFromName('CertDumpSHA384WithRSA'): certHash = 'SHA384'; break;
-      case pipnss.GetStringFromName('CertDumpSHA512WithRSA'): certHash = 'SHA512';
+      case pipnss.GetStringFromName('CertDumpMD2WithRSA'):
+        certHash = 'MD2'; break;
+      case pipnss.GetStringFromName('CertDumpMD5WithRSA'):
+        certHash = 'MD5'; break;
+      case pipnss.GetStringFromName('CertDumpAnsiX962ECDsaSignatureWithSha1'):
+      case pipnss.GetStringFromName('CertDumpSHA1WithRSA'):
+        certHash = 'SHA1'; break;
+      case pipnss.GetStringFromName('CertDumpAnsiX962ECDsaSignatureWithSha224'):
+        certHash = 'SHA224'; break;
+      case pipnss.GetStringFromName('CertDumpAnsiX962ECDsaSignatureWithSha256'):
+      case pipnss.GetStringFromName('CertDumpSHA256WithRSA'):
+        certHash = 'SHA256'; break;
+      case pipnss.GetStringFromName('CertDumpAnsiX962ECDsaSignatureWithSha384'):
+      case pipnss.GetStringFromName('CertDumpSHA384WithRSA'):
+        certHash = 'SHA384'; break;
+      case pipnss.GetStringFromName('CertDumpAnsiX962ECDsaSignatureWithSha512'):
+      case pipnss.GetStringFromName('CertDumpSHA512WithRSA'):
+        certHash = 'SHA512';
     }
 
     // assume ECDSA OID
