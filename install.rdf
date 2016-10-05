@@ -15,6 +15,7 @@
     <em:contributor>Herczeg Zsolt</em:contributor>
     <em:homepageURL>https://github.com/gavinhungry/cipherfox</em:homepageURL>
     <em:optionsURL>chrome://cipherfox/content/prefs.xul</em:optionsURL>
+    <em:multiprocessCompatible>true</em:multiprocessCompatible>
     <!-- Firefox -->
     <em:targetApplication>
       <Description>
