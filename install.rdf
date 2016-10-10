@@ -4,7 +4,7 @@
   <Description about='urn:mozilla:install-manifest'>
     <em:type>2</em:type>
     <em:id>cipherfox@mkfly</em:id>
-    <em:version>4.0.0</em:version>
+    <em:version>4.1.0</em:version>
     <em:name>CipherFox</em:name>
     <em:description>Display the current SSL/TLS cipher and certificate chain</em:description>
     <em:creator>Gavin Lloyd</em:creator>
