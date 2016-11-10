@@ -472,7 +472,7 @@ var CipherFox = (function() {
     // Qualys SSL Labs Server Test
     testDomain: function() {
       gBrowser.addTab('https://www.ssllabs.com/ssldb/analyze.html?d=' +
-        gBrowser.contentDocument.domain);
+        (gBrowser.contentDocument ? gBrowser.contentDocument.domain : gBrowser.currentURI.host));
     }
   };
 })();
