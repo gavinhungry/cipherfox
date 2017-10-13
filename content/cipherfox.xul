@@ -11,8 +11,8 @@
 
   <script type='application/javascript' src='chrome://cipherfox/content/cipherfox.js'/>
   <script type='application/javascript'>
-    window.addEventListener('load',   function() { CipherFox.onLoad();   }, false);
-    window.addEventListener('unload', function() { CipherFox.onUnload(); }, false);
+    window.addEventListener('load', CipherFox.onLoad, false);
+    window.addEventListener('unload', CipherFox.onUnload, false);
   </script>
 
   <vbox id='identity-popup-securityView-body'>

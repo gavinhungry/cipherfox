@@ -17,7 +17,7 @@
 
   <script type='application/javascript' src='chrome://cipherfox/content/prefs.js'/>
   <script type='application/javascript'>
-    window.addEventListener('load', function() { CipherFox_prefs.onLoad(); }, false);
+    window.addEventListener('load', CipherFox_prefs.onLoad, false);
   </script>
 
   <prefpane id='cipherfox-prefpane' flex='1'>

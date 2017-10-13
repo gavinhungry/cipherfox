@@ -2,53 +2,49 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this file,
  * You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-var CipherFox = (function() {
+CipherFox = (() => {
   'use strict';
 
-  var Cc = Components.classes;
-  var Ci = Components.interfaces;
-  var Cu = Components.utils;
+  const Cc = Components.classes;
+  const Ci = Components.interfaces;
+  const Cu = Components.utils;
+
+  const CertDb = Cc['@mozilla.org/security/x509certdb;1'].getService(Ci.nsIX509CertDB);
+  const CertDlg = Cc['@mozilla.org/nsCertificateDialogs;1'].getService(Ci.nsICertificateDialogs);
+  const ClipboardHelper = Cc["@mozilla.org/widget/clipboardhelper;1"].getService(Ci.nsIClipboardHelper);
+  const DirService = Cc['@mozilla.org/file/directory_service;1'].getService(Ci.nsIProperties);
+  const PrefService = Cc['@mozilla.org/preferences-service;1'].getService(Ci.nsIPrefBranch2);
+  const StringBundleService = Cc['@mozilla.org/intl/stringbundle;1'].getService(Ci.nsIStringBundleService);
+
+  const UNKNOWN = '?'; // label to use for missing fields
+  const CIPHERS = new RegExp([
+    '_AES_', '_RC4_', '_3DES_', '_DES_', '_CAMELLIA_', '_RC2_', '_DES40_',
+    '_FORTEZZA_', '_IDEA_', '_SEED_', '_GOST', '_NULL_', '_CHACHA20_'
+  ].join('|'));
 
   Cu.import('resource://gre/modules/NetUtil.jsm');
 
-  var certDb = Cc['@mozilla.org/security/x509certdb;1'].getService(Ci.nsIX509CertDB);
-  var certDlg = Cc['@mozilla.org/nsCertificateDialogs;1'].getService(Ci.nsICertificateDialogs);
-  var clipboardHelper = Cc["@mozilla.org/widget/clipboardhelper;1"].getService(Ci.nsIClipboardHelper);
-  var dirService = Cc['@mozilla.org/file/directory_service;1'].getService(Ci.nsIProperties);
-  var prefService = Cc['@mozilla.org/preferences-service;1'].getService(Ci.nsIPrefBranch2);
-  var stringBundleService = Cc['@mozilla.org/intl/stringbundle;1'].getService(Ci.nsIStringBundleService);
-
-  var prefs = {};
-  var pipnss;
-
-  var unknown = '?'; // label to use for missing fields
-
-  // ciphers from ciphersuites
-  var ciphers = [
-    '_AES_', '_RC4_', '_3DES_', '_DES_', '_CAMELLIA_', '_RC2_', '_DES40_',
-    '_FORTEZZA_', '_IDEA_', '_SEED_', '_GOST', '_NULL_', '_CHACHA20_'
-  ];
-
-  var ciphersRe = new RegExp(ciphers.join('|'));
+  let prefs = {};
+  let pipnss;
 
   // XUL DOM elements
-  var cfPanel, cfButton, cfCerts, cfBCerts, cfPSep;
+  let cfPanel, cfButton, cfCerts, cfBCerts, cfPSep;
 
-  var getOmniUri = function(path) {
-    var omniPath = dirService.get('GreD', Ci.nsIFile);
+  let getOmniUri = path => {
+    let omniPath = DirService.get('GreD', Ci.nsIFile);
     omniPath.appendRelativePath('omni.ja');
 
     return 'jar:file://' + omniPath.path.replace(/\\/g, '/') + '!' + Array.prototype.join.call(arguments, '');
   };
 
-  var getFileContents = function(uri, callback) {
+  let getFileContents = (uri, callback) => {
     try {
-      NetUtil.asyncFetch(uri, function(stream, result) {
+      NetUtil.asyncFetch(uri, (stream, result) => {
         if (!Components.isSuccessCode(result)) {
           callback(null);
         }
 
-        var contents = NetUtil.readInputStreamToString(stream, stream.available());
+        let contents = NetUtil.readInputStreamToString(stream, stream.available());
         callback(contents);
       });
     } catch(err) {
@@ -56,34 +52,34 @@ var CipherFox = (function() {
     }
   };
 
-  var getPipnssStringBundle = function(callback) {
-    getFileContents(getOmniUri('/chrome/chrome.manifest'), function(manifest) {
-      var pipnssUri = '';
-      var pipnss;
+  let getPipnssStringBundle = callback => {
+    getFileContents(getOmniUri('/chrome/chrome.manifest'), manifest => {
+      let pipnssUri = '';
+      let pipnss;
 
       if (manifest) {
-        var pipnssLine = manifest.split('\n').find(function(str) {
+        let pipnssLine = manifest.split('\n').find(str => {
           return str.indexOf('locale pipnss ') === 0;
         });
 
         if (pipnssLine) {
-          var pipnssPath = pipnssLine.split(' ')[3];
+          let pipnssPath = pipnssLine.split(' ')[3];
           pipnssUri = getOmniUri('/chrome/', pipnssPath, 'pipnss.properties');
         }
       }
 
       try {
-        pipnss = stringBundleService.createBundle(pipnssUri);
+        pipnss = StringBundleService.createBundle(pipnssUri);
         pipnss.getSimpleEnumeration();
       } catch(err) {
-        pipnss = stringBundleService.createBundle('chrome://pipnss/locale/pipnss.properties');
+        pipnss = StringBundleService.createBundle('chrome://pipnss/locale/pipnss.properties');
       }
 
       callback(pipnss);
     });
   };
 
-  var setElementBoolean = function(el, attr, bool) {
+  let setElementBoolean = (el, attr, bool) => {
     if (!(el instanceof XULElement)) {
       return;
     }
@@ -95,34 +91,34 @@ var CipherFox = (function() {
     }
   };
 
-  var hideIdentityPopup = function() {
+  let hideIdentityPopup = () => {
     try {
       gIdentityHandler.hideIdentityPopup();
     } catch(err) {}
   };
 
   // show dialog for cert in database
-  var viewCertByDBKey = function(e) {
+  let viewCertByDBKey = e => {
     hideIdentityPopup();
 
-    var dbkey = e.target.getAttribute('dbkey');
-    var cert = certDb.findCertByDBKey(dbkey, null);
-    certDlg.viewCert(window, cert);
+    let dbkey = e.target.getAttribute('dbkey');
+    let cert = CertDb.findCertByDBKey(dbkey, null);
+    CertDlg.viewCert(window, cert);
   };
 
   // get existing preferences
-  var loadPrefs = function() {
-    prefs.base_format   = prefService.getCharPref('extensions.cipherfox.base_format');
-    prefs.cert_format   = prefService.getCharPref('extensions.cipherfox.cert_format');
-    prefs.header_format = prefService.getCharPref('extensions.cipherfox.header_format');
-    prefs.show_builtin  = prefService.getBoolPref('extensions.cipherfox.show_builtin');
-    prefs.show_partial  = prefService.getBoolPref('extensions.cipherfox.show_partial');
-    prefs.show_panel    = prefService.getBoolPref('extensions.cipherfox.show_panel');
-    prefs.show_button   = prefService.getBoolPref('extensions.cipherfox.show_button');
+  let loadPrefs = () => {
+    prefs.base_format   = PrefService.getCharPref('extensions.cipherfox.base_format');
+    prefs.cert_format   = PrefService.getCharPref('extensions.cipherfox.cert_format');
+    prefs.header_format = PrefService.getCharPref('extensions.cipherfox.header_format');
+    prefs.show_builtin  = PrefService.getBoolPref('extensions.cipherfox.show_builtin');
+    prefs.show_partial  = PrefService.getBoolPref('extensions.cipherfox.show_partial');
+    prefs.show_panel    = PrefService.getBoolPref('extensions.cipherfox.show_panel');
+    prefs.show_button   = PrefService.getBoolPref('extensions.cipherfox.show_button');
   };
 
   // get all certs and update
-  var populateCertChain = function(status) {
+  let populateCertChain = status => {
     cfCerts.hidePopup();
     if (cfBCerts instanceof XULElement) {
       cfBCerts.hidePopup();
@@ -139,15 +135,15 @@ var CipherFox = (function() {
       }
     }
 
-    var serverCert = status.serverCert;
+    let serverCert = status.serverCert;
     if (serverCert instanceof Ci.nsIX509Cert) {
-      var certChain = serverCert.getChain().enumerate();
+      let certChain = serverCert.getChain().enumerate();
 
       while (certChain.hasMoreElements()) {
-        var next = certChain.getNext();
-        var cert = next.QueryInterface(Ci.nsIX509Cert || Ci.nsIX509Cert2);
+        let next = certChain.getNext();
+        let cert = next.QueryInterface(Ci.nsIX509Cert || Ci.nsIX509Cert2);
 
-        var certItem = document.createElement('menuitem');
+        let certItem = document.createElement('menuitem');
 
         if (cert.tokenName === 'Builtin Object Token' &&
             cert.certType === Ci.nsIX509Cert.CA_CERT) {
@@ -155,8 +151,8 @@ var CipherFox = (function() {
           certItem.setAttribute('builtin', true);
         }
 
-        var label = formatLabel(cert);
-        var dbkey = cert.dbKey.replace(/[\n\r\t]/g, '');
+        let label = formatLabel(cert);
+        let dbkey = cert.dbKey.replace(/[\n\r\t]/g, '');
 
         // selecting a cert brings up details
         certItem.setAttribute('label', label);
@@ -170,7 +166,7 @@ var CipherFox = (function() {
 
         certItem.addEventListener('command', viewCertByDBKey, false);
 
-        var certItemB = certItem.cloneNode(false);
+        let certItemB = certItem.cloneNode(false);
         certItemB.addEventListener('command', viewCertByDBKey, false);
 
         cfCerts.insertBefore(certItem, cfCerts.firstChild);
@@ -181,7 +177,7 @@ var CipherFox = (function() {
     }
   };
 
-  var protocolString = function(v) {
+  let protocolString = v => {
     if (typeof v !== 'number' || isNaN(v)) {
       return null;
     }
@@ -193,18 +189,18 @@ var CipherFox = (function() {
     if (v === Ci.nsISSLStatus.TLS_VERSION_1_3) { return 'TLS 1.3'; }
   };
 
-  var formatLabel = function(obj, format) {
-    var cert, label;
+  let formatLabel = (obj, format) => {
+    let cert, label;
 
     if (obj instanceof Ci.nsISSLStatus) {
       cert = obj.serverCert;
       label = typeof format === 'string' ? format : prefs.base_format;
 
-      var cipherName = obj.cipherName;
-      var suiteMatch = ciphersRe.exec(cipherName);
-      var protocol = protocolString(obj.protocolVersion); // Fx 36+
+      let cipherName = obj.cipherName;
+      let suiteMatch = CIPHERS.exec(cipherName);
+      let protocol = protocolString(obj.protocolVersion); // Fx 36+
 
-      var cipherSuite = obj.cipherSuite;
+      let cipherSuite = obj.cipherSuite;
 
       // in Fx 25+, cipherName contains a full cipher suite
       if (suiteMatch) {
@@ -215,23 +211,23 @@ var CipherFox = (function() {
       }
 
       label = label
-        .replace(/\$CIPHERALG/g, cipherName || unknown)
-        .replace(/\$CIPHERSIZE/g, obj.secretKeyLength || unknown)
-        .replace(/\$CIPHERSUITE/g, cipherSuite || unknown)
-        .replace(/\$PROTOCOL/g, protocol || unknown);
+        .replace(/\$CIPHERALG/g, cipherName || UNKNOWN)
+        .replace(/\$CIPHERSIZE/g, obj.secretKeyLength || UNKNOWN)
+        .replace(/\$CIPHERSUITE/g, cipherSuite || UNKNOWN)
+        .replace(/\$PROTOCOL/g, protocol || UNKNOWN);
 
     } else if (obj instanceof Ci.nsIX509Cert) {
       cert = obj;
       label = typeof format === 'string' ? format : prefs.cert_format;
     } else { return null; }
 
-    var certDmp = Cc['@mozilla.org/security/nsASN1Tree;1'].createInstance(Ci.nsIASN1Tree);
+    let certDmp = Cc['@mozilla.org/security/nsASN1Tree;1'].createInstance(Ci.nsIASN1Tree);
     certDmp.loadASN1Structure(cert.ASN1Structure);
 
-    var certOrg = cert.organization ? cert.organization : cert.commonName;
-    var certCn  = cert.commonName   ? cert.commonName   : cert.organization;
+    let certOrg = cert.organization ? cert.organization : cert.commonName;
+    let certCn  = cert.commonName   ? cert.commonName   : cert.organization;
 
-    var certAlg;
+    let certAlg;
     switch (certDmp.getDisplayData(11)) {
       case pipnss.GetStringFromName('CertDumpRSAEncr'):
         certAlg = 'RSA';
@@ -250,7 +246,7 @@ var CipherFox = (function() {
       }
     }
 
-    var certSize, key, template;
+    let certSize, key, template;
     try {
       switch(certAlg) {
         case 'RSA':
@@ -273,8 +269,8 @@ var CipherFox = (function() {
       }
 
       if (!certSize && template) {
-        var discards = template.split('\n')[0].split('%S');
-        discards.forEach(function(str) {
+        let discards = template.split('\n')[0].split('%S');
+        discards.forEach(str => {
           key = key.replace(str, '');
         });
 
@@ -283,8 +279,8 @@ var CipherFox = (function() {
     } catch(err) {}
 
     // look for hash type
-    var certHash;
-    var displayData = certDmp.getDisplayData(certDmp.rowCount-2);
+    let certHash;
+    let displayData = certDmp.getDisplayData(certDmp.rowCount-2);
     switch (displayData) {
       case pipnss.GetStringFromName('CertDumpMD2WithRSA'):
         certHash = 'MD2'; break;
@@ -309,9 +305,9 @@ var CipherFox = (function() {
     // assume ECDSA OID
     if (!certHash) {
       // displayData: 'Object Identifier (1 2 840 10045 4 3 2)'
-      var oidMatches = displayData.match(/\((.*)\)/);
+      let oidMatches = displayData.match(/\((.*)\)/);
       if (oidMatches && oidMatches.length > 1) {
-        var oid = oidMatches[1];
+        let oid = oidMatches[1];
 
         switch (oid) {
           case '1 2 840 10045 4 1':   certHash = 'SHA1';   break;
@@ -323,36 +319,36 @@ var CipherFox = (function() {
       }
     }
 
-    var certFrom = new Date(cert.validity.notBefore / 1000).toLocaleDateString();
-    var certExp = new Date(cert.validity.notAfter / 1000).toLocaleDateString();
-    var certIss = cert.issuerOrganization;
+    let certFrom = new Date(cert.validity.notBefore / 1000).toLocaleDateString();
+    let certExp = new Date(cert.validity.notAfter / 1000).toLocaleDateString();
+    let certIss = cert.issuerOrganization;
 
     // replace variable names in format string with values
     label = label
-      .replace(/\$CERTORG/g,    certOrg  || unknown)
-      .replace(/\$CERTCN/g,     certCn   || unknown)
-      .replace(/\$CERTALG/g,    certAlg  || unknown)
-      .replace(/\$CERTSIZE/g,   certSize || unknown)
-      .replace(/\$CERTHASH/g,   certHash || unknown)
-      .replace(/\$CERTISSUED/g, certFrom || unknown)
-      .replace(/\$CERTEXP/g,    certExp  || unknown)
-      .replace(/\$CERTISSUER/g, certIss  || unknown);
+      .replace(/\$CERTORG/g,    certOrg  || UNKNOWN)
+      .replace(/\$CERTCN/g,     certCn   || UNKNOWN)
+      .replace(/\$CERTALG/g,    certAlg  || UNKNOWN)
+      .replace(/\$CERTSIZE/g,   certSize || UNKNOWN)
+      .replace(/\$CERTHASH/g,   certHash || UNKNOWN)
+      .replace(/\$CERTISSUED/g, certFrom || UNKNOWN)
+      .replace(/\$CERTEXP/g,    certExp  || UNKNOWN)
+      .replace(/\$CERTISSUER/g, certIss  || UNKNOWN);
 
     return label;
   };
 
-  var updateCipher = function() {
+  let updateCipher = () => {
     hideIdentityPopup();
 
-    var currentBrowser = gBrowser.selectedBrowser;
-    var panelLabel = null;
-    var headerLabel = null;
-    var hidden = true;
+    let currentBrowser = gBrowser.selectedBrowser;
+    let panelLabel = null;
+    let headerLabel = null;
+    let hidden = true;
 
-    var ui = currentBrowser.securityUI;
+    let ui = currentBrowser.securityUI;
     if (ui instanceof Ci.nsISecureBrowserUI) {
-      var status = ui.QueryInterface(Ci.nsISSLStatusProvider).SSLStatus;
-      var isPartial = (ui.state & Ci.nsIWebProgressListener.STATE_IS_BROKEN);
+      let status = ui.QueryInterface(Ci.nsISSLStatusProvider).SSLStatus;
+      let isPartial = (ui.state & Ci.nsIWebProgressListener.STATE_IS_BROKEN);
 
       if (status instanceof Ci.nsISSLStatus) {
         panelLabel = formatLabel(status);
@@ -363,14 +359,14 @@ var CipherFox = (function() {
     }
 
     if (headerLabel) {
-      var headerItem = document.createElement('menuitem');
+      let headerItem = document.createElement('menuitem');
       headerItem.setAttribute('disabled', true);
       headerItem.setAttribute('label', headerLabel);
 
-      var headerItemB = headerItem.cloneNode(false);
+      let headerItemB = headerItem.cloneNode(false);
 
-      var sepItem = document.createElement('menuseparator');
-      var sepItemB = sepItem.cloneNode(false);
+      let sepItem = document.createElement('menuseparator');
+      let sepItemB = sepItem.cloneNode(false);
 
       cfCerts.appendChild(sepItem);
       cfCerts.appendChild(headerItem);
@@ -390,20 +386,19 @@ var CipherFox = (function() {
     }
   };
 
-  // unused functions must be defined
-  var updateListener = {
-    onStateChange:    function(){},
-    onProgressChange: function(){},
-    onLocationChange: function(){},
-    onStatusChange:   function(){},
-    onSecurityChange: function(webProgress, request, state) { updateCipher(); }
+  let updateListener = {
+    onStateChange:    () => {},
+    onProgressChange: () => {},
+    onLocationChange: () => {},
+    onStatusChange:   () => {},
+    onSecurityChange: (webProgress, request, state) => updateCipher()
   };
 
   // exposed methods
   return {
-    onLoad: function() {
+    onLoad: () => {
       cfButton = document.getElementById('cipherfox-button');
-      var footer = document.getElementById('identity-popup-securityView-footer');
+      let footer = document.getElementById('identity-popup-securityView-footer');
       if (footer) {
         footer.appendChild(cfButton);
       }
@@ -414,63 +409,63 @@ var CipherFox = (function() {
       cfPSep   = document.getElementById('cipherfox-prefs-seperator');
 
       // don't autohide the identity-popup
-      var moreInfo = document.getElementById('identity-popup-more-info-button');
+      let moreInfo = document.getElementById('identity-popup-more-info-button');
       if (moreInfo instanceof XULElement) {
         moreInfo.removeAttribute('onblur');
         moreInfo.addEventListener('command', hideIdentityPopup, false);
       }
 
       if (cfCerts instanceof XULElement) {
-        cfCerts.addEventListener('popupshowing', function() {
+        cfCerts.addEventListener('popupshowing', () => {
           cfPanel.setAttribute('popupopen', true);
         }, false);
 
-        cfCerts.addEventListener('popuphiding', function() {
+        cfCerts.addEventListener('popuphiding', () => {
           cfPanel.removeAttribute('popupopen');
         }, false);
       }
 
       // keep the identity-box 'open'
       if (cfBCerts instanceof XULElement) {
-        cfBCerts.addEventListener('popuphidden', function(e) {
+        cfBCerts.addEventListener('popuphidden', e => {
           e.stopPropagation();
         }, false);
       }
 
-      prefService.addObserver('extensions.cipherfox.', this, false);
+      PrefService.addObserver('extensions.cipherfox.', CipherFox, false);
       loadPrefs();
 
-      getPipnssStringBundle(function(bundle) {
+      getPipnssStringBundle(bundle => {
         pipnss = bundle;
         gBrowser.addProgressListener(updateListener);
       });
     },
 
-    onUnload: function() {
-      prefService.removeObserver('extensions.cipherfox.', this);
+    onUnload: () => {
+      PrefService.removeObserver('extensions.cipherfox.', CipherFox);
       gBrowser.removeProgressListener(updateListener);
     },
 
     // update state when prefs change
-    observe: function(subject, topic, data) {
+    observe: (subject, topic, data) => {
       if (topic === 'nsPref:changed') {
         loadPrefs();
         updateCipher();
       }
     },
 
-    copyCipherSuite: function() {
-      var securityUI = gBrowser.selectedBrowser.securityUI;
+    copyCipherSuite: () => {
+      let securityUI = gBrowser.selectedBrowser.securityUI;
       if (securityUI instanceof Ci.nsISecureBrowserUI) {
-        var status = securityUI.QueryInterface(Ci.nsISSLStatusProvider).SSLStatus;
+        let status = securityUI.QueryInterface(Ci.nsISSLStatusProvider).SSLStatus;
         if (status instanceof Ci.nsISSLStatus) {
-          clipboardHelper.copyString(status.cipherSuite || status.cipherName);
+          ClipboardHelper.copyString(status.cipherSuite || status.cipherName);
         }
       }
     },
 
     // Qualys SSL Labs Server Test
-    testDomain: function() {
+    testDomain: () => {
       gBrowser.addTab('https://www.ssllabs.com/ssldb/analyze.html?d=' +
         (gBrowser.contentDocument ? gBrowser.contentDocument.domain : gBrowser.currentURI.host));
     }

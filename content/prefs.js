@@ -2,21 +2,21 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this file,
  * You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-var CipherFox_prefs = (function() {
+CipherFox_prefs = (() => {
   'use strict';
 
-  var Cc = Components.classes;
-  var Ci = Components.interfaces;
+  const Cc = Components.classes;
+  const Ci = Components.interfaces;
 
   // exposed methods
   return {
-    onLoad: function() {
-      this.prompt = Cc['@mozilla.org/embedcomp/prompt-service;1']
+    onLoad: () => {
+      CipherFox_prefs.prompt = Cc['@mozilla.org/embedcomp/prompt-service;1']
         .getService(Ci.nsIPromptService);
-      this.bundle = document.getElementById('cipherfox-prefs-bundle');
-      this.baseFormat = document.getElementById('pref_base_format');
-      this.certFormat = document.getElementById('pref_cert_format');
-      this.headerFormat = document.getElementById('pref_header_format');
+      CipherFox_prefs.bundle = document.getElementById('cipherfox-prefs-bundle');
+      CipherFox_prefs.baseFormat = document.getElementById('pref_base_format');
+      CipherFox_prefs.certFormat = document.getElementById('pref_cert_format');
+      CipherFox_prefs.headerFormat = document.getElementById('pref_header_format');
     }
   };
 })();
