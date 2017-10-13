@@ -79,6 +79,14 @@ CipherFox = (() => {
     });
   };
 
+  let getStringFromName = name => {
+    try {
+      return pipnss.GetStringFromName(name);
+    } catch(err) {
+      return null;
+    }
+  };
+
   let setElementBoolean = (el, attr, bool) => {
     if (!(el instanceof XULElement)) {
       return;
@@ -229,18 +237,18 @@ CipherFox = (() => {
 
     let certAlg;
     switch (certDmp.getDisplayData(11)) {
-      case pipnss.GetStringFromName('CertDumpRSAEncr'):
+      case getStringFromName('CertDumpRSAEncr'):
         certAlg = 'RSA';
         break;
     }
 
     if (!certAlg) {
       switch (certDmp.getDisplayData(12)) {
-        case pipnss.GetStringFromName('CertDumpECPublicKey'):
+        case getStringFromName('CertDumpECPublicKey'):
           certAlg = 'ECC';
           break;
-        case pipnss.GetStringFromName('CertDumpAnsiX9DsaSignature'):
-        case pipnss.GetStringFromName('CertDumpAnsiX9DsaSignatureWithSha1'):
+        case getStringFromName('CertDumpAnsiX9DsaSignature'):
+        case getStringFromName('CertDumpAnsiX9DsaSignatureWithSha1'):
           certAlg = 'DSA';
           break;
       }
@@ -251,12 +259,12 @@ CipherFox = (() => {
       switch(certAlg) {
         case 'RSA':
           key = certDmp.getDisplayData(12).split('\n')[0];
-          template = pipnss.GetStringFromName('CertDumpRSATemplate');
+          template = getStringFromName('CertDumpRSATemplate');
           break;
 
         case 'ECC':
           key = certDmp.getDisplayData(14).split('\n')[0];
-          template = pipnss.GetStringFromName('CertDumpECTemplate');
+          template = getStringFromName('CertDumpECTemplate');
           break;
 
         case 'DSA':
@@ -282,23 +290,23 @@ CipherFox = (() => {
     let certHash;
     let displayData = certDmp.getDisplayData(certDmp.rowCount-2);
     switch (displayData) {
-      case pipnss.GetStringFromName('CertDumpMD2WithRSA'):
+      case getStringFromName('CertDumpMD2WithRSA'):
         certHash = 'MD2'; break;
-      case pipnss.GetStringFromName('CertDumpMD5WithRSA'):
+      case getStringFromName('CertDumpMD5WithRSA'):
         certHash = 'MD5'; break;
-      case pipnss.GetStringFromName('CertDumpAnsiX962ECDsaSignatureWithSha1'):
-      case pipnss.GetStringFromName('CertDumpSHA1WithRSA'):
+      case getStringFromName('CertDumpAnsiX962ECDsaSignatureWithSha1'):
+      case getStringFromName('CertDumpSHA1WithRSA'):
         certHash = 'SHA1'; break;
-      case pipnss.GetStringFromName('CertDumpAnsiX962ECDsaSignatureWithSha224'):
+      case getStringFromName('CertDumpAnsiX962ECDsaSignatureWithSha224'):
         certHash = 'SHA224'; break;
-      case pipnss.GetStringFromName('CertDumpAnsiX962ECDsaSignatureWithSha256'):
-      case pipnss.GetStringFromName('CertDumpSHA256WithRSA'):
+      case getStringFromName('CertDumpAnsiX962ECDsaSignatureWithSha256'):
+      case getStringFromName('CertDumpSHA256WithRSA'):
         certHash = 'SHA256'; break;
-      case pipnss.GetStringFromName('CertDumpAnsiX962ECDsaSignatureWithSha384'):
-      case pipnss.GetStringFromName('CertDumpSHA384WithRSA'):
+      case getStringFromName('CertDumpAnsiX962ECDsaSignatureWithSha384'):
+      case getStringFromName('CertDumpSHA384WithRSA'):
         certHash = 'SHA384'; break;
-      case pipnss.GetStringFromName('CertDumpAnsiX962ECDsaSignatureWithSha512'):
-      case pipnss.GetStringFromName('CertDumpSHA512WithRSA'):
+      case getStringFromName('CertDumpAnsiX962ECDsaSignatureWithSha512'):
+      case getStringFromName('CertDumpSHA512WithRSA'):
         certHash = 'SHA512';
     }
 
